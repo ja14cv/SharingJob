@@ -16,6 +16,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".nuevo_empleo"
+            android:label="@string/title_activity_nuevo_empleo"
+            android:parentActivityName=".principal" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.jcaal.sharingjob_v01.principal" />
+        </activity>
+        <activity
+            android:name=".mi_cuenta"
+            android:label="@string/title_activity_mi_cuenta"
+            android:parentActivityName=".principal" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.jcaal.sharingjob_v01.principal" />
+        </activity>
     </application>
 
 </manifest>
