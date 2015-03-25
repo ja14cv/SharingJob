@@ -89,6 +89,7 @@ public class principal extends ActionBarActivity
             getMenuInflater().inflate(R.menu.principal, menu);
             restoreActionBar();
             return true;
+
         }
         return super.onCreateOptionsMenu(menu);
     }
