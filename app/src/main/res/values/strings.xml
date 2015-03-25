@@ -1,10 +1,9 @@
 <resources>
     <string name="app_name">SharingJob_v0.1</string>
 
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
-    <string name="title_section4">Section Nueva</string>
+    <string name="title_section1">Inicio</string>
+    <string name="title_section2">Mi cuenta</string>
+    <string name="title_section3">Nuevo empleo</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -12,9 +11,7 @@
     <string name="action_example">Example action</string>
 
     <string name="action_settings">Settings</string>
-    <string name="git">UsandoGit</string>
-    <string name="title_activity_mi_cuenta">mi_cuenta</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="title_activity_nuevo_empleo">nuevo_empleo</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
