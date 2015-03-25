@@ -28,6 +28,7 @@ public class PlaceholderFragment extends Fragment {
      * number.
      */
     public static PlaceholderFragment newInstance(int sectionNumber) {
+
         PlaceholderFragment fragment = new PlaceholderFragment();
         fragment.set_seleccion(sectionNumber);
         Bundle args = new Bundle();
