@@ -21,14 +21,6 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/git"
-            android:id="@+id/textView"
-            android:layout_gravity="center_horizontal|top" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/git"
             android:id="@+id/textView2"
             android:layout_gravity="left|center_vertical" />
     </FrameLayout>
