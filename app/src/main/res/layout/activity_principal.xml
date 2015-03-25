@@ -23,6 +23,27 @@
             android:text="@string/git"
             android:id="@+id/textView2"
             android:layout_gravity="left|center_vertical" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New CheckBox"
+            android:id="@+id/checkBox"
+            android:layout_gravity="right|center_vertical" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Button"
+            android:id="@+id/button2"
+            android:layout_gravity="center_horizontal|top" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Button"
+            android:id="@+id/button3"
+            android:layout_gravity="center_horizontal|bottom" />
     </FrameLayout>
 
     <!-- android:layout_gravity="start" tells DrawerLayout to treat
