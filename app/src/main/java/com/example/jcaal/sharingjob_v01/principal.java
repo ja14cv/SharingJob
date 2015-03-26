@@ -1,9 +1,11 @@
 package com.example.jcaal.sharingjob_v01;
 
+import android.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
@@ -40,26 +42,36 @@ public class principal extends ActionBarActivity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         //Dependiendo de la seleccion en el menu izquierdo se abre un fragment
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.addToBackStack(null);
         if(position == 0) {
-            fragmentManager.beginTransaction()
-                    .replace(R.id.container, inicio.newInstance(position + 1))
+            transaction.replace(R.id.container, inicio.newInstance(position, new inicio(), R.layout.fragment_inicio, ""))
                     .commit();
         }
         if(position == 1){
-            fragmentManager.beginTransaction()
-                    .replace(R.id.container, mi_cuenta.newInstance(position + 1))
+            transaction.replace(R.id.container, inicio.newInstance(position, new mi_cuenta(), R.layout.fragment_mi_cuenta, ""))
                     .commit();
         }
         if(position == 2){
-            fragmentManager.beginTransaction()
-                    .replace(R.id.container, nuevo_empleo.newInstance(position + 1))
+            transaction.replace(R.id.container, inicio.newInstance(position, new nuevo_empleo(), R.layout.fragment_nuevo_empleo, ""))
+                    .commit();
+        }
+        if(position == 3){
+            transaction.replace(R.id.container, inicio.newInstance(position, new configuracion(), R.layout.fragment_configuracion, ""))
                     .commit();
         }
     }
 
+    @Override
+    public void seleccion(int _seleccion) {
+        Log.v("LOG", "clic " + _seleccion);
+    }
+
     public void onSectionAttached(int number) {
         switch (number) {
+            case 0:
+                mTitle = getString(R.string.title_section0);
+                break;
             case 1:
                 mTitle = getString(R.string.title_section1);
                 break;
@@ -101,10 +113,12 @@ public class principal extends ActionBarActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        /*
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
+        */
 
         return super.onOptionsItemSelected(item);
     }
