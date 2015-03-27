@@ -1,28 +1,25 @@
 package com.example.jcaal.sharingjob_v01;
 
-import android.app.FragmentTransaction;
+import android.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
-import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
-public class principal extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
-    /**
-     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-     */
+public class principal extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+
     private NavigationDrawerFragment mNavigationDrawerFragment;
-
-    /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
-     */
     private CharSequence mTitle;
+    private int seleccionActual = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,24 +38,28 @@ public class principal extends ActionBarActivity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        //Dependiendo de la seleccion en el menu izquierdo se abre un fragment
-        android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.addToBackStack(null);
-        if(position == 0) {
-            transaction.replace(R.id.container, inicio.newInstance(position, new inicio(), R.layout.fragment_inicio, ""))
-                    .commit();
-        }
-        if(position == 1){
-            transaction.replace(R.id.container, inicio.newInstance(position, new mi_cuenta(), R.layout.fragment_mi_cuenta, ""))
-                    .commit();
-        }
-        if(position == 2){
-            transaction.replace(R.id.container, inicio.newInstance(position, new nuevo_empleo(), R.layout.fragment_nuevo_empleo, ""))
-                    .commit();
-        }
-        if(position == 3){
-            transaction.replace(R.id.container, inicio.newInstance(position, new configuracion(), R.layout.fragment_configuracion, ""))
-                    .commit();
+        if(seleccionActual != position){
+
+            //Dependiendo de la seleccion en el menu izquierdo se abre un fragment
+            android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            if(seleccionActual != -1){ //No activa la pila con el fragent de navigaction drawer
+                transaction.addToBackStack(null);
+            }
+
+            if(position == 0) {
+                transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, position, new String[0])).commit();
+            }
+            if(position == 1){
+                transaction.replace(R.id.container, inicio.newInstance(new mi_cuenta(), R.layout.fragment_mi_cuenta, position, new String[0])).commit();
+            }
+            if(position == 2){
+                transaction.replace(R.id.container, inicio.newInstance(new nuevo_empleo(), R.layout.fragment_nuevo_empleo, position, new String[0])).commit();
+            }
+            if(position == 3){
+                transaction.replace(R.id.container, inicio.newInstance(new configuracion(), R.layout.fragment_configuracion, position, new String[0])).commit();
+            }
+
+            seleccionActual =  position;
         }
     }
 
@@ -121,5 +122,18 @@ public class principal extends ActionBarActivity
         */
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed(){
+        int no_frag = getSupportFragmentManager().getBackStackEntryCount();
+        if(no_frag != 0){
+            List<android.support.v4.app.Fragment> listFragments= getSupportFragmentManager().getFragments();
+            FragmentGenerico lastFragment = (FragmentGenerico)listFragments.get(no_frag);
+            this.onSectionAttached(lastFragment.seleccion);
+            seleccionActual = lastFragment.seleccion;
+            restoreActionBar();
+        }
+        super.onBackPressed();
     }
 }
