@@ -1,4 +1,4 @@
-package com.example.jcaal.sharingjob_v01;
+package com.example.jcaal.sharingjob_v01.gui;
 
 import android.app.Activity;
 import android.os.Bundle;

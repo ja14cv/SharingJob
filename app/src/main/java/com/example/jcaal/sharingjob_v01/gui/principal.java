@@ -1,7 +1,5 @@
-package com.example.jcaal.sharingjob_v01;
+package com.example.jcaal.sharingjob_v01.gui;
 
-import android.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
@@ -10,8 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
+import com.example.jcaal.sharingjob_v01.R;
+
 import java.util.List;
 
 

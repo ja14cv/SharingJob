@@ -1,8 +1,8 @@
-package com.example.jcaal.sharingjob_v01;
+package com.example.jcaal.sharingjob_v01.gui;
 
 import android.os.Bundle;
 
-public class configuracion extends FragmentGenerico {
+public class nuevo_empleo extends FragmentGenerico {
 
     @Override
     public void otrosParametros(Bundle args, String[] parms) {
@@ -11,7 +11,8 @@ public class configuracion extends FragmentGenerico {
 
     @Override
     public void hacerOnCreate(){
-        mCallback.seleccion(3);
+        mCallback.seleccion(2);
     }
+
 
 }
