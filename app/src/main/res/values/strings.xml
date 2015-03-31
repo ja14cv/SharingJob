@@ -24,4 +24,11 @@
     <string name="completar">Completar</string>
     <string name="nombres">Nombres</string>
     <string name="apellidos">Apellidos</string>
+    <string name="ingresar_credenciales">Ingrese sus Credenciales</string>
+    <string name="selecione_categoria">Seleccione una Categoría</string>
+    <string name="titulo_nuevo_empleo">Ingrese los datos para crear un nuevo empleo:</string>
+    <string name="crear">Crear</string>
+    <string name="titulo">Título</string>
+    <string name="descripcion">Descripción</string>
+    <string name="propuesta_salarial">Propuesta Salarial</string>
 </resources>

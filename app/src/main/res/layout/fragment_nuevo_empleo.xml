@@ -30,16 +30,16 @@
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Ingrese los datos para una nueva oportunidad de empleo:"
+                        android:text="@string/titulo_nuevo_empleo"
                         android:id="@+id/textView2"
                         android:textColor="#ff000000"
-                        android:textSize="16dp" />
+                        android:textSize="16sp" />
 
                     <EditText
                         android:layout_width="match_parent"
@@ -49,7 +49,7 @@
                         android:layout_marginRight="35dp"
                         android:layout_marginLeft="35dp"
                         android:layout_marginBottom="20dp"
-                        android:hint="* Título" />
+                        android:hint="@string/titulo" />
 
                     <EditText
                         android:layout_width="match_parent"
@@ -58,7 +58,7 @@
                         android:layout_marginLeft="35dp"
                         android:layout_marginRight="35dp"
                         android:layout_marginBottom="20dp"
-                        android:hint="* Descripción" />
+                        android:hint="@string/descripcion" />
 
                     <EditText
                         android:layout_width="match_parent"
@@ -69,7 +69,7 @@
                         android:layout_marginLeft="35dp"
                         android:layout_marginRight="35dp"
                         android:layout_marginBottom="20dp"
-                        android:hint="Propuesta salarial" />
+                        android:hint="@string/propuesta_salarial" />
 
                     <LinearLayout
                         android:orientation="horizontal"
@@ -104,7 +104,7 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="ACEPTAR"
+                            android:text="@string/crear"
                             android:id="@+id/button"
                             android:layout_marginLeft="35dp"
                             android:layout_marginRight="10dp" />
@@ -112,7 +112,7 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="CANCELAR"
+                            android:text="@string/cancelar"
                             android:id="@+id/button2"
                             android:layout_marginRight="35dp"
                             android:layout_marginLeft="10dp" />
