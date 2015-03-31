@@ -36,6 +36,7 @@ public class login extends FragmentGenerico implements IWsdl2CodeEvents{
         if(sesion.isLogin()){ //Ya se esta logueado
             this.onDestroy();
             mCallback.onNavigationDrawerItemSelected(TipoFragmento.CUENTA); //ir a cuenta
+            return;
         }
 
         //Eventos de botones
@@ -87,6 +88,7 @@ public class login extends FragmentGenerico implements IWsdl2CodeEvents{
                 ws.inicio_sesionAsync(json);
             } catch (Exception e) {
                 Log.e("login", e.getMessage());
+                Toast.makeText(getActivity(), "No se pudo iniciar sesion", Toast.LENGTH_LONG).show();
                 e.printStackTrace();
             }
         /*}else{
@@ -116,10 +118,11 @@ public class login extends FragmentGenerico implements IWsdl2CodeEvents{
                 try {
                     sesion.setSesion(desc);
                     this.onDestroy();
+                    //((principal)getActivity()).seleccionManual(TipoFragmento.CUENTA);
                     mCallback.onNavigationDrawerItemSelected(TipoFragmento.CUENTA); //ir a cuenta
                     Toast.makeText(getActivity(), "Sesion: " + sesion.id_sesion, Toast.LENGTH_LONG).show();
                 } catch (IOException e) {
-                    Log.e("login", "Sesion: " + e.getMessage());
+                    Log.e("login", e.getMessage());
                     Toast.makeText(getActivity(), "No se pudo iniciar sesion", Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -128,7 +131,7 @@ public class login extends FragmentGenerico implements IWsdl2CodeEvents{
                 Toast.makeText(getActivity(), "No se pudo iniciar sesion", Toast.LENGTH_LONG).show();
             }
         } catch (JSONException e) {
-            Log.e("login", "Sesion: " + e.getMessage());
+            Log.e("login", e.getMessage());
             Toast.makeText(getActivity(), "No se pudo iniciar sesion", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
@@ -149,7 +152,7 @@ public class login extends FragmentGenerico implements IWsdl2CodeEvents{
     @Override
     public void Wsdl2CodeFinishedWithException(Exception ex) {
         //No se puede conectar
-        Log.e("login", "Inicio Sesion Fallido: " + ex.getMessage());
+        Log.e("login", ex.getMessage());
         Toast.makeText(getActivity(), "No se pudo iniciar sesion", Toast.LENGTH_LONG).show();
     }
 

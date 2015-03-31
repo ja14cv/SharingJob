@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -53,12 +54,13 @@ public class NavigationDrawerFragment extends Fragment {
     private ActionBarDrawerToggle mDrawerToggle;
 
     private DrawerLayout mDrawerLayout;
-    private ListView mDrawerListView;
+    public ListView mDrawerListView;
     private View mFragmentContainerView;
 
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
+    private String tituloPrevio = "";
 
     public NavigationDrawerFragment() {
     }
@@ -89,10 +91,8 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        mDrawerListView = (ListView) inflater.inflate(
-                R.layout.fragment_navigation_drawer, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mDrawerListView = (ListView) inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -152,6 +152,8 @@ public class NavigationDrawerFragment extends Fragment {
                     return;
                 }
 
+                ((principal)getActivity()).restoreActionBar();
+                //Log.i("titulo", tituloPrevio);
                 getActivity().supportInvalidateOptionsMenu(); // calls onPrepareOptionsMenu()
             }
 
@@ -166,11 +168,14 @@ public class NavigationDrawerFragment extends Fragment {
                     // The user manually opened the drawer; store this flag to prevent auto-showing
                     // the navigation drawer automatically in the future.
                     mUserLearnedDrawer = true;
-                    SharedPreferences sp = PreferenceManager
-                            .getDefaultSharedPreferences(getActivity());
+                    SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
                     sp.edit().putBoolean(PREF_USER_LEARNED_DRAWER, true).apply();
                 }
 
+                //tituloPrevio = getActionBar().getTitle().toString();
+                getActionBar().setTitle(getActivity().getTitle()); //cada ves que se abra pone el titulo de la app
+                //Log.i("titulo", tituloPrevio);
+                //Log.i("titulo", getActionBar().getTitle().toString());
                 getActivity().supportInvalidateOptionsMenu(); // calls onPrepareOptionsMenu()
             }
         };
@@ -294,6 +299,34 @@ public class NavigationDrawerFragment extends Fragment {
             return TipoFragmento.LOGIN;*/
         }else{
             return TipoFragmento.INICIO;
+        }
+    }
+
+    private int tipoFragmentoToInt(TipoFragmento tf){
+        if(tf == TipoFragmento.INICIO){
+            return 0;
+        }else if(tf == TipoFragmento.CUENTA){
+            return 1;
+        }else if(tf == TipoFragmento.NUEVO_EMPLEO){
+            return 2;
+        }else if(tf == TipoFragmento.CONFIG){
+            return 3;
+        }else{
+            return 0;
+        }
+    }
+
+    public void desmarcarItem(){
+        if(mDrawerListView != null){
+            if(mDrawerListView.isFocused()){
+                mDrawerListView.setItemChecked(mDrawerListView.getCheckedItemPosition(), false);
+            }
+        }
+    }
+
+    public void seleccionarItem(TipoFragmento tf){
+        if(mDrawerListView != null){
+            mDrawerListView.setItemChecked(tipoFragmentoToInt(tf), true);
         }
     }
 

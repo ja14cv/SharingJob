@@ -28,14 +28,11 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
-        mNavigationDrawerFragment = (NavigationDrawerFragment)
-                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+        mNavigationDrawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
         // Set up the drawer.
-        mNavigationDrawerFragment.setUp(
-                R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));
+        mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
 
         //Creando Session
         sesion s = new sesion();
@@ -57,9 +54,10 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
             android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             if(fragmentoActual != null){ //No activa la pila con el fragent de navigaction drawer
                 transaction.addToBackStack(null);
+                mNavigationDrawerFragment.seleccionarItem(tf);
             }
 
-            if(tf == TipoFragmento.INICIO){
+            if(tf == TipoFragmento.INICIO && fragmentoActual != null){
                 transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, tf, new String[0])).commit();
             }else if(tf == TipoFragmento.CUENTA){
                 transaction.replace(R.id.container, cuenta.newInstance(new cuenta(), R.layout.fragment_cuenta, tf, new String[0])).commit();
@@ -68,8 +66,10 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
             }else if(tf == TipoFragmento.CONFIG){
                 transaction.replace(R.id.container, configuracion.newInstance(new configuracion(), R.layout.fragment_configuracion, tf, new String[0])).commit();
             }else if(tf == TipoFragmento.LOGIN){
+                mNavigationDrawerFragment.desmarcarItem();
                 transaction.replace(R.id.container, login.newInstance(new login(), R.layout.fragment_login, tf, new String[0])).commit();
             }else if(tf == TipoFragmento.REGISTRO){
+                mNavigationDrawerFragment.desmarcarItem();
                 transaction.replace(R.id.container, registro.newInstance(new registro(), R.layout.fragment_registro, tf, new String[0])).commit();
             }else{
                 transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, tf, new String[0])).commit();
@@ -108,6 +108,10 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
+    }
+
+    public void seleccionManual(TipoFragmento tf){
+        mNavigationDrawerFragment.seleccionarItem(tf);
     }
 
 

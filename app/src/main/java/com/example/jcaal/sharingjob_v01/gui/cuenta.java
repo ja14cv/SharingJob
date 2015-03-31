@@ -30,6 +30,7 @@ public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
         if(!sesion.isLogin()){ //Si No esta logueado
             this.onDestroy();
             mCallback.onNavigationDrawerItemSelected(TipoFragmento.LOGIN); //ir a login
+            return;
         }
 
         //Eventos de botones
