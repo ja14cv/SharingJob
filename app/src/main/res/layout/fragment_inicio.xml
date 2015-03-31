@@ -19,7 +19,7 @@
             android:layout_height="40dp"
             android:id="@+id/inicio_sv"
             android:background="#ffffffff"
-            android:layout_margin="5dp"
+            android:layout_margin="1dp"
             android:queryHint="Buscar empleo" />
 
         <LinearLayout
@@ -27,9 +27,10 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="#ffffffff"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="5dp">
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="4dp">
 
             <ScrollView
                 android:layout_width="fill_parent"
@@ -50,7 +51,6 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Seleccione una categoría:"
                         android:id="@+id/textView3"
-                        android:layout_margin="5dp"
                         android:textColor="#ff000000"
                         android:textSize="16dp" />
 
