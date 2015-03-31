@@ -7,9 +7,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.Toast;
 
 import com.example.jcaal.sharingjob_v01.R;
+import com.example.jcaal.sharingjob_v01.logica.sesion;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -32,6 +35,17 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        //Creando Session
+        sesion s = new sesion();
+        try {
+            s.crearSesion(getFilesDir().getPath());
+            Log.i("Login", sesion.id_sesion);
+            Toast.makeText(this, "Sesion " + sesion.id_sesion, Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            Log.i("Login", "Fallido " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     @Override
