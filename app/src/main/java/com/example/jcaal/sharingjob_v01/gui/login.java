@@ -72,10 +72,14 @@ public class login extends FragmentGenerico implements IWsdl2CodeEvents{
     }
 
     private void onClick_ingresar(View v){
-        String correo = ((EditText) getView().findViewById(R.id.lo_et_email)).getText().toString().trim();
-        String pass = ((EditText) getView().findViewById(R.id.lo_et_pass)).getText().toString().trim();
+        /*String correo = ((EditText) getView().findViewById(R.id.lo_et_email)).getText().toString().trim();
+        String pass = ((EditText) getView().findViewById(R.id.lo_et_pass)).getText().toString().trim();*/
 
-        if(!correo.isEmpty() && !pass.isEmpty()){
+
+        String correo = "admin@admin.com";
+        String pass = "123";
+
+        //if(!correo.isEmpty() && !pass.isEmpty()){
             ws_sharingJob ws = new ws_sharingJob(this);
             String json = "{\"correo\":\"" + correo + "\",\"password\":\"" + pass + "\"}";
             Log.i("login", "json: " + json);
@@ -85,9 +89,9 @@ public class login extends FragmentGenerico implements IWsdl2CodeEvents{
                 Log.e("login", e.getMessage());
                 e.printStackTrace();
             }
-        }else{
+        /*}else{
             Toast.makeText(getActivity(), "Ingrese correo y password", Toast.LENGTH_LONG).show();
-        }
+        }*/
     }
 
     private void onClick_cancelar(View v){
