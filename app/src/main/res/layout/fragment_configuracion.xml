@@ -11,5 +11,19 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Configuracion"
         android:id="@+id/textView4"
-        android:layout_gravity="left|center_vertical" />
+        android:layout_gravity="left|top" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/crear"
+        android:id="@+id/conf_bt_crear"
+        android:layout_gravity="center" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ingresar"
+        android:id="@+id/conf_bt_ingresar"
+        android:layout_gravity="right|center_vertical" />
 </FrameLayout>

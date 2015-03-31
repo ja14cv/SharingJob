@@ -63,8 +63,7 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
                 transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, tf, new String[0])).commit();
             }else if(tf == TipoFragmento.CUENTA){
                 transaction.replace(R.id.container, cuenta.newInstance(new cuenta(), R.layout.fragment_cuenta, tf, new String[0])).commit();
-            }
-            else if(tf == TipoFragmento.NUEVO_EMPLEO){
+            }else if(tf == TipoFragmento.NUEVO_EMPLEO){
                 transaction.replace(R.id.container, nuevo_empleo.newInstance(new nuevo_empleo(), R.layout.fragment_nuevo_empleo, tf, new String[0])).commit();
             }else if(tf == TipoFragmento.CONFIG){
                 transaction.replace(R.id.container, configuracion.newInstance(new configuracion(), R.layout.fragment_configuracion, tf, new String[0])).commit();
@@ -87,7 +86,7 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
 
     public void onSectionAttached(TipoFragmento tf) {
         if(tf == TipoFragmento.INICIO){
-            mTitle = getString(R.string.title_section0);
+            mTitle = getString(R.string.app_name);
         }else if(tf == TipoFragmento.CUENTA){
             mTitle = getString(R.string.title_section1);
         }else if(tf == TipoFragmento.NUEVO_EMPLEO){
@@ -99,13 +98,14 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
         }else if(tf == TipoFragmento.REGISTRO){
             mTitle = "Registro";
         }else{
-            mTitle = getString(R.string.title_section0);
+            mTitle = getString(R.string.app_name);
         }
+
+        restoreActionBar();
     }
 
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
@@ -118,7 +118,7 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
             getMenuInflater().inflate(R.menu.principal, menu);
-            restoreActionBar();
+            //restoreActionBar();
             return true;
 
         }
