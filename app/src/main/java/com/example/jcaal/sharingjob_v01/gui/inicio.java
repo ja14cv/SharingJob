@@ -3,6 +3,7 @@ package com.example.jcaal.sharingjob_v01.gui;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -73,10 +74,8 @@ public class inicio extends FragmentGenerico implements IWsdl2CodeEvents{
         TreeNode root = TreeNode.root();
         try {
             //String json = "[{\"id_categoria\":\"1\",\"nombre\":\"Profesional\",\"descripcion\":null,\"id_categoria_padre\":null,\"segundo_nivel\":[{\"id_categoria\":\"2\",\"nombre\":\"Ingenieria\",\"descripcion\":null,\"id_categoria_padre\":\"1\",\"tercer_nivel\":[{\"id_categoria\":\"4\",\"nombre\":\"Sistemas\",\"descripcion\":null,\"id_categoria_padre\":\"2\"},{\"id_categoria\":\"5\",\"nombre\":\"Mecanica\",\"descripcion\":null,\"id_categoria_padre\":\"2\"}]},{\"id_categoria\":\"6\",\"nombre\":\"Medicina\",\"descripcion\":null,\"id_categoria_padre\":\"1\",\"tercer_nivel\":null},{\"id_categoria\":\"7\",\"nombre\":\"Politicas\",\"descripcion\":null,\"id_categoria_padre\":\"1\",\"tercer_nivel\":null}]},{\"id_categoria\":\"8\",\"nombre\":\"Tecnica\",\"descripcion\":null,\"id_categoria_padre\":null,\"segundo_nivel\":[{\"id_categoria\":\"9\",\"nombre\":\"Mecanico\",\"descripcion\":null,\"id_categoria_padre\":\"8\",\"tercer_nivel\":null},{\"id_categoria\":\"10\",\"nombre\":\"Panadero\",\"descripcion\":null,\"id_categoria_padre\":\"8\",\"tercer_nivel\":null}]},{\"id_categoria\":\"11\",\"nombre\":\"Artistica\",\"descripcion\":null,\"id_categoria_padre\":null,\"segundo_nivel\":[{\"id_categoria\":\"12\",\"nombre\":\"Danza\",\"descripcion\":null,\"id_categoria_padre\":\"11\",\"tercer_nivel\":null},{\"id_categoria\":\"13\",\"nombre\":\"Canto\",\"descripcion\":null,\"id_categoria_padre\":\"11\",\"tercer_nivel\":null},{\"id_categoria\":\"14\",\"nombre\":\"Teatro\",\"descripcion\":null,\"id_categoria_padre\":\"11\",\"tercer_nivel\":null}]},{\"id_categoria\":\"15\",\"nombre\":\"Otros\",\"descripcion\":null,\"id_categoria_padre\":null,\"segundo_nivel\":null}]";
-            _json = "{array:" + _json + "}";
 
-            JSONObject jso = new JSONObject(_json);
-            JSONArray temp = jso.getJSONArray("array");
+            JSONArray temp = new JSONObject(_json).getJSONArray("array");
 
             for (int i=0 ; i<temp.length() ; i++){
                 JSONObject temporal = temp.getJSONObject(i);
@@ -179,8 +178,8 @@ public class inicio extends FragmentGenerico implements IWsdl2CodeEvents{
                 root.addChild(parent);
             }
             AndroidTreeView tView = new AndroidTreeView(getActivity(), root);
-            ScrollView fl = (ScrollView)getView().findViewById(R.id.cuenta_sv_contenedor);
-            fl.addView(tView.getView());
+            LinearLayout ll = (LinearLayout)getView().findViewById(R.id.cuenta_sv_contenedor);
+            ll.addView(tView.getView());
         } catch (JSONException e) {
             e.printStackTrace();
         }
