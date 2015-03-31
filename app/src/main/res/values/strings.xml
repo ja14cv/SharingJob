@@ -14,4 +14,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
 <string name="hello_blank_fragment">Hello blank fragment</string>
-    </resources>
+    <string name="tiene_cuenta">Tienes Cuenta</string>
+    <string name="email">Email</string>
+    <string name="password">Contraseña</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="crear_cuenta">Crear Cuenta</string>
+    <string name="logout">Logout</string>
+</resources>

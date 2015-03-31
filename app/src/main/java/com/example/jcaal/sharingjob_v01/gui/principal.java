@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.Toast;
 
 import com.example.jcaal.sharingjob_v01.R;
+import com.example.jcaal.sharingjob_v01.logica.TipoFragmento;
 import com.example.jcaal.sharingjob_v01.logica.sesion;
 
 import java.io.IOException;
@@ -20,7 +21,7 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private CharSequence mTitle;
-    private int seleccionActual = -1;
+    private TipoFragmento fragmentoActual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,51 +50,52 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
     }
 
     @Override
-    public void onNavigationDrawerItemSelected(int position) {
-        if(seleccionActual != position){
+    public void onNavigationDrawerItemSelected(TipoFragmento tf) {
+        if(fragmentoActual != tf){
 
             //Dependiendo de la seleccion en el menu izquierdo se abre un fragment
             android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            if(seleccionActual != -1){ //No activa la pila con el fragent de navigaction drawer
+            if(fragmentoActual != null){ //No activa la pila con el fragent de navigaction drawer
                 transaction.addToBackStack(null);
             }
 
-            if(position == 0) {
-                transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, position, new String[0])).commit();
+            if(tf == TipoFragmento.INICIO){
+                transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, tf, new String[0])).commit();
+            }else if(tf == TipoFragmento.CUENTA){
+                transaction.replace(R.id.container, cuenta.newInstance(new cuenta(), R.layout.fragment_cuenta, tf, new String[0])).commit();
             }
-            if(position == 1){
-                transaction.replace(R.id.container, inicio.newInstance(new mi_cuenta(), R.layout.fragment_mi_cuenta, position, new String[0])).commit();
-            }
-            if(position == 2){
-                transaction.replace(R.id.container, inicio.newInstance(new nuevo_empleo(), R.layout.fragment_nuevo_empleo, position, new String[0])).commit();
-            }
-            if(position == 3){
-                transaction.replace(R.id.container, inicio.newInstance(new configuracion(), R.layout.fragment_configuracion, position, new String[0])).commit();
+            else if(tf == TipoFragmento.NUEVO_EMPLEO){
+                transaction.replace(R.id.container, nuevo_empleo.newInstance(new nuevo_empleo(), R.layout.fragment_nuevo_empleo, tf, new String[0])).commit();
+            }else if(tf == TipoFragmento.CONFIG){
+                transaction.replace(R.id.container, configuracion.newInstance(new configuracion(), R.layout.fragment_configuracion, tf, new String[0])).commit();
+            }else if(tf == TipoFragmento.LOGIN){
+                transaction.replace(R.id.container, login.newInstance(new login(), R.layout.fragment_login, tf, new String[0])).commit();
+            }else{
+                transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, tf, new String[0])).commit();
             }
 
-            seleccionActual =  position;
+            fragmentoActual =  tf;
         }
     }
 
     @Override
-    public void seleccion(int _seleccion) {
-        Log.v("LOG", "clic " + _seleccion);
+    public void seleccion(TipoFragmento tf) {
+        Log.v("LOG", "clic " + tf);
     }
 
-    public void onSectionAttached(int number) {
-        switch (number) {
-            case 0:
-                mTitle = getString(R.string.title_section0);
-                break;
-            case 1:
-                mTitle = getString(R.string.title_section1);
-                break;
-            case 2:
-                mTitle = getString(R.string.title_section2);
-                break;
-            case 3:
-                mTitle = getString(R.string.title_section3);
-                break;
+    public void onSectionAttached(TipoFragmento tf) {
+        if(tf == TipoFragmento.INICIO){
+            mTitle = getString(R.string.title_section0);
+        }else if(tf == TipoFragmento.CUENTA){
+            mTitle = getString(R.string.title_section1);
+        }else if(tf == TipoFragmento.NUEVO_EMPLEO){
+            mTitle = getString(R.string.title_section2);
+        }else if(tf == TipoFragmento.CONFIG){
+            mTitle = getString(R.string.title_section3);
+        }else if(tf == TipoFragmento.LOGIN){
+            mTitle = "Login";
+        }else{
+            mTitle = getString(R.string.title_section0);
         }
     }
 
@@ -142,8 +144,8 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
         if(no_frag != 0){
             List<android.support.v4.app.Fragment> listFragments= getSupportFragmentManager().getFragments();
             FragmentGenerico lastFragment = (FragmentGenerico)listFragments.get(no_frag);
-            this.onSectionAttached(lastFragment.seleccion);
-            seleccionActual = lastFragment.seleccion;
+            this.onSectionAttached(lastFragment.tipoFragmento);
+            fragmentoActual = lastFragment.tipoFragmento;
             restoreActionBar();
         }
         super.onBackPressed();

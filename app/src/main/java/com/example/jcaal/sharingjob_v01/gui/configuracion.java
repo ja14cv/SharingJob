@@ -11,7 +11,7 @@ public class configuracion extends FragmentGenerico {
 
     @Override
     public void hacerOnCreate(){
-        mCallback.seleccion(3);
+        mCallback.seleccion(tipoFragmento);
     }
 
 }

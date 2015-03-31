@@ -13,10 +13,12 @@ import java.io.IOException;
 public class sesion {
 
     public static String id_sesion = "";
+    private static String path;
 
-    public void crearSesion(String path) throws IOException {
+    public void crearSesion(String _path) throws IOException {
         //Obteniendo sesion
-        id_sesion = getSesion(getFile(path + "/conf.txt"));
+        path = _path + "/conf.txt";
+        id_sesion = getSesionFromFile(getFile(path));
     }
 
     /***
@@ -54,7 +56,7 @@ public class sesion {
      * @return id sesion
      * @throws IOException
      */
-    private String getSesion(File f) throws IOException {
+    private String getSesionFromFile(File f) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(f));
         String linea = br.readLine();
         String id;
@@ -68,6 +70,34 @@ public class sesion {
 
         br.close();
         return id;
+    }
+
+    /***
+     * Setea el id de sesion en el archivo y ejecucion
+     * @param id id se sesion
+     * @throws IOException
+     */
+    public static void setSesion(String id) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter(path));
+        bw.write("sesion:" + id);
+        bw.close();
+
+        id_sesion = id;
+    }
+
+    /***
+     * Verifica si el id de sesion es valido
+     * @return
+     */
+    public static boolean isLogin(){
+        return !id_sesion.equals("0");
+    }
+
+    /***
+     * Cierra la sesion actual
+     */
+    public static void logout() throws IOException {
+        setSesion("0");
     }
 
 }

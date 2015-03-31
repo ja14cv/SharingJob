@@ -20,9 +20,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.jcaal.sharingjob_v01.R;
+import com.example.jcaal.sharingjob_v01.logica.TipoFragmento;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -108,6 +108,7 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.title_section1),
                         getString(R.string.title_section2),
                         getString(R.string.title_section3)
+                        //"Login"
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
@@ -200,7 +201,7 @@ public class NavigationDrawerFragment extends Fragment {
             mDrawerLayout.closeDrawer(mFragmentContainerView);
         }
         if (mCallbacks != null) {
-            mCallbacks.onNavigationDrawerItemSelected(position);
+            mCallbacks.onNavigationDrawerItemSelected(positionToTipoFracmento(position));
         }
     }
 
@@ -276,13 +277,34 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     /**
+     * Convierte la posicion a un valot de TipoFragmneto
+     * @param position posicion segun navigation drawer
+     * @return
+     */
+    private TipoFragmento positionToTipoFracmento(int position){
+        if(position == 0){
+            return TipoFragmento.INICIO;
+        }else if(position == 1){
+            return TipoFragmento.CUENTA;
+        }else if(position == 2){
+            return TipoFragmento.NUEVO_EMPLEO;
+        }else if(position == 3){
+            return TipoFragmento.CONFIG;
+        /*}else if(position == 4){
+            return TipoFragmento.LOGIN;*/
+        }else{
+            return TipoFragmento.INICIO;
+        }
+    }
+
+    /**
      * Callbacks interface that all activities using this fragment must implement.
      */
     public static interface NavigationDrawerCallbacks {
         /**
          * Called when an item in the navigation drawer is selected.
          */
-        void onNavigationDrawerItemSelected(int position);
-        void seleccion(int _seleccion);
+        void onNavigationDrawerItemSelected(TipoFragmento tf);
+        void seleccion(TipoFragmento tf);
     }
 }
