@@ -14,6 +14,14 @@
         android:background="#ff000000"
         android:alpha="0.9">
 
+        <SearchView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/inicio_sv"
+            android:background="#ffffffff"
+            android:layout_margin="5dp"
+            android:queryHint="Buscar empleo" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
