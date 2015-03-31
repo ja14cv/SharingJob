@@ -1,21 +1,44 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="com.example.jcaal.sharingjob_v01.gui.inicio">
+    android:layout_height="match_parent" tools:context="com.example.jcaal.sharingjob_v01.gui.inicio"
+    android:background="#ffffb83a"
+    android:scaleType="centerCrop">
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Inicio"
-        android:id="@+id/textView"
-        android:layout_gravity="center_horizontal|top" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="5dp"
+        android:background="#ff000000"
+        android:alpha="0.9">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/nuevo"
-        android:layout_gravity="center" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Seleccione una categoría:"
+            android:id="@+id/textView3"
+            android:layout_margin="5dp"
+            android:textColor="#ffffffff" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="5dp"
+            android:background="#ffffffff">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/cuenta_sv_contenedor"
+                android:layout_gravity="center"
+                android:background="#ffffffff"
+                android:layout_margin="10dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
 </FrameLayout>
