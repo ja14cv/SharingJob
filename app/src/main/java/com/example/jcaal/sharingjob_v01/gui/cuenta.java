@@ -12,6 +12,9 @@ import com.example.jcaal.sharingjob_v01.logica.sesion;
 import com.example.jcaal.sharingjob_v01.ws.IWsdl2CodeEvents;
 import com.example.jcaal.sharingjob_v01.ws.ws_sharingJob;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
@@ -53,20 +56,30 @@ public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
     }
 
     private void procesarLogout(String data){
-        if(data.equals("0")){
-            //Logout correcto
-            sesion s = new sesion();
-            try {
-                s.logout();
-                this.onDestroy();
-                mCallback.onNavigationDrawerItemSelected(TipoFragmento.INICIO); //ir a cuenta
-            } catch (IOException e) {
-                Log.e("cuenta", "Cerrar sesion: " + e.getMessage());
-                Toast.makeText(getActivity(), "No se pudo cerrar sesion.", Toast.LENGTH_LONG).show();
-                e.printStackTrace();
+        try {
+            JSONObject jso = new JSONObject(data);
+            JSONObject t1 = jso.getJSONArray("array").getJSONObject(0);
+
+            String tipo = t1.getString("Tipo");
+
+            if(tipo.equals("1")){
+                try {
+                    sesion.logout();
+                    this.onDestroy();
+                    mCallback.onNavigationDrawerItemSelected(TipoFragmento.INICIO); //ir a cuenta
+                } catch (IOException e) {
+                    Log.e("cuenta", "Cerrar sesion: " + e.getMessage());
+                    Toast.makeText(getActivity(), "No se pudo cerrar sesion", Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+            }else{
+                //Error cerrar sesion
+                Toast.makeText(getActivity(), "No se pudo cerrar sesion", Toast.LENGTH_LONG).show();
             }
-        }else{
-            Toast.makeText(getActivity(), "No se pudo cerrar sesion.", Toast.LENGTH_LONG).show();
+        } catch (JSONException e) {
+            Log.e("cuenta", "Cerrar sesion: " + e.getMessage());
+            Toast.makeText(getActivity(), "No se pudo cerrar sesion", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
         }
     }
 
@@ -87,7 +100,7 @@ public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
     public void Wsdl2CodeFinishedWithException(Exception ex) {
         //No se puede conectar
         Log.e("cuenta", "Cerrar sesion: " + ex.getMessage());
-        Toast.makeText(getActivity(), "No se pudo cerrar sesion.", Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "No se pudo cerrar sesion", Toast.LENGTH_LONG).show();
     }
 
     @Override

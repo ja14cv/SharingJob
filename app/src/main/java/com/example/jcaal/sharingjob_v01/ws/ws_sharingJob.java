@@ -18,9 +18,11 @@ import org.ksoap2.SoapFault;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 import org.ksoap2.HeaderProperty;
+import java.util.Hashtable;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;
 import android.os.AsyncTask;
+import org.ksoap2.serialization.MarshalFloat;
 
 public class ws_sharingJob {
     

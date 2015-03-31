@@ -21,4 +21,7 @@
     <string name="cancelar">Cancelar</string>
     <string name="crear_cuenta">Crear Cuenta</string>
     <string name="logout">Logout</string>
+    <string name="completar">Completar</string>
+    <string name="nombres">Nombres</string>
+    <string name="apellidos">Apellidos</string>
 </resources>

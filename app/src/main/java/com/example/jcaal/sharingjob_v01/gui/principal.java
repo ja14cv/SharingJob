@@ -70,6 +70,8 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
                 transaction.replace(R.id.container, configuracion.newInstance(new configuracion(), R.layout.fragment_configuracion, tf, new String[0])).commit();
             }else if(tf == TipoFragmento.LOGIN){
                 transaction.replace(R.id.container, login.newInstance(new login(), R.layout.fragment_login, tf, new String[0])).commit();
+            }else if(tf == TipoFragmento.REGISTRO){
+                transaction.replace(R.id.container, registro.newInstance(new registro(), R.layout.fragment_registro, tf, new String[0])).commit();
             }else{
                 transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, tf, new String[0])).commit();
             }
@@ -94,6 +96,8 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
             mTitle = getString(R.string.title_section3);
         }else if(tf == TipoFragmento.LOGIN){
             mTitle = "Login";
+        }else if(tf == TipoFragmento.REGISTRO){
+            mTitle = "Registro";
         }else{
             mTitle = getString(R.string.title_section0);
         }

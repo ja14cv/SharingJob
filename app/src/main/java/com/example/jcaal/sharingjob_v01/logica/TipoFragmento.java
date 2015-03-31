@@ -9,5 +9,6 @@ public enum TipoFragmento {
     CUENTA,
     NUEVO_EMPLEO,
     CONFIG,
-    LOGIN
+    LOGIN,
+    REGISTRO
 }

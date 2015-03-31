@@ -38,7 +38,7 @@
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center">
 
                     <EditText
@@ -46,10 +46,8 @@
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
                         android:ems="10"
-                        android:id="@+id/et_email"
+                        android:id="@+id/lo_et_email"
                         android:layout_marginTop="20dp"
-                        android:layout_below="@+id/textView5"
-                        android:layout_centerHorizontal="true"
                         android:autoText="false"
                         android:hint="@string/email"
                         android:layout_marginBottom="20dp"
@@ -61,10 +59,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
                         android:ems="10"
-                        android:id="@+id/et_pass"
-                        android:layout_below="@+id/et_email"
-                        android:layout_alignLeft="@+id/et_email"
-                        android:layout_alignStart="@+id/et_email"
+                        android:id="@+id/lo_et_pass"
                         android:hint="@string/password"
                         android:layout_marginBottom="20dp"
                         android:layout_marginLeft="35dp"
@@ -81,9 +76,6 @@
                             android:layout_height="wrap_content"
                             android:text="@string/ingresar"
                             android:id="@+id/lo_bt_ingreso"
-                            android:layout_below="@+id/et_pass"
-                            android:layout_alignLeft="@+id/et_pass"
-                            android:layout_alignStart="@+id/et_pass"
                             android:layout_weight="1"
                             android:layout_marginLeft="35dp"
                             android:layout_marginRight="10dp" />
@@ -93,9 +85,6 @@
                             android:layout_height="wrap_content"
                             android:text="@string/cancelar"
                             android:id="@+id/lo_bt_cancelar"
-                            android:layout_alignTop="@+id/lo_bt_ingreso"
-                            android:layout_alignRight="@+id/et_pass"
-                            android:layout_alignEnd="@+id/et_pass"
                             android:layout_weight="1"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="35dp" />
@@ -107,8 +96,6 @@
                         android:layout_height="wrap_content"
                         android:text="@string/crear_cuenta"
                         android:id="@+id/lo_bt_crear"
-                        android:layout_below="@+id/lo_bt_ingreso"
-                        android:layout_centerHorizontal="true"
                         android:layout_margin="40dp" />
 
                 </LinearLayout>

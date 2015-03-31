@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.jcaal.sharingjob_v01.R;
@@ -11,6 +12,10 @@ import com.example.jcaal.sharingjob_v01.logica.TipoFragmento;
 import com.example.jcaal.sharingjob_v01.logica.sesion;
 import com.example.jcaal.sharingjob_v01.ws.IWsdl2CodeEvents;
 import com.example.jcaal.sharingjob_v01.ws.ws_sharingJob;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -54,26 +59,34 @@ public class login extends FragmentGenerico implements IWsdl2CodeEvents{
             }
         });
 
-        /*crear = (Button) getView().findViewById(R.id.lo_bt_ingreso);
+        crear = (Button) getView().findViewById(R.id.lo_bt_crear);
         crear.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
                 onClick_crear(v);
             }
-        });*/
+        });
 
         mCallback.seleccion(tipoFragmento);
     }
 
     private void onClick_ingresar(View v){
-        ws_sharingJob ws = new ws_sharingJob(this);
-        String json = "{\"correo\":\"ja14cv@gmail.com\",\"password\":\"123\"}";
-        try {
-            ws.inicio_sesionAsync(json);
-        } catch (Exception e) {
-            Log.e("login", e.getMessage());
-            e.printStackTrace();
+        String correo = ((EditText) getView().findViewById(R.id.lo_et_email)).getText().toString().trim();
+        String pass = ((EditText) getView().findViewById(R.id.lo_et_pass)).getText().toString().trim();
+
+        if(!correo.isEmpty() && !pass.isEmpty()){
+            ws_sharingJob ws = new ws_sharingJob(this);
+            String json = "{\"correo\":\"" + correo + "\",\"password\":\"" + pass + "\"}";
+            Log.i("login", "json: " + json);
+            try {
+                ws.inicio_sesionAsync(json);
+            } catch (Exception e) {
+                Log.e("login", e.getMessage());
+                e.printStackTrace();
+            }
+        }else{
+            Toast.makeText(getActivity(), "Ingrese correo y password", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -83,25 +96,37 @@ public class login extends FragmentGenerico implements IWsdl2CodeEvents{
     }
 
     private void onClick_crear(View v){
-
+        this.onDestroy();
+        mCallback.onNavigationDrawerItemSelected(TipoFragmento.REGISTRO);
     }
 
     private void procesarLogin(String data){
-        if(!data.equals("-1") && !data.equals("0")){
-            //Sesion correcta
-            sesion s = new sesion();
-            try {
-                s.setSesion(data);
-                this.onDestroy();
-                mCallback.onNavigationDrawerItemSelected(TipoFragmento.CUENTA); //ir a cuenta
-                Toast.makeText(getActivity(), "Sesion: " + sesion.id_sesion, Toast.LENGTH_LONG).show();
-            } catch (IOException e) {
-                Log.e("login", "Sesion: " + e.getMessage());
-                Toast.makeText(getActivity(), "No se pudo iniciar sesion.", Toast.LENGTH_LONG).show();
-                e.printStackTrace();
+        try {
+            JSONObject jso = new JSONObject(data);
+            JSONObject t1 = jso.getJSONArray("array").getJSONObject(0);
+
+            String tipo = t1.getString("Tipo");
+            String desc = t1.getString("Descripcion");
+
+            if(tipo.equals("1")){
+                try {
+                    sesion.setSesion(desc);
+                    this.onDestroy();
+                    mCallback.onNavigationDrawerItemSelected(TipoFragmento.CUENTA); //ir a cuenta
+                    Toast.makeText(getActivity(), "Sesion: " + sesion.id_sesion, Toast.LENGTH_LONG).show();
+                } catch (IOException e) {
+                    Log.e("login", "Sesion: " + e.getMessage());
+                    Toast.makeText(getActivity(), "No se pudo iniciar sesion", Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+            }else{
+                //Error en login
+                Toast.makeText(getActivity(), "No se pudo iniciar sesion", Toast.LENGTH_LONG).show();
             }
-        }else{
-            Toast.makeText(getActivity(), "No se pudo iniciar sesion.", Toast.LENGTH_LONG).show();
+        } catch (JSONException e) {
+            Log.e("login", "Sesion: " + e.getMessage());
+            Toast.makeText(getActivity(), "No se pudo iniciar sesion", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
         }
     }
 
@@ -121,7 +146,7 @@ public class login extends FragmentGenerico implements IWsdl2CodeEvents{
     public void Wsdl2CodeFinishedWithException(Exception ex) {
         //No se puede conectar
         Log.e("login", "Inicio Sesion Fallido: " + ex.getMessage());
-        Toast.makeText(getActivity(), "No se pudo iniciar sesion.", Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "No se pudo iniciar sesion", Toast.LENGTH_LONG).show();
     }
 
     @Override
