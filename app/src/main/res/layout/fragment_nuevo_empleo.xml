@@ -102,20 +102,29 @@
                         android:gravity="center_horizontal">
 
                         <Button
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/crear"
                             android:id="@+id/nempleo_btn_crear"
-                            android:layout_marginLeft="35dp"
-                            android:layout_marginRight="10dp" />
+                            android:background="@color/color_btn_aceptar"
+                            android:textColor="@drawable/button_text_color"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:singleLine="true" />
 
                         <Button
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/cancelar"
                             android:id="@+id/nempleo_btn_cancelar"
-                            android:layout_marginRight="35dp"
-                            android:layout_marginLeft="10dp" />
+                            android:background="@color/color_btn_cancelar"
+                            android:textColor="@drawable/button_text_color"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:elegantTextHeight="false"
+                            android:singleLine="true" />
                     </LinearLayout>
 
                 </LinearLayout>

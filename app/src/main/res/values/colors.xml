@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_btn_cancelar">#B61C1C</color>
+    <color name="color_btn_aceptar">#3CC9BD</color>
+    <color name="color_btn_otro">#61C86A</color>
+</resources>

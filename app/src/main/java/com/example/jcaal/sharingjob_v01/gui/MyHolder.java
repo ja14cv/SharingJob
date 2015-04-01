@@ -35,22 +35,22 @@ public class MyHolder extends TreeNode.BaseNodeViewHolder<MyHolder.IconTreeItem>
         TextView tvValue = ( TextView ) view.findViewById (R.id.node_value);
         switch(value.nivel){
             case 0:
-                tvValue.setTextColor(Color.BLACK);
+                tvValue.setTextColor(Color.rgb(11,39,50));
                 break;
             case 1:
-                tvValue.setTextColor(Color.BLUE);
+                tvValue.setTextColor(Color.rgb(27,126,162));
                 break;
             case 2:
-                tvValue.setTextColor(Color.RED);
+                tvValue.setTextColor(Color.rgb(48,197,252));
                 break;
         }
         tvValue.setText (value.text);
 
         ImageView iv = ( ImageView ) view.findViewById(R.id.node_icono);
         if (value.padre){
-            iv.setImageResource(R.mipmap.ic_plus);
+            iv.setImageResource(R.mipmap.ic_baseitem);
         }else{
-            iv.setImageResource(R.mipmap.ic_check);
+            iv.setImageResource(R.mipmap.ic_item);
         }
         return view;
     }
