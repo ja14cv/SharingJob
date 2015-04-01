@@ -58,7 +58,7 @@
                     android:hint="@string/titulo"
                     android:background="@drawable/redondeado_edit_text"
                     android:padding="5dp"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
 
                 <EditText
                     android:layout_width="match_parent"
@@ -70,7 +70,7 @@
                     android:hint="@string/descripcion"
                     android:background="@drawable/redondeado_edit_text"
                     android:padding="5dp"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
 
                 <EditText
                     android:layout_width="match_parent"
@@ -84,7 +84,7 @@
                     android:hint="@string/propuesta_salarial"
                     android:background="@drawable/redondeado_edit_text"
                     android:padding="5dp"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -132,7 +132,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/crear"
                         android:id="@+id/nempleo_btn_crear"
-                        android:background="@color/color_btn_aceptar"
+                        android:background="@drawable/button_green"
                         android:textColor="@drawable/button_text_color"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
@@ -145,7 +145,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/cancelar"
                         android:id="@+id/nempleo_btn_cancelar"
-                        android:background="@color/color_btn_cancelar"
+                        android:background="@drawable/button_red"
                         android:textColor="@drawable/button_text_color"
                         android:layout_marginRight="5dp"
                         android:layout_marginLeft="10dp"

@@ -3,4 +3,5 @@
     <color name="color_btn_cancelar">#B61C1C</color>
     <color name="color_btn_aceptar">#61C86A</color>
     <color name="color_btn_otro">#3CC9BD</color>
+    <color name="color_btn_border">#686868</color>
 </resources>
