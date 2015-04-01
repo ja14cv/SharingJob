@@ -337,7 +337,9 @@ public class NavigationDrawerFragment extends Fragment {
 
     public void seleccionarItem(TipoFragmento tf){
         if(mDrawerListView != null){
-            mDrawerListView.setItemChecked(tipoFragmentoToInt(tf), true);
+            int pos = tipoFragmentoToInt(tf);
+            ((DrawerListAdapter)mDrawerListView.getAdapter()).selected = pos;
+            mDrawerListView.setItemChecked(pos, true);
         }
     }
 
