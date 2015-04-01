@@ -9,9 +9,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:alpha="0.9"
-        android:layout_margin="5dp">
+        android:layout_height="fill_parent">
 
         <SearchView
             android:layout_width="match_parent"
@@ -25,17 +23,15 @@
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@drawable/degradado_layout_fondo"
-            android:layout_marginTop="4dp">
+            android:layout_marginTop="4dp"
+            style="@style/estilo_layout_fondo">
 
             <ScrollView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:id="@+id/sb"
                 android:layout_gravity="center"
-                android:layout_margin="5dp"
-                android:padding="5dp"
-                android:background="@drawable/redondeado_scrollview">
+                style="@style/estilo_scrollview">
 
                 <LinearLayout
                     android:orientation="vertical"

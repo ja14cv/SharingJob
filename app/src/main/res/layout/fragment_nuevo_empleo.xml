@@ -1,8 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.jcaal.sharingjob_v01.gui.nuevo_empleo"
-    android:background="#ff000000">
+    tools:context="com.example.jcaal.sharingjob_v01.gui.nuevo_empleo">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -10,16 +9,13 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@drawable/degradado_layout_fondo"
-        android:layout_margin="5dp">
+        style="@style/estilo_layout_fondo">
 
         <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:id="@+id/scrollView3"
-            android:layout_margin="5dp"
-            android:padding="5dp"
-            android:background="@drawable/redondeado_scrollview">
+            style="@style/estilo_scrollview">
 
             <LinearLayout
                 android:orientation="vertical"
