@@ -103,21 +103,27 @@
 
                         <Button
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:text="@string/registrar"
                             android:id="@+id/reg_bt_registrar"
                             android:layout_weight="1"
-                            android:layout_marginLeft="35dp"
-                            android:layout_marginRight="10dp" />
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@color/color_btn_aceptar"
+                            android:singleLine="true"
+                            android:textColor="@drawable/button_text_color" />
 
                         <Button
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:text="@string/cancelar"
                             android:id="@+id/reg_bt_cancelar"
                             android:layout_weight="1"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginRight="35dp" />
+                            android:layout_marginRight="5dp"
+                            android:background="@color/color_btn_cancelar"
+                            android:singleLine="true"
+                            android:textColor="@drawable/button_text_color" />
                     </LinearLayout>
 
                 </LinearLayout>

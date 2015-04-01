@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.jcaal.sharingjob_v01.R;
@@ -30,6 +31,19 @@ public class inicio extends FragmentGenerico implements IWsdl2CodeEvents{
     @Override
     public void hacerOnCreate() {
         mCallback.seleccion(tipoFragmento);
+        SearchView sv = (SearchView) getView().findViewById(R.id.inicio_sv);
+        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Log.v("inicio", query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
         ws_sharingJob ws = new ws_sharingJob(this);
         try {
             ws.get_categoria_trabajoAsync();
@@ -80,7 +94,7 @@ public class inicio extends FragmentGenerico implements IWsdl2CodeEvents{
                     MyHolder.IconTreeItem nodeItem1 = new MyHolder.IconTreeItem(
                             0,
                             "Todo " + temporal.getString("nombre"),
-                            250,
+                            200,
                             Integer.parseInt(temporal.getString("id_categoria")),
                             0,
                             false);
@@ -109,7 +123,7 @@ public class inicio extends FragmentGenerico implements IWsdl2CodeEvents{
                         MyHolder.IconTreeItem nodo_n1 = new MyHolder.IconTreeItem(
                                 0,
                                 temporal2.getString("nombre"),
-                                250,
+                                200,
                                 Integer.parseInt(temporal2.getString("id_categoria")),
                                 1,
                                 padre_n1);
@@ -118,7 +132,7 @@ public class inicio extends FragmentGenerico implements IWsdl2CodeEvents{
                             MyHolder.IconTreeItem nodo1_n1 = new MyHolder.IconTreeItem(
                                     0,
                                     "Todo " + temporal2.getString("nombre"),
-                                    350,
+                                    250,
                                     Integer.parseInt(temporal2.getString("id_categoria")),
                                     1,
                                     false);
@@ -145,7 +159,7 @@ public class inicio extends FragmentGenerico implements IWsdl2CodeEvents{
                                 MyHolder.IconTreeItem nodo_n2 = new MyHolder.IconTreeItem(
                                         0,
                                         temporal3.getString("nombre"),
-                                        350,
+                                        250,
                                         Integer.parseInt(temporal3.getString("id_categoria")),
                                         2,
                                         false);

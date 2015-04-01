@@ -76,7 +76,12 @@ public class nuevo_empleo extends FragmentGenerico implements IWsdl2CodeEvents{
                 "\"categoria\":\""+categoria+"\",\n" +
                 "\"ofertante\":\""+ofertante+"\"" +
                 "}";
-        Log.v("nuevo_empleo", "json: " + json);
+        ws_sharingJob ws = new ws_sharingJob(this);
+        try {
+            ws.nuevo_empleoAsync(json);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void clic_cancelar(View v){
@@ -115,6 +120,13 @@ public class nuevo_empleo extends FragmentGenerico implements IWsdl2CodeEvents{
         spin.setAdapter(adapt);
         }
         dialog.dismiss();
+        if (methodName.equals("nuevo_empleo")) {
+            Toast.makeText(getView().getContext(), (String)Data, Toast.LENGTH_SHORT).show();
+            ((EditText)getView().findViewById(R.id.nempleo_et_titulo)).setText("");
+            ((EditText)getView().findViewById(R.id.nempleo_et_descrip)).setText("");
+            ((EditText)getView().findViewById(R.id.nempleo_et_propuesta)).setText("");
+            spin.setSelection(0);
+        }
     }
 
     @Override
