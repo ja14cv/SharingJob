@@ -1,5 +1,6 @@
 package com.example.jcaal.sharingjob_v01.gui;
 
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
@@ -21,10 +22,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.example.jcaal.sharingjob_v01.R;
 import com.example.jcaal.sharingjob_v01.logica.TipoFragmento;
+
+import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -61,7 +66,6 @@ public class NavigationDrawerFragment extends Fragment {
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
-    private String tituloPrevio = "";
 
     public NavigationDrawerFragment() {
     }
@@ -100,7 +104,18 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
-        mDrawerListView.setAdapter(new ArrayAdapter<String>(
+
+
+
+        //Crear elementos de la lista
+        ArrayList<DrawerItem> items = new ArrayList<>();
+        items.add(new DrawerItem(getString(R.string.title_section0), R.mipmap.ic_plus));
+        items.add(new DrawerItem(getString(R.string.title_section1), R.mipmap.ic_plus));
+        items.add(new DrawerItem(getString(R.string.title_section2), R.mipmap.ic_plus));
+        items.add(new DrawerItem(getString(R.string.title_section3), R.mipmap.ic_plus));
+        mDrawerListView.setAdapter(new DrawerListAdapter(getActionBar().getThemedContext(), items));
+
+        /*mDrawerListView.setAdapter(new ArrayAdapter<String>(
                 getActionBar().getThemedContext(),
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
@@ -111,7 +126,10 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.title_section3)
                         //"Login"
                 }));
+        new ArrayAdapter<String>()*/
+
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
+        ((DrawerListAdapter)mDrawerListView.getAdapter()).selected = mCurrentSelectedPosition;
         return mDrawerListView;
     }
 
@@ -202,6 +220,7 @@ public class NavigationDrawerFragment extends Fragment {
     private void selectItem(int position) {
         mCurrentSelectedPosition = position;
         if (mDrawerListView != null) {
+            ((DrawerListAdapter)mDrawerListView.getAdapter()).selected = position;
             mDrawerListView.setItemChecked(position, true);
         }
         if (mDrawerLayout != null) {
@@ -321,6 +340,7 @@ public class NavigationDrawerFragment extends Fragment {
     public void desmarcarItem(){
         if(mDrawerListView != null){
             if(mDrawerListView.isFocused()){
+                ((DrawerListAdapter)mDrawerListView.getAdapter()).selected = -1;
                 mDrawerListView.setItemChecked(mDrawerListView.getCheckedItemPosition(), false);
             }
         }
@@ -331,6 +351,8 @@ public class NavigationDrawerFragment extends Fragment {
             mDrawerListView.setItemChecked(tipoFragmentoToInt(tf), true);
         }
     }
+
+
 
     /**
      * Callbacks interface that all activities using this fragment must implement.
