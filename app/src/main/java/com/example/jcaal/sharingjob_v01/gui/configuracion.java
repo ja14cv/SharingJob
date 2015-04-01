@@ -13,7 +13,7 @@ public class configuracion extends FragmentGenerico {
     private Button crear, ingresar, cuenta_nuevo, cuenta_editar, empresa_nuevo, empresa_editar;
 
     @Override
-    public void otrosParametros(Bundle args, String[] parms) {
+    public void otrosParametros(String[] parms) {
 
     }
 

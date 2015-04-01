@@ -1,10 +1,8 @@
 package com.example.jcaal.sharingjob_v01.gui;
 
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.jcaal.sharingjob_v01.R;
@@ -13,7 +11,6 @@ import com.example.jcaal.sharingjob_v01.logica.sesion;
 import com.example.jcaal.sharingjob_v01.ws.IWsdl2CodeEvents;
 import com.example.jcaal.sharingjob_v01.ws.ws_sharingJob;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,7 +24,7 @@ public class login extends FragmentGenerico implements IWsdl2CodeEvents{
     private Button ingresar, cancelar, crear;
 
     @Override
-    public void otrosParametros(Bundle args, String[] parms) {
+    public void otrosParametros(String[] parms) {
 
     }
 

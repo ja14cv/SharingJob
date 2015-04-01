@@ -1,6 +1,5 @@
 package com.example.jcaal.sharingjob_v01.gui;
 
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,7 +21,7 @@ public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
     Button logout;
 
     @Override
-    public void otrosParametros(Bundle args, String[] parms) {
+    public void otrosParametros(String[] parms) {
     }
 
     @Override

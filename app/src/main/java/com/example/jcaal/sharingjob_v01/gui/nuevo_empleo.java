@@ -1,8 +1,6 @@
 package com.example.jcaal.sharingjob_v01.gui;
 
 import android.app.ProgressDialog;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -21,12 +19,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class nuevo_empleo extends FragmentGenerico implements IWsdl2CodeEvents{
 
     @Override
-    public void otrosParametros(Bundle args, String[] parms) {
+    public void otrosParametros(String[] parms) {
 
     }
 

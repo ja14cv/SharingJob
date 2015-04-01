@@ -1,13 +1,11 @@
 package com.example.jcaal.sharingjob_v01.gui;
 
-import android.os.Bundle;
-
 /**
  * Created by Jesus on 01/04/2015.
  */
 public class empresa extends FragmentGenerico{
     @Override
-    public void otrosParametros(Bundle args, String[] parms) {
+    public void otrosParametros(String[] parms) {
 
     }
 

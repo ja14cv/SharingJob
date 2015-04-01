@@ -1,6 +1,5 @@
 package com.example.jcaal.sharingjob_v01.gui;
 
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,7 +25,7 @@ public class registro extends FragmentGenerico implements IWsdl2CodeEvents{
     private Button registrar, cancelar;
 
     @Override
-    public void otrosParametros(Bundle args, String[] parms) {
+    public void otrosParametros(String[] parms) {
 
     }
 

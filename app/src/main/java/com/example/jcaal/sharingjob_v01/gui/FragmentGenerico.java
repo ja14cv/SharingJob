@@ -17,7 +17,7 @@ public abstract class FragmentGenerico extends Fragment{
     public TipoFragmento tipoFragmento;
     public int id_layout;
 
-    public abstract void otrosParametros(Bundle args, String[] parms);
+    public abstract void otrosParametros(String[] parms);
     public abstract void hacerOnCreate();
 
     //Cambiar nombre del metodo por el nombre de clase
@@ -27,8 +27,9 @@ public abstract class FragmentGenerico extends Fragment{
         fragment.tipoFragmento = tf;
         Bundle args = new Bundle();
         args.putInt(ARG_ID_LAYOUT, _id_layout);
-        fragment.otrosParametros(args, parms);
         fragment.setArguments(args);
+        fragment.otrosParametros(parms);
+
         //Fin paso de argumentos
         return fragment;
     }
