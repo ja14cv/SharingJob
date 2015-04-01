@@ -10,5 +10,7 @@ public enum TipoFragmento {
     NUEVO_EMPLEO,
     CONFIG,
     LOGIN,
-    REGISTRO
+    REGISTRO,
+    DIRECCION,
+    EMPRESA
 }
