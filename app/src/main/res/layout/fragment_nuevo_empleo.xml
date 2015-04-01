@@ -65,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
                         android:ems="10"
-                        android:id="@+id/nempleo_tv_propuesta"
+                        android:id="@+id/nempleo_et_propuesta"
                         android:layout_marginLeft="35dp"
                         android:layout_marginRight="35dp"
                         android:layout_marginBottom="20dp"
@@ -83,15 +83,15 @@
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="* Categoría:"
                             android:id="@+id/textView5"
-                            android:layout_marginLeft="35dp"
+                            android:layout_marginLeft="5dp"
                             android:layout_marginRight="10dp" />
 
                         <Spinner
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/nempleo_spin_categoria"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="35dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="10dp"
                             android:layout_marginBottom="20dp" />
                     </LinearLayout>
 
@@ -105,7 +105,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/crear"
-                            android:id="@+id/button"
+                            android:id="@+id/nempleo_btn_crear"
                             android:layout_marginLeft="35dp"
                             android:layout_marginRight="10dp" />
 
@@ -113,7 +113,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/cancelar"
-                            android:id="@+id/button2"
+                            android:id="@+id/nempleo_btn_cancelar"
                             android:layout_marginRight="35dp"
                             android:layout_marginLeft="10dp" />
                     </LinearLayout>
