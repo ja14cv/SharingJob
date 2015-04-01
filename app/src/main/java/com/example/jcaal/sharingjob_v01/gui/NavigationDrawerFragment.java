@@ -1,7 +1,5 @@
 package com.example.jcaal.sharingjob_v01.gui;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
@@ -13,7 +11,6 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,15 +18,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.example.jcaal.sharingjob_v01.R;
 import com.example.jcaal.sharingjob_v01.logica.TipoFragmento;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -148,7 +142,6 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerLayout = drawerLayout;
 
         // set a custom shadow that overlays the main content when the drawer opens
-        //mDrawerLayout.setDrawerShadow(new ColorDrawable(0xffFFFFFF), GravityCompat.START);
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
 
@@ -172,8 +165,7 @@ public class NavigationDrawerFragment extends Fragment {
                     return;
                 }
 
-                ((principal)getActivity()).restoreActionBar();
-                //Log.i("titulo", tituloPrevio);
+                ((principal)getActivity()).restoreActionBar(); //restaura el titulo
                 getActivity().supportInvalidateOptionsMenu(); // calls onPrepareOptionsMenu()
             }
 
@@ -192,10 +184,7 @@ public class NavigationDrawerFragment extends Fragment {
                     sp.edit().putBoolean(PREF_USER_LEARNED_DRAWER, true).apply();
                 }
 
-                //tituloPrevio = getActionBar().getTitle().toString();
                 getActionBar().setTitle(getActivity().getTitle()); //cada ves que se abra pone el titulo de la app
-                //Log.i("titulo", tituloPrevio);
-                //Log.i("titulo", getActionBar().getTitle().toString());
                 getActivity().supportInvalidateOptionsMenu(); // calls onPrepareOptionsMenu()
             }
         };
