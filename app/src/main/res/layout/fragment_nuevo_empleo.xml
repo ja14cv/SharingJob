@@ -10,7 +10,7 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@drawable/degradado_et"
+        android:background="@drawable/degradado_layout_fondo"
         android:layout_margin="5dp">
 
         <ScrollView
@@ -56,7 +56,7 @@
                     android:layout_marginLeft="35dp"
                     android:layout_marginBottom="10dp"
                     android:hint="@string/titulo"
-                    android:background="@drawable/redondeado"
+                    android:background="@drawable/redondeado_edit_text"
                     android:padding="5dp"
                     android:textSize="16dp" />
 
@@ -68,7 +68,7 @@
                     android:layout_marginRight="35dp"
                     android:layout_marginBottom="10dp"
                     android:hint="@string/descripcion"
-                    android:background="@drawable/redondeado"
+                    android:background="@drawable/redondeado_edit_text"
                     android:padding="5dp"
                     android:textSize="16dp" />
 
@@ -82,7 +82,7 @@
                     android:layout_marginRight="35dp"
                     android:layout_marginBottom="10dp"
                     android:hint="@string/propuesta_salarial"
-                    android:background="@drawable/redondeado"
+                    android:background="@drawable/redondeado_edit_text"
                     android:padding="5dp"
                     android:textSize="16dp" />
 
@@ -109,7 +109,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="@drawable/redondeado" />
+                        android:background="@drawable/redondeado_edit_text" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -137,7 +137,8 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:singleLine="false" />
+                        android:singleLine="false"
+                        android:layout_marginBottom="5dp" />
 
                     <Button
                         android:layout_width="match_parent"
@@ -150,7 +151,8 @@
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:elegantTextHeight="false"
-                        android:singleLine="false" />
+                        android:singleLine="false"
+                        android:layout_marginBottom="5dp" />
                 </LinearLayout>
 
             </LinearLayout>

@@ -9,7 +9,7 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@drawable/degradado_et"
+        android:background="@drawable/degradado_layout_fondo"
         android:layout_margin="5dp">
 
         <ScrollView
@@ -49,34 +49,6 @@
                     android:layout_marginRight="50dp"
                     android:layout_marginBottom="10dp" />
 
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="@string/crear_cuenta"
-                        android:id="@+id/lo_bt_crear"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/color_btn_otro"
-                        android:singleLine="false"
-                        android:textColor="@drawable/button_text_color"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginLeft="5dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:background="#ffffffff"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp"
-                    android:layout_marginBottom="10dp" />
-
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -88,7 +60,7 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="35dp"
                     android:layout_marginRight="35dp"
-                    android:background="@drawable/redondeado"
+                    android:background="@drawable/redondeado_edit_text"
                     android:textSize="16dp"
                     android:padding="5dp" />
 
@@ -102,7 +74,7 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="35dp"
                     android:layout_marginRight="35dp"
-                    android:background="@drawable/redondeado"
+                    android:background="@drawable/redondeado_edit_text"
                     android:textSize="16dp"
                     android:padding="5dp" />
 
@@ -131,7 +103,8 @@
                         android:layout_marginRight="10dp"
                         android:background="@color/color_btn_aceptar"
                         android:singleLine="false"
-                        android:textColor="@drawable/button_text_color" />
+                        android:textColor="@drawable/button_text_color"
+                        android:layout_marginBottom="5dp" />
 
                     <Button
                         android:layout_width="match_parent"
@@ -143,8 +116,37 @@
                         android:layout_marginRight="5dp"
                         android:background="@color/color_btn_cancelar"
                         android:singleLine="false"
-                        android:textColor="@drawable/button_text_color" />
+                        android:textColor="@drawable/button_text_color"
+                        android:layout_marginBottom="5dp" />
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="#ffffffff"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginBottom="10dp" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/crear_cuenta"
+                        android:id="@+id/lo_bt_crear"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@color/color_btn_otro"
+                        android:singleLine="false"
+                        android:textColor="@drawable/button_text_color"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp" />
                 </LinearLayout>
 
             </LinearLayout>

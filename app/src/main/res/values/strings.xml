@@ -39,4 +39,9 @@
     <string name="cuenta_mi_empresa">Mi empresa</string>
     <string name="cuenta_agregar_estudio">Agregar estudio realizado</string>
     <string name="cuenta_agregar_trabajo" >Agregar trabajo realizado</string>
+    <string name="ingrese_los_datos">Ingrese los datos solicitados:</string>
+    <string name="estudios_realizados">Estudios realizados</string>
+    <string name="empleos_tomados">Empleos tomados</string>
+    <string name="empleos_publicados">Empleos publicados</string>
+    <string name="perfil_completo">Perfil completo</string>
 </resources>
