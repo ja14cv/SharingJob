@@ -353,6 +353,7 @@ public class NavigationDrawerFragment extends Fragment {
          * Called when an item in the navigation drawer is selected.
          */
         void onNavigationDrawerItemSelected(TipoFragmento tf);
+        void onNavigationDrawerItemSelected(TipoFragmento tf, String[] parms);
         void seleccion(TipoFragmento tf);
     }
 }

@@ -10,7 +10,7 @@ import com.example.jcaal.sharingjob_v01.logica.TipoFragmento;
 
 public class configuracion extends FragmentGenerico {
 
-    private Button crear, ingresar;
+    private Button crear, ingresar, cuenta_nuevo, cuenta_editar, empresa_nuevo, empresa_editar;
 
     @Override
     public void otrosParametros(Bundle args, String[] parms) {
@@ -28,7 +28,6 @@ public class configuracion extends FragmentGenerico {
             }
         });
 
-        //Eventos de botones
         ingresar = (Button) getView().findViewById(R.id.conf_bt_ingresar);
         ingresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,12 +36,42 @@ public class configuracion extends FragmentGenerico {
             }
         });
 
+        cuenta_nuevo = (Button) getView().findViewById(R.id.conf_bt_cuenta_nuevo);
+        cuenta_nuevo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick_goDireccion(0, 0);
+            }
+        });
+
+        cuenta_editar = (Button) getView().findViewById(R.id.conf_bt_cuenta_editar);
+        cuenta_editar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick_goDireccion(0, 1);
+            }
+        });
+
+        empresa_nuevo = (Button) getView().findViewById(R.id.conf_bt_empresa_nuevo);
+        empresa_nuevo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick_goDireccion(1, 0);
+            }
+        });
+
+        empresa_editar = (Button) getView().findViewById(R.id.conf_bt_empresa_editar);
+        empresa_editar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick_goDireccion(1, 1);
+            }
+        });
+
         mCallback.seleccion(tipoFragmento);
     }
 
     private void onClick_crear(View v){
-        /*this.onDestroy();
-        mCallback.onNavigationDrawerItemSelected(TipoFragmento.REGISTRO);*/
         android.support.v7.app.ActionBar ab = ((principal) getActivity()).getSupportActionBar();
         if (ab.isShowing()){
             ab.hide();
@@ -54,6 +83,10 @@ public class configuracion extends FragmentGenerico {
     private void onClick_ingresar(View v){
         this.onDestroy();
         mCallback.onNavigationDrawerItemSelected(TipoFragmento.LOGIN);
+    }
+
+    private void onClick_goDireccion(int vista, int op){
+        return;
     }
 
 }

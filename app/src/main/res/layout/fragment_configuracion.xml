@@ -5,13 +5,47 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Configuracion"
-        android:id="@+id/textView4"
-        android:layout_gravity="left|top" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Configuracion"
+            android:id="@+id/textView4"
+            android:layout_gravity="left|top" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cuenta Nuevo"
+            android:id="@+id/conf_bt_cuenta_nuevo" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cuenta Editar"
+            android:id="@+id/conf_bt_cuenta_editar" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Empresa Nuevo"
+            android:id="@+id/conf_bt_empresa_nuevo" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Empresa Editar"
+            android:id="@+id/conf_bt_empresa_editar" />
+    </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
@@ -26,4 +60,5 @@
         android:text="@string/ingresar"
         android:id="@+id/conf_bt_ingresar"
         android:layout_gravity="right|center_vertical" />
+
 </FrameLayout>

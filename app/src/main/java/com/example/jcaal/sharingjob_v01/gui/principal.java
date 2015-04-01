@@ -48,6 +48,11 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
 
     @Override
     public void onNavigationDrawerItemSelected(TipoFragmento tf) {
+        onNavigationDrawerItemSelected(tf, new String[0]);
+    }
+
+    @Override
+    public void onNavigationDrawerItemSelected(TipoFragmento tf, String[] parms) {
         if(fragmentoActual != tf){
 
             //Dependiendo de la seleccion en el menu izquierdo se abre un fragment
@@ -58,27 +63,27 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
             }
 
             if(tf == TipoFragmento.INICIO && fragmentoActual != null){
-                transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, tf, new String[0])).commit();
+                transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, tf, parms)).commit();
             }else if(tf == TipoFragmento.CUENTA){
-                transaction.replace(R.id.container, cuenta.newInstance(new cuenta(), R.layout.fragment_cuenta, tf, new String[0])).commit();
+                transaction.replace(R.id.container, cuenta.newInstance(new cuenta(), R.layout.fragment_cuenta, tf, parms)).commit();
             }else if(tf == TipoFragmento.NUEVO_EMPLEO){
-                transaction.replace(R.id.container, nuevo_empleo.newInstance(new nuevo_empleo(), R.layout.fragment_nuevo_empleo, tf, new String[0])).commit();
+                transaction.replace(R.id.container, nuevo_empleo.newInstance(new nuevo_empleo(), R.layout.fragment_nuevo_empleo, tf, parms)).commit();
             }else if(tf == TipoFragmento.CONFIG){
-                transaction.replace(R.id.container, configuracion.newInstance(new configuracion(), R.layout.fragment_configuracion, tf, new String[0])).commit();
+                transaction.replace(R.id.container, configuracion.newInstance(new configuracion(), R.layout.fragment_configuracion, tf, parms)).commit();
             }else if(tf == TipoFragmento.LOGIN){
                 mNavigationDrawerFragment.desmarcarItem();
-                transaction.replace(R.id.container, login.newInstance(new login(), R.layout.fragment_login, tf, new String[0])).commit();
+                transaction.replace(R.id.container, login.newInstance(new login(), R.layout.fragment_login, tf, parms)).commit();
             }else if(tf == TipoFragmento.REGISTRO){
                 mNavigationDrawerFragment.desmarcarItem();
-                transaction.replace(R.id.container, registro.newInstance(new registro(), R.layout.fragment_registro, tf, new String[0])).commit();
+                transaction.replace(R.id.container, registro.newInstance(new registro(), R.layout.fragment_registro, tf, parms)).commit();
             }else if(tf == TipoFragmento.EMPRESA){
                 mNavigationDrawerFragment.desmarcarItem();
-                transaction.replace(R.id.container, empresa.newInstance(new empresa(), R.layout.fragment_empresa, tf, new String[0])).commit();
+                transaction.replace(R.id.container, empresa.newInstance(new empresa(), R.layout.fragment_empresa, tf, parms)).commit();
             }else if(tf == TipoFragmento.DIRECCION){
                 mNavigationDrawerFragment.desmarcarItem();
-                transaction.replace(R.id.container, direccion.newInstance(new registro(), R.layout.fragment_direccion, tf, new String[0])).commit();
+                transaction.replace(R.id.container, direccion.newInstance(new registro(), R.layout.fragment_direccion, tf, parms)).commit();
             }else{
-                transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, tf, new String[0])).commit();
+                transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, tf, parms)).commit();
             }
 
             fragmentoActual =  tf;
