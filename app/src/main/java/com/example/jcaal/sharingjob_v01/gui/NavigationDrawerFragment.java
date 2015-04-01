@@ -1,5 +1,6 @@
 package com.example.jcaal.sharingjob_v01.gui;
 
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
@@ -129,6 +130,7 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerLayout = drawerLayout;
 
         // set a custom shadow that overlays the main content when the drawer opens
+        //mDrawerLayout.setDrawerShadow(new ColorDrawable(0xffFFFFFF), GravityCompat.START);
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
 

@@ -53,8 +53,8 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
             //Dependiendo de la seleccion en el menu izquierdo se abre un fragment
             android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             if(fragmentoActual != null){ //No activa la pila con el fragent de navigaction drawer
-                transaction.addToBackStack(null);
                 mNavigationDrawerFragment.seleccionarItem(tf);
+                transaction.addToBackStack(null);
             }
 
             if(tf == TipoFragmento.INICIO && fragmentoActual != null){
@@ -108,10 +108,6 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
-    }
-
-    public void seleccionManual(TipoFragmento tf){
-        mNavigationDrawerFragment.seleccionarItem(tf);
     }
 
 
