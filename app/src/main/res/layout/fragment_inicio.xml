@@ -1,7 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" tools:context="com.example.jcaal.sharingjob_v01.gui.inicio"
-    android:background="#ffffb83a"
+    android:background="#ff000000"
     android:scaleType="centerCrop">
 
     <!-- TODO: Update blank fragment layout -->
@@ -10,9 +10,8 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_margin="5dp"
-        android:background="#ff000000"
-        android:alpha="0.9">
+        android:alpha="0.9"
+        android:layout_margin="5dp">
 
         <SearchView
             android:layout_width="match_parent"
@@ -26,10 +25,7 @@
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="#ffffffff"
-            android:layout_marginLeft="1dp"
-            android:layout_marginRight="1dp"
-            android:layout_marginBottom="1dp"
+            android:background="@drawable/degradado_et"
             android:layout_marginTop="4dp">
 
             <ScrollView
@@ -37,8 +33,9 @@
                 android:layout_height="fill_parent"
                 android:id="@+id/sb"
                 android:layout_gravity="center"
-                android:background="#ffffffff"
-                android:layout_margin="10dp" >
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                android:background="@drawable/redondeado_scrollview">
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -52,7 +49,18 @@
                         android:text="@string/selecione_categoria"
                         android:id="@+id/textView3"
                         android:textColor="#ff000000"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="10dp" />
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="#ffffffff"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="50dp"
+                        android:layout_marginBottom="10dp"></LinearLayout>
 
                     <LinearLayout
                         android:orientation="vertical"

@@ -35,13 +35,13 @@ public class MyHolder extends TreeNode.BaseNodeViewHolder<MyHolder.IconTreeItem>
         TextView tvValue = ( TextView ) view.findViewById (R.id.node_value);
         switch(value.nivel){
             case 0:
-                tvValue.setTextColor(Color.rgb(11,39,50));
+                tvValue.setTextColor(Color.rgb(255,255,255));
                 break;
             case 1:
-                tvValue.setTextColor(Color.rgb(27,126,162));
+                tvValue.setTextColor(Color.rgb(76,76,76));
                 break;
             case 2:
-                tvValue.setTextColor(Color.rgb(48,197,252));
+                tvValue.setTextColor(Color.rgb(0,0,0));
                 break;
         }
         tvValue.setText (value.text);

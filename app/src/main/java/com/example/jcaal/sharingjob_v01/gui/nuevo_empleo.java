@@ -82,6 +82,7 @@ public class nuevo_empleo extends FragmentGenerico implements IWsdl2CodeEvents{
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     private void clic_cancelar(View v){

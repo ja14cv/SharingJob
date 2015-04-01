@@ -20,7 +20,7 @@
     <string name="ingresar">Ingresar</string>
     <string name="cancelar">Cancelar</string>
     <string name="crear_cuenta">Crear Cuenta</string>
-    <string name="logout">Logout</string>
+    <string name="logout">Salir</string>
     <string name="completar">Completar</string>
     <string name="nombres">Nombres</string>
     <string name="apellidos">Apellidos</string>
@@ -32,4 +32,11 @@
     <string name="descripcion">Descripción</string>
     <string name="propuesta_salarial">Propuesta Salarial</string>
     <string name="registrar">Registrar</string>
+    <string name="mis_datos">Mis datos</string>
+    <string name="cuenta_correo">Correo:</string>
+    <string name="cuenta_nombres">Nombres:</string>
+    <string name="cuenta_apellidos">Apellidos:</string>
+    <string name="cuenta_mi_empresa">Mi empresa</string>
+    <string name="cuenta_agregar_estudio">Agregar estudio realizado</string>
+    <string name="cuenta_agregar_trabajo" >Agregar trabajo realizado</string>
 </resources>

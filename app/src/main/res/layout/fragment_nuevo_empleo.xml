@@ -2,134 +2,159 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.jcaal.sharingjob_v01.gui.nuevo_empleo"
-    android:background="#fffcffa7">
+    android:background="#ff000000">
 
     <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_margin="5dp"
-        android:background="#ff000000"
-        android:alpha="0.9">
+        android:background="@drawable/degradado_et"
+        android:layout_margin="5dp">
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_margin="1dp"
-            android:background="#ffffffff">
+            android:id="@+id/scrollView3"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:background="@drawable/redondeado_scrollview">
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/scrollView3"
-                android:layout_margin="10dp">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/titulo_nuevo_empleo"
+                    android:id="@+id/textView2"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:paddingBottom="5dp"
+                    android:layout_marginBottom="10dp" />
 
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="1dp"
+                    android:background="#ffffffff"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginBottom="10dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/nempleo_et_titulo"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginBottom="10dp"
+                    android:hint="@string/titulo"
+                    android:background="@drawable/redondeado"
+                    android:padding="5dp"
+                    android:textSize="16dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/nempleo_et_descrip"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginBottom="10dp"
+                    android:hint="@string/descripcion"
+                    android:background="@drawable/redondeado"
+                    android:padding="5dp"
+                    android:textSize="16dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:inputType="numberDecimal"
+                    android:ems="10"
+                    android:id="@+id/nempleo_et_propuesta"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginBottom="10dp"
+                    android:hint="@string/propuesta_salarial"
+                    android:background="@drawable/redondeado"
+                    android:padding="5dp"
+                    android:textSize="16dp" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="@string/titulo_nuevo_empleo"
-                        android:id="@+id/textView2"
-                        android:textColor="#ff000000"
-                        android:textSize="16sp" />
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="* Categoría:"
+                        android:id="@+id/textView5"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="10dp"
+                        android:textColor="#ffffffff" />
 
-                    <EditText
+                    <Spinner
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/nempleo_et_titulo"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginRight="35dp"
-                        android:layout_marginLeft="35dp"
-                        android:layout_marginBottom="20dp"
-                        android:hint="@string/titulo" />
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/nempleo_et_descrip"
-                        android:layout_marginLeft="35dp"
-                        android:layout_marginRight="35dp"
-                        android:layout_marginBottom="20dp"
-                        android:hint="@string/descripcion" />
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="numberDecimal"
-                        android:ems="10"
-                        android:id="@+id/nempleo_et_propuesta"
-                        android:layout_marginLeft="35dp"
-                        android:layout_marginRight="35dp"
-                        android:layout_marginBottom="20dp"
-                        android:hint="@string/propuesta_salarial" />
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:gravity="center_horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="* Categoría:"
-                            android:id="@+id/textView5"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="10dp" />
-
-                        <Spinner
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/nempleo_spin_categoria"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="20dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:gravity="center_horizontal">
-
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/crear"
-                            android:id="@+id/nempleo_btn_crear"
-                            android:background="@color/color_btn_aceptar"
-                            android:textColor="@drawable/button_text_color"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_weight="1"
-                            android:singleLine="true" />
-
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/cancelar"
-                            android:id="@+id/nempleo_btn_cancelar"
-                            android:background="@color/color_btn_cancelar"
-                            android:textColor="@drawable/button_text_color"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_weight="1"
-                            android:elegantTextHeight="false"
-                            android:singleLine="true" />
-                    </LinearLayout>
-
+                        android:id="@+id/nempleo_spin_categoria"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/redondeado" />
                 </LinearLayout>
-            </ScrollView>
 
-        </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="#ffffffff"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginBottom="10dp" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_horizontal">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/crear"
+                        android:id="@+id/nempleo_btn_crear"
+                        android:background="@color/color_btn_aceptar"
+                        android:textColor="@drawable/button_text_color"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:singleLine="false" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cancelar"
+                        android:id="@+id/nempleo_btn_cancelar"
+                        android:background="@color/color_btn_cancelar"
+                        android:textColor="@drawable/button_text_color"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:elegantTextHeight="false"
+                        android:singleLine="false" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
     </LinearLayout>
 </FrameLayout>

@@ -100,7 +100,7 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
         }else{
             mTitle = getString(R.string.app_name);
         }
-
+        getSupportActionBar().setTitle(mTitle);
         //restoreActionBar();
     }
 
