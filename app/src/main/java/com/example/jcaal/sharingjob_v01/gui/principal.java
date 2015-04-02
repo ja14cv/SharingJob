@@ -16,31 +16,31 @@ import android.widget.Toast;
 
 import com.example.jcaal.sharingjob_v01.R;
 import com.example.jcaal.sharingjob_v01.logica.TipoFragmento;
+import com.example.jcaal.sharingjob_v01.logica.elementoPila;
 import com.example.jcaal.sharingjob_v01.logica.sesion;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Stack;
 
 public class principal extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks, ActionBar.TabListener {
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private CharSequence mTitle;
-    private TipoFragmento fragmentoActual;
     private ViewPager vp;
+    private Stack<elementoPila> pilaFragmentos = new Stack<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
+        //Seteando datos
+        vp = (ViewPager)findViewById(R.id.pager);
         mNavigationDrawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
-
-        //
-        vp = (ViewPager)findViewById(R.id.pager);
 
         //Creando Session
         sesion s = new sesion();
@@ -61,45 +61,54 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
 
     @Override
     public void onNavigationDrawerItemSelected(TipoFragmento tf, String[] parms) {
-        if(fragmentoActual != tf){
-
-            //Dependiendo de la seleccion en el menu izquierdo se abre un fragment
-            android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            if(fragmentoActual != null){ //No activa la pila con el fragent de navigaction drawer
-                transaction.addToBackStack(tf.toString());
-                mNavigationDrawerFragment.seleccionarItem(tf);
-            }
-
-            fragmentoActual =  tf;
-            desactivarTabs();
-
-            if(tf == TipoFragmento.INICIO && fragmentoActual != null){
-                transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, tf, parms)).commit();
-            }else if(tf == TipoFragmento.CUENTA){
-                transaction.replace(R.id.container, cuenta.newInstance(new cuenta(), R.layout.fragment_cuenta, tf, parms)).commit();
-            }else if(tf == TipoFragmento.NUEVO_EMPLEO){
-                transaction.replace(R.id.container, nuevo_empleo.newInstance(new nuevo_empleo(), R.layout.fragment_nuevo_empleo, tf, parms)).commit();
-            }else if(tf == TipoFragmento.CONFIG){
-                activarTabs(tf);
-            }else if(tf == TipoFragmento.LOGIN){
-                mNavigationDrawerFragment.desmarcarItem();
-                transaction.replace(R.id.container, login.newInstance(new login(), R.layout.fragment_login, tf, parms)).commit();
-            }else if(tf == TipoFragmento.REGISTRO){
-                mNavigationDrawerFragment.desmarcarItem();
-                transaction.replace(R.id.container, registro.newInstance(new registro(), R.layout.fragment_registro, tf, parms)).commit();
-            }else if(tf == TipoFragmento.EMPRESA){
-                mNavigationDrawerFragment.desmarcarItem();
-                transaction.replace(R.id.container, empresa.newInstance(new empresa(), R.layout.fragment_empresa, tf, parms)).commit();
-            }else if(tf == TipoFragmento.DIRECCION){
-                mNavigationDrawerFragment.desmarcarItem();
-                transaction.replace(R.id.container, direccion.newInstance(new direccion(), R.layout.fragment_direccion, tf, parms)).commit();
-            }else if(tf == TipoFragmento.PERFIL_COMPLETO){
-                mNavigationDrawerFragment.desmarcarItem();
-                transaction.replace(R.id.container, perfil_completo.newInstance(new perfil_completo(), R.layout.fragment_perfil_completo, tf, parms)).commit();
+        //Verificar pila
+        if(!pilaFragmentos.isEmpty()){
+            if(pilaFragmentos.lastElement().getTipoFragmento() != tf){
+                inflarFragment(tf, parms);
+                pilaFragmentos.push(new elementoPila(tf, parms));
             }else{
-                transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, tf, parms)).commit();
+                inflarFragment(tf, parms);
             }
+        }else{
+            inflarFragment(tf, parms);
+            pilaFragmentos.push(new elementoPila(tf, parms));
         }
+
+    }
+
+    private void inflarFragment(TipoFragmento tf, String[] parms){
+        android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        desactivarTabs();
+        if(tf == TipoFragmento.INICIO){
+            transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, tf, parms)).commit();
+        }else if(tf == TipoFragmento.CUENTA){
+            transaction.replace(R.id.container, cuenta.newInstance(new cuenta(), R.layout.fragment_cuenta, tf, parms)).commit();
+        }else if(tf == TipoFragmento.NUEVO_EMPLEO){
+            transaction.replace(R.id.container, nuevo_empleo.newInstance(new nuevo_empleo(), R.layout.fragment_nuevo_empleo, tf, parms)).commit();
+        }else if(tf == TipoFragmento.CONFIG){
+            transaction.replace(R.id.container, configuracion.newInstance(new configuracion(), R.layout.fragment_configuracion, tf, parms)).commit();
+        }else if(tf == TipoFragmento.LOGIN){
+            mNavigationDrawerFragment.desmarcarItem();
+            transaction.replace(R.id.container, login.newInstance(new login(), R.layout.fragment_login, tf, parms)).commit();
+        }else if(tf == TipoFragmento.REGISTRO){
+            mNavigationDrawerFragment.desmarcarItem();
+            transaction.replace(R.id.container, registro.newInstance(new registro(), R.layout.fragment_registro, tf, parms)).commit();
+        }else if(tf == TipoFragmento.EMPRESA){
+            mNavigationDrawerFragment.desmarcarItem();
+            transaction.replace(R.id.container, empresa.newInstance(new empresa(), R.layout.fragment_empresa, tf, parms)).commit();
+        }else if(tf == TipoFragmento.DIRECCION){
+            mNavigationDrawerFragment.desmarcarItem();
+            transaction.replace(R.id.container, direccion.newInstance(new direccion(), R.layout.fragment_direccion, tf, parms)).commit();
+        }else if(tf == TipoFragmento.PERFIL_COMPLETO){
+            mNavigationDrawerFragment.desmarcarItem();
+            activarTabs();
+        }else{
+            transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, tf, parms)).commit();
+        }
+
+        onSectionAttached(tf);
+        getSupportActionBar().setTitle(mTitle);
     }
 
     @Override
@@ -143,31 +152,29 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
         getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
     }
 
-    private void activarTabs(TipoFragmento tf){
-        if(tf == TipoFragmento.CONFIG){
-            if(sesion.isLogin()){
-                final ActionBar actionBar = getSupportActionBar();
-                actionBar.removeAllTabs();
-                actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+    private void activarTabs(){
+        if(sesion.isLogin()){
+            final ActionBar actionBar = getSupportActionBar();
+            actionBar.removeAllTabs();
+            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-                SectionsPagerAdapter spa = new SectionsPagerAdapter(getSupportFragmentManager());
-                for (int i = 0; i < spa.getCount(); i++) {
-                    actionBar.addTab(actionBar.newTab().setText(spa.getPageTitle(i)).setTabListener(this));
-                }
-
-                vp.setAdapter(spa);
-                vp.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-                    @Override
-                    public void onPageSelected(int position) {
-                        actionBar.setSelectedNavigationItem(position);
-                    }
-                });
-
-                android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.container, new Fragment()).commit();
-            }else{
-                onNavigationDrawerItemSelected(TipoFragmento.LOGIN);
+            SectionsPagerAdapter spa = new SectionsPagerAdapter(getSupportFragmentManager());
+            for (int i = 0; i < spa.getCount(); i++) {
+                actionBar.addTab(actionBar.newTab().setText(spa.getPageTitle(i)).setTabListener(this));
             }
+
+            vp.setAdapter(spa);
+            vp.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+                @Override
+                public void onPageSelected(int position) {
+                    actionBar.setSelectedNavigationItem(position);
+                }
+            });
+
+            android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.container, new Fragment()).commit();
+        }else{
+            onNavigationDrawerItemSelected(TipoFragmento.LOGIN);
         }
     }
 
@@ -204,19 +211,9 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
 
     @Override
     public void onBackPressed(){
-        int no_frag = getSupportFragmentManager().getBackStackEntryCount();
-        if(no_frag > 0){
-            List<Fragment> listFragments= getSupportFragmentManager().getFragments();
-            FragmentGenerico lastFragment = (FragmentGenerico)listFragments.get(no_frag);
-            this.onSectionAttached(lastFragment.tipoFragmento);
-            fragmentoActual = lastFragment.tipoFragmento;
-            restoreActionBar();
-
-            if(lastFragment.tipoFragmento == TipoFragmento.CONFIG){
-                activarTabs(TipoFragmento.CONFIG);
-            }else{
-                desactivarTabs();
-            }
+        pilaFragmentos.pop();   //Saca elemento de la pila
+        if(pilaFragmentos.size() > 0){
+            onNavigationDrawerItemSelected(pilaFragmentos.lastElement().getTipoFragmento(), pilaFragmentos.lastElement().getParametros()); //abre fragmneto anterior
         }else{
             super.onBackPressed();
         }
@@ -224,7 +221,6 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
 
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-        Log.i("tab", "selecionada");
         vp.setCurrentItem(tab.getPosition());
     }
 
@@ -245,9 +241,9 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
         @Override
         public Fragment getItem(int position) {
             if(position == 0){
-                return cuenta.newInstance(new cuenta(), R.layout.fragment_cuenta, TipoFragmento.CUENTA, new String[0]);
+                return perfil_completo.newInstance(new perfil_completo(), R.layout.fragment_perfil_completo, TipoFragmento.PERFIL_COMPLETO, new String[0]);
             }else{
-                return configuracion.newInstance(new configuracion(), R.layout.fragment_configuracion, TipoFragmento.CONFIG, new String[0]);
+                return direccion.newInstance(new direccion(), R.layout.fragment_direccion, TipoFragmento.CONFIG, new String[]{"ente"});
             }
         }
 
@@ -261,7 +257,7 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Perfil";
+                    return "Datos Personales";
                 case 1:
                     return "Direccion";
             }

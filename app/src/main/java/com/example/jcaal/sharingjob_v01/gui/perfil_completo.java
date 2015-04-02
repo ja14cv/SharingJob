@@ -36,6 +36,7 @@ public class perfil_completo extends FragmentGenerico implements IWsdl2CodeEvent
     private TextView tv_correo;
     private ProgressDialog dialog;
     private String password;
+    private boolean editar = false;
 
     @Override
     public void hacerOnCreate() {
@@ -63,6 +64,7 @@ public class perfil_completo extends FragmentGenerico implements IWsdl2CodeEvent
         tv_correo = (TextView) getView().findViewById(R.id.perfilc_tv_correo);
 
         estado_edicion(false);
+        editar = false;
 
         ws_sharingJob ws = new ws_sharingJob(this);
         try {
@@ -85,9 +87,11 @@ public class perfil_completo extends FragmentGenerico implements IWsdl2CodeEvent
     }
 
     private void onClick_editar(View v){
-        if(btn_editar.getText().equals("EDITAR")){
+        if(!editar){
+            //Activar guardar
+            editar = true;
             estado_edicion(true);
-            btn_editar.setText("GUARDAR");
+            btn_editar.setText(R.string.guardar);
             btn_cancelar.setVisibility(View.VISIBLE);
             btn_editar.setBackgroundResource(R.drawable.button_green);
         }else{
@@ -144,8 +148,11 @@ public class perfil_completo extends FragmentGenerico implements IWsdl2CodeEvent
     }
 
     private void onClick_cancelar(View v){
-        this.onDestroy();
-        mCallback.onNavigationDrawerItemSelected(TipoFragmento.CUENTA);
+        editar = false;
+        estado_edicion(false);
+        btn_editar.setText(R.string.editar);
+        btn_cancelar.setVisibility(View.INVISIBLE);
+        btn_editar.setBackgroundResource(R.drawable.button_blue);
     }
 
     @Override
@@ -212,10 +219,14 @@ public class perfil_completo extends FragmentGenerico implements IWsdl2CodeEvent
             JSONObject temporal = temp.getJSONObject(0);
 
             String tipo = temporal.getString("Tipo");
-            Toast.makeText(getView().getContext(), temporal.getString("Descripcion"), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getView().getContext(), temporal.getString("Descripcion"), Toast.LENGTH_SHORT).show();
             if (tipo.equals("1")){
-                this.onDestroy();
-                mCallback.onNavigationDrawerItemSelected(TipoFragmento.CUENTA);
+                editar = false;
+                estado_edicion(false);
+                btn_editar.setText(R.string.editar);
+                btn_cancelar.setVisibility(View.INVISIBLE);
+                btn_editar.setBackgroundResource(R.drawable.button_blue);
+                Toast.makeText(getActivity(), "Datos guardados", Toast.LENGTH_LONG).show();
             }
 
         } catch (JSONException e) {

@@ -24,10 +24,11 @@ import org.json.JSONObject;
  */
 public class direccion extends FragmentGenerico implements IWsdl2CodeEvents{
 
-    private boolean parmsOK = false;
-    private String pertenece, operacion;
+    private boolean parmsOK = false, editar = false;
+    private String pertenece;
     private Button guardar, cancelar;
     private Spinner deptos;
+    private EditText no, calle, avenida, calzada, zona, municipio;
     private static final String[] departamentos = new String[]{"Alta Verapaz", "Baja Verapaz", "Chimaltenango", "Chiquimula", "Petén", "El Progreso", "Quiché", "Escuintla",
             "Guatemala", "Huehuetenango", "Izabal", "Jalapa", "Jutiapa", "Quetzaltenango", "Retalhuleu", "Sacatepéquez", "San Marcos", "Santa Rosa", "Sololá", "Suchitepéquez", "Totonicapán", "Zacapa"};
 
@@ -35,9 +36,8 @@ public class direccion extends FragmentGenerico implements IWsdl2CodeEvents{
     public void otrosParametros(String[] parms) {
         Bundle args = this.getArguments();
         if(args != null && parms != null){
-            if(parms.length >= 2){
-                args.putString("pertenece", parms[0]);
-                args.putString("operacion", parms[1]);
+            if(parms.length >= 1){
+                args.putString("pertenece", parms[0]);;
                 parmsOK = true;
             }else{
                 parmsOK = false;
@@ -54,6 +54,16 @@ public class direccion extends FragmentGenerico implements IWsdl2CodeEvents{
             mCallback.onNavigationDrawerItemSelected(TipoFragmento.LOGIN); //ir a login
             return;
         }
+
+        no = (EditText) getView().findViewById(R.id.dir_et_no);
+        calle = (EditText) getView().findViewById(R.id.dir_et_calle);
+        avenida = (EditText) getView().findViewById(R.id.dir_et_avenida);
+        calzada = (EditText) getView().findViewById(R.id.dir_et_calzada);
+        zona = (EditText) getView().findViewById(R.id.dir_et_zona);
+        municipio = (EditText) getView().findViewById(R.id.dir_et_municipio);
+        deptos = (Spinner) getView().findViewById(R.id.dir_sp_deptos);
+        setHabilitado(false);
+        editar = false;
 
         if(parmsOK){
             //Eventos de botones
@@ -73,35 +83,28 @@ public class direccion extends FragmentGenerico implements IWsdl2CodeEvents{
                 }
             });
 
-            //Crear spinenr
-            deptos = (Spinner) getView().findViewById(R.id.dir_sp_deptos);
-            ArrayAdapter<String> adapt = new ArrayAdapter<String>(getView().getContext(), android.R.layout.simple_list_item_1, departamentos);
+            //Cargar spinenr
+            ArrayAdapter<String> adapt = new ArrayAdapter<>(getView().getContext(), android.R.layout.simple_list_item_1, departamentos);
             deptos.setAdapter(adapt);
 
             //Obtener argumentos
             Bundle args = this.getArguments();
             pertenece = args.getString("pertenece");
-            operacion = args.getString("operacion");
 
-            //Condicion para cargar datos
-            if(operacion.equals("editar")){
-                //cargar datos de empresa
-                String json = "{\n" +
-                        "\t\"sesion\":\"" + sesion.id_sesion + "\",\n" +
-                        "\t\"proposito\":\"" + pertenece + "\"\n" +
-                        "}";
-                Log.i("direccion", "json: " + json);
+            //cargar datos de direccion
+            String json = "{\n" +
+                    "\t\"sesion\":\"" + sesion.id_sesion + "\",\n" +
+                    "\t\"proposito\":\"" + pertenece + "\"\n" +
+                    "}";
 
-                ws_sharingJob ws = new ws_sharingJob(this);
-                try {
-                    ws.get_direccionAsync(json);
-                } catch (Exception e) {
-                    Log.e("direccion", e.getMessage());
-                    e.printStackTrace();
-                    this.onDestroy();
-                    mCallback.onNavigationDrawerItemSelected(TipoFragmento.INICIO);
-                    Toast.makeText(getActivity(), "No se pudo obtener la direccion", Toast.LENGTH_LONG).show();
-                }
+            ws_sharingJob ws = new ws_sharingJob(this);
+            try {
+                ws.get_direccionAsync(json);
+            } catch (Exception e) {
+                Log.e("direccion", e.getMessage());
+                Toast.makeText(getActivity(), "No se pudo obtener la direccion", Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+
             }
         }else{
             Toast.makeText(getActivity(), "Ocurrio un problema :(", Toast.LENGTH_LONG).show();
@@ -111,74 +114,85 @@ public class direccion extends FragmentGenerico implements IWsdl2CodeEvents{
     }
 
     private void onClick_guardar(View v){
-        String no = ((EditText) getView().findViewById(R.id.dir_et_no)).getText().toString().trim();
-        String calle = ((EditText) getView().findViewById(R.id.dir_et_calle)).getText().toString().trim();
-        String avenida = ((EditText) getView().findViewById(R.id.dir_et_avenida)).getText().toString().trim();
-        String calzada = ((EditText) getView().findViewById(R.id.dir_et_calzada)).getText().toString().trim();
-        String zona = ((EditText) getView().findViewById(R.id.dir_et_zona)).getText().toString().trim();
-        String municipio = ((EditText) getView().findViewById(R.id.dir_et_municipio)).getText().toString().trim();
-        String departamento = deptos.getSelectedItem().toString();
-
-        //Verificar campos
-        if(!zona.isEmpty() && !municipio.isEmpty() && !departamento.isEmpty()){
-            //Conversion de campos vacios a nulos
-            if(no.isEmpty()){
-                no = "NULL";
-            }
-
-            if(calle.isEmpty()){
-                calle = "NULL";
-            }
-
-            if(avenida.isEmpty()){
-                avenida = "NULL";
-            }
-
-            if(calzada.isEmpty()){
-                calzada = "NULL";
-            }
-
-            String json = "{\n" +
-                    "\t\"calle\":\"" + calle + "\",\n" +
-                    "\t\"avenida\":\"" + avenida + "\",\n" +
-                    "\t\"calzada\":\"" + calzada + "\",\n" +
-                    "\t\"zona\":\"" + zona + "\",\n" +
-                    "\t\"municipio\":\"" + municipio + "\",\n" +
-                    "\t\"departamento\":\"" + departamento + "\",\n" +
-                    "\t\"numero_residencia\":\"" + no + "\",\n" +
-                    "\t\"sesion\":\"" + sesion.id_sesion + "\",\n" +
-                    "\t\"proposito\":\"" + pertenece + "\"\n" +
-                    "}";
-            Log.i("direccion", "json: " + json);
-
-            ws_sharingJob ws = new ws_sharingJob(this);
-            try {
-                ws.nueva_direccionAsync(json);
-            } catch (Exception e) {
-                Log.e("direccion", e.getMessage());
-                Toast.makeText(getActivity(), "No se pudo guardar la direccion", Toast.LENGTH_LONG).show();
-                e.printStackTrace();
-            }
+        if(!editar){
+            editar = true;
+            guardar.setBackgroundResource(R.color.color_btn_aceptar);
+            guardar.setText(R.string.guardar);
+            cancelar.setVisibility(View.VISIBLE);
+            setHabilitado(true);
         }else{
-            //Faltan datos
-            Toast.makeText(getActivity(), "Ingrese los datos requeridos", Toast.LENGTH_LONG).show();
+            String sNo = no.getText().toString().trim();
+            String sCalle = calle.getText().toString().trim();
+            String sAvenida = avenida.getText().toString().trim();
+            String sCalzada = calzada.getText().toString().trim();
+            String sZona = zona.getText().toString().trim();
+            String sMunicipio = municipio.getText().toString().trim();
+            String sDepartamento = deptos.getSelectedItem().toString();
+
+            //Verificar campos
+            if(!sZona.isEmpty() && !sMunicipio.isEmpty() && !sDepartamento.isEmpty()){
+                //Conversion de campos vacios a nulos
+                if(sNo.isEmpty()){
+                    sNo = "NULL";
+                }
+
+                if(sCalle.isEmpty()){
+                    sCalle = "NULL";
+                }
+
+                if(sAvenida.isEmpty()){
+                    sAvenida = "NULL";
+                }
+
+                if(sCalzada.isEmpty()){
+                    sCalzada = "NULL";
+                }
+
+                String json = "{\n" +
+                        "\t\"calle\":\"" + sCalle + "\",\n" +
+                        "\t\"avenida\":\"" + sAvenida + "\",\n" +
+                        "\t\"calzada\":\"" + sCalzada + "\",\n" +
+                        "\t\"zona\":\"" + sZona + "\",\n" +
+                        "\t\"municipio\":\"" + sMunicipio + "\",\n" +
+                        "\t\"departamento\":\"" + sDepartamento + "\",\n" +
+                        "\t\"numero_residencia\":\"" + sNo + "\",\n" +
+                        "\t\"sesion\":\"" + sesion.id_sesion + "\",\n" +
+                        "\t\"proposito\":\"" + pertenece + "\"\n" +
+                        "}";
+                Log.i("direccion", "json: " + json);
+
+                ws_sharingJob ws = new ws_sharingJob(this);
+                try {
+                    ws.nueva_direccionAsync(json);
+                } catch (Exception e) {
+                    Log.e("direccion", e.getMessage());
+                    Toast.makeText(getActivity(), "No se pudo guardar la direccion", Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+            }else{
+                //Faltan datos
+                Toast.makeText(getActivity(), "Ingrese los datos requeridos", Toast.LENGTH_LONG).show();
+            }
+
         }
     }
 
     private void onClick_cancelar(View v){
-        regresar();
+        editar = false;
+        guardar.setBackgroundResource(R.drawable.button_blue);
+        guardar.setText(R.string.editar);
+        cancelar.setVisibility(View.INVISIBLE);
+        setHabilitado(false);
     }
 
-    private void regresar(){
-        if(pertenece.equals("ente")){
-            //direccion de ente
-            this.onDestroy();
-            mCallback.onNavigationDrawerItemSelected(TipoFragmento.CUENTA); //es para pasar al perfil completo
-        }else {
-            //direccion de empresa
-            this.onDestroy();
-            mCallback.onNavigationDrawerItemSelected(TipoFragmento.CUENTA);
-        }
+    private void setHabilitado(boolean value){
+        no.setEnabled(value);
+        calle.setEnabled(value);
+        avenida.setEnabled(value);
+        calzada.setEnabled(value);
+        zona.setEnabled(value);
+        municipio.setEnabled(value);
+        deptos.setEnabled(value);
     }
 
     private void procesarDireccion(String data){
@@ -220,32 +234,33 @@ public class direccion extends FragmentGenerico implements IWsdl2CodeEvents{
                 ((EditText)getView().findViewById(R.id.dir_et_municipio)).setText(municipio);
                 ((Spinner)getView().findViewById(R.id.dir_sp_deptos)).setSelection(positionDepto(departamento));
 
-            }else {
-                this.onDestroy();
-                mCallback.onNavigationDrawerItemSelected(TipoFragmento.INICIO);
+            }/*else {
                 Toast.makeText(getActivity(), "No se pudo obtener la direccion", Toast.LENGTH_LONG).show();
-            }
+            }*/
 
         } catch (JSONException e) {
             Log.e("direccion", e.getMessage());
-            e.printStackTrace();
-            this.onDestroy();
-            mCallback.onNavigationDrawerItemSelected(TipoFragmento.INICIO);
             Toast.makeText(getActivity(), "No se pudo obtener la direccion", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+
         }
     }
 
     private void procesarGuardar(String data){
         try {
             JSONObject jso = new JSONObject(data);
-            JSONObject t1 = jso.getJSONArray("array").getJSONObject(0);
+            JSONObject t1 = jso.getJSONArray("datos").getJSONObject(0);
 
             String tipo = t1.getString("Tipo");
             String desc = t1.getString("Descripcion");
 
             if(tipo.equals("1")){
+                editar = false;
+                guardar.setBackgroundResource(R.drawable.button_blue);
+                guardar.setText(R.string.editar);
+                cancelar.setVisibility(View.INVISIBLE);
+                setHabilitado(false);
                 Toast.makeText(getActivity(), "Dirección guardada", Toast.LENGTH_LONG).show();
-                regresar();
             }else{
                 //Error al guardar
                 Toast.makeText(getActivity(), desc, Toast.LENGTH_LONG).show();
@@ -273,6 +288,7 @@ public class direccion extends FragmentGenerico implements IWsdl2CodeEvents{
 
     @Override
     public void Wsdl2CodeFinished(String methodName, Object Data) {
+        Log.i("llave", Data.toString());
         if(methodName.equals("nueva_direccion")){
             procesarGuardar(Data.toString());
         }else if(methodName.equals("get_direccion")){

@@ -56,35 +56,40 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
                     android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp" />
+                    android:layout_marginRight="40dp"
+                    android:enabled="false" />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:id="@+id/dir_et_calle"
-                    android:layout_weight="1"
-                    android:hint="@string/calle"
-                    android:inputType="text"
-                    android:padding="5dp"
-                    android:background="@drawable/redondeado_edit_text"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
                     android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp" />
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="5dp">
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:id="@+id/dir_et_avenida"
-                    android:layout_weight="1"
-                    android:hint="@string/avenida"
-                    android:inputType="textPersonName|text"
-                    android:padding="5dp"
-                    android:background="@drawable/redondeado_edit_text"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp" />
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:id="@+id/dir_et_calle"
+                        android:layout_weight="1"
+                        android:hint="@string/calle"
+                        android:inputType="text"
+                        android:padding="5dp"
+                        android:background="@drawable/redondeado_edit_text"
+                        android:layout_marginRight="5dp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:id="@+id/dir_et_avenida"
+                        android:layout_weight="1"
+                        android:hint="@string/avenida"
+                        android:inputType="textPersonName|text"
+                        android:padding="5dp"
+                        android:background="@drawable/redondeado_edit_text"
+                        android:layout_marginLeft="5dp" />
+                </LinearLayout>
 
                 <EditText
                     android:layout_width="match_parent"
@@ -170,9 +175,9 @@
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/guardar"
+                        android:text="@string/editar"
                         android:id="@+id/dir_bt_guardar"
-                        android:background="@drawable/button_green"
+                        android:background="@drawable/button_blue"
                         android:textColor="@drawable/button_text_color"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
@@ -192,7 +197,8 @@
                         android:layout_weight="1"
                         android:elegantTextHeight="false"
                         android:singleLine="false"
-                        android:layout_marginBottom="5dp" />
+                        android:layout_marginBottom="5dp"
+                        android:visibility="invisible" />
                 </LinearLayout>
 
             </LinearLayout>
