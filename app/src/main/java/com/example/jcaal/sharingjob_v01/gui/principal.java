@@ -81,7 +81,7 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
                 transaction.replace(R.id.container, empresa.newInstance(new empresa(), R.layout.fragment_empresa, tf, parms)).commit();
             }else if(tf == TipoFragmento.DIRECCION){
                 mNavigationDrawerFragment.desmarcarItem();
-                transaction.replace(R.id.container, direccion.newInstance(new registro(), R.layout.fragment_direccion, tf, parms)).commit();
+                transaction.replace(R.id.container, direccion.newInstance(new direccion(), R.layout.fragment_direccion, tf, parms)).commit();
             }else{
                 transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, tf, parms)).commit();
             }

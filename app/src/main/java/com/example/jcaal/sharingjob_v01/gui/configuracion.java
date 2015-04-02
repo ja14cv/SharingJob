@@ -40,7 +40,7 @@ public class configuracion extends FragmentGenerico {
         cuenta_nuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClick_goDireccion(0, 0);
+                onClick_goDireccion("ente", "nuevo");
             }
         });
 
@@ -48,7 +48,7 @@ public class configuracion extends FragmentGenerico {
         cuenta_editar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClick_goDireccion(0, 1);
+                onClick_goDireccion("ente", "editar");
             }
         });
 
@@ -56,7 +56,7 @@ public class configuracion extends FragmentGenerico {
         empresa_nuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClick_goDireccion(1, 0);
+                onClick_goDireccion("empresa", "nuevo");
             }
         });
 
@@ -64,7 +64,7 @@ public class configuracion extends FragmentGenerico {
         empresa_editar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClick_goDireccion(1, 1);
+                onClick_goDireccion("empresa", "editar");
             }
         });
 
@@ -85,8 +85,9 @@ public class configuracion extends FragmentGenerico {
         mCallback.onNavigationDrawerItemSelected(TipoFragmento.LOGIN);
     }
 
-    private void onClick_goDireccion(int vista, int op){
-        return;
+    private void onClick_goDireccion(String pertenece, String operacion){
+        this.onDestroy();
+        mCallback.onNavigationDrawerItemSelected(TipoFragmento.DIRECCION, new String[]{pertenece, operacion});
     }
 
 }

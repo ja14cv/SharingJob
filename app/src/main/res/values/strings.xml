@@ -44,4 +44,12 @@
     <string name="empleos_tomados">Empleos tomados</string>
     <string name="empleos_publicados">Empleos publicados</string>
     <string name="perfil_completo">Perfil completo</string>
+    <string name="no_recidencia">No. Recidencia</string>
+    <string name="calle">Calle</string>
+    <string name="avenida">Avenida</string>
+    <string name="calzada">Calzada</string>
+    <string name="zona">Zona</string>
+    <string name="municipio">Municipio</string>
+    <string name="categoria">Categoría</string>
+    <string name="guardar">Guardar</string>
 </resources>

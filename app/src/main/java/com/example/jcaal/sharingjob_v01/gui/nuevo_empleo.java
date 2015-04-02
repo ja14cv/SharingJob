@@ -114,7 +114,7 @@ public class nuevo_empleo extends FragmentGenerico implements IWsdl2CodeEvents{
     public void Wsdl2CodeFinished(String methodName, Object Data) {
         //Log.v("nuevo_empleo", methodName + " Data: " + (String) Data);
         if (methodName.equals("get_categoria_trabajo_nombres")) {
-        ArrayAdapter<String> adapt = new ArrayAdapter<String>(getView().getContext(), android.R.layout.simple_list_item_1, procesar_categorias((String) Data));
+        ArrayAdapter<String> adapt = new ArrayAdapter<>(getView().getContext(), android.R.layout.simple_list_item_1, procesar_categorias((String) Data));
         spin.setAdapter(adapt);
         }
         dialog.dismiss();
