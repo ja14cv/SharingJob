@@ -1,5 +1,6 @@
 package com.example.jcaal.sharingjob_v01.gui;
 
+import android.app.ProgressDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,15 +19,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
 
     private Button btn_salir;
     private ImageButton btn_miEmpresa, btn_perfilComp;
     private Button btn_estRealizados, btn_empTomados, btn_empPublicados, btn_regEmpresa;
+    private ProgressDialog dialog;
 
     @Override
     public void otrosParametros(String[] parms) {
@@ -45,11 +44,17 @@ public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
         btn_salir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClick_sallir(v);
+                onClick_salir(v);
             }
         });
         btn_miEmpresa = (ImageButton) getView().findViewById(R.id.cuenta_btn_miEmpresa);
         btn_perfilComp = (ImageButton) getView().findViewById(R.id.cuenta_btn_perfilComp);
+        btn_perfilComp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick_perfilCompleto(v);
+            }
+        });
         btn_estRealizados = (Button) getView().findViewById(R.id.cuenta_btn_estRealizados);
         btn_empTomados = (Button) getView().findViewById(R.id.cuenta_btn_empTomados);
         btn_empPublicados = (Button) getView().findViewById(R.id.cuenta_btn_empPublicados);
@@ -62,15 +67,15 @@ public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
         ws_sharingJob ws = new ws_sharingJob(this);
         try {
             ws.get_datos_ente_pAsync("{\"sesion\":\""+sesion.id_sesion+"\"}");
-            Log.e("cuenta", "get_datos_ente: " + "{\"sesion\":\""+sesion.id_sesion+"\"}");
+            Log.i("cuenta", "get_datos_ente_p: " + "{\"sesion\":\""+sesion.id_sesion+"\"}");
         } catch (Exception e) {
-            Log.e("cuenta", "get_datos_ente: " + e.getMessage());
+            Log.e("cuenta", "get_datos_ente_p: " + e.getMessage());
             Toast.makeText(getActivity(), "No se pudieron recuperar los datos.", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }
 
-    private void onClick_sallir(View v){
+    private void onClick_salir(View v){
         ws_sharingJob ws = new ws_sharingJob(this);
         try {
             ws.cierre_sesionAsync(sesion.id_sesion);
@@ -79,6 +84,11 @@ public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
             Toast.makeText(getActivity(), "No se pudo cerrar sesion.", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
+    }
+
+    private void onClick_perfilCompleto(View v){
+        this.onDestroy();
+        mCallback.onNavigationDrawerItemSelected(TipoFragmento.PERFIL_COMPLETO);
     }
 
     private void procesarLogout(String data){
@@ -138,8 +148,7 @@ public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
 
     @Override
     public void Wsdl2CodeStartedRequest() {
-        //Antes de enviar
-        //btn_salir.setClickable(false);
+        dialog = ProgressDialog.show(getView().getContext(), "Cargando", "Por favor espere...", true);
     }
 
     @Override
@@ -152,6 +161,7 @@ public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
             Log.i("cuenta", "R: " + Data);
             procesarDatos((String) Data);
         }
+        dialog.dismiss();
     }
 
     @Override

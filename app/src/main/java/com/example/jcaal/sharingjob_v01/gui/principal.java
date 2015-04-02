@@ -93,6 +93,9 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
             }else if(tf == TipoFragmento.DIRECCION){
                 mNavigationDrawerFragment.desmarcarItem();
                 transaction.replace(R.id.container, direccion.newInstance(new direccion(), R.layout.fragment_direccion, tf, parms)).commit();
+            }else if(tf == TipoFragmento.PERFIL_COMPLETO){
+                mNavigationDrawerFragment.desmarcarItem();
+                transaction.replace(R.id.container, perfil_completo.newInstance(new perfil_completo(), R.layout.fragment_perfil_completo, tf, parms)).commit();
             }else{
                 transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, tf, parms)).commit();
             }
@@ -121,6 +124,8 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
             mTitle = "Empresa";
         }else if(tf == TipoFragmento.DIRECCION){
             mTitle = "Dirección";
+        }else if(tf == TipoFragmento.PERFIL_COMPLETO){
+            mTitle = "Perfil completo";
         }else{
             mTitle = getString(R.string.app_name);
         }

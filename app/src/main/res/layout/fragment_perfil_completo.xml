@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="@drawable/button_blue">
+    android:background="@drawable/button_blue"
+    android:orientation="vertical"
+    android:id="@+id/panel11111">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -29,8 +31,8 @@
                     android:layout_height="wrap_content" >
 
                     <ImageButton
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:id="@+id/imageButton2"
                         android:background="@mipmap/ic_usuario" />
 
@@ -48,8 +50,7 @@
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:text="correo@empresa.com"
                             android:id="@+id/perfilc_tv_correo"
-                            android:textColor="#ffff4b03"
-                            android:layout_marginBottom="5dp" />
+                            android:textColor="#ffff4b03" />
 
                     </LinearLayout>
 
@@ -83,12 +84,12 @@
                         android:padding="5dp"
                         android:textSize="16dp"
                         android:hint="Nombres"
-                        android:enabled="false" />
+                        android:enabled="false"
+                        android:singleLine="true" />
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:inputType="phone"
                         android:ems="10"
                         android:id="@+id/perfilc_et_apellidos"
                         android:layout_marginLeft="35dp"
@@ -98,12 +99,13 @@
                         android:padding="5dp"
                         android:textSize="16dp"
                         android:hint="Apellidos"
-                        android:enabled="false" />
+                        android:enabled="false"
+                        android:singleLine="true"
+                        android:inputType="textPersonName" />
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:inputType="textPersonName"
                         android:ems="10"
                         android:id="@+id/perfilc_et_telefono"
                         android:layout_marginLeft="35dp"
@@ -113,7 +115,9 @@
                         android:padding="5dp"
                         android:textSize="16dp"
                         android:hint="Teléfono"
-                        android:enabled="false" />
+                        android:enabled="false"
+                        android:singleLine="true"
+                        android:inputType="phone" />
 
                     <CheckBox
                         android:layout_width="match_parent"
@@ -138,7 +142,8 @@
                         android:padding="5dp"
                         android:textSize="16dp"
                         android:hint="Contraseña actual"
-                        android:enabled="false" />
+                        android:enabled="false"
+                        android:singleLine="true" />
 
                     <EditText
                         android:layout_width="match_parent"
@@ -153,7 +158,8 @@
                         android:padding="5dp"
                         android:textSize="16dp"
                         android:hint="Nueva contraseña"
-                        android:enabled="false" />
+                        android:enabled="false"
+                        android:singleLine="true" />
 
                     <LinearLayout
                         android:orientation="horizontal"

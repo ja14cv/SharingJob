@@ -12,5 +12,6 @@ public enum TipoFragmento {
     LOGIN,
     REGISTRO,
     DIRECCION,
-    EMPRESA
+    EMPRESA,
+    PERFIL_COMPLETO
 }
