@@ -1,6 +1,7 @@
 package com.example.jcaal.sharingjob_v01.gui;
 
 import android.app.ProgressDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,6 +19,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class nuevo_empleo extends FragmentGenerico implements IWsdl2CodeEvents{
@@ -40,13 +42,13 @@ public class nuevo_empleo extends FragmentGenerico implements IWsdl2CodeEvents{
             return;
         }
         spin = (Spinner) getView().findViewById(R.id.nempleo_spin_categoria);
-        ((Button) getView().findViewById(R.id.nempleo_btn_crear)).setOnClickListener(new View.OnClickListener() {
+        (getView().findViewById(R.id.nempleo_btn_crear)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 clic_crear(v);
             }
         });
-        ((Button) getView().findViewById(R.id.nempleo_btn_cancelar)).setOnClickListener(new View.OnClickListener() {
+        (getView().findViewById(R.id.nempleo_btn_cancelar)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 clic_cancelar(v);
@@ -57,6 +59,8 @@ public class nuevo_empleo extends FragmentGenerico implements IWsdl2CodeEvents{
             ws.get_categoria_trabajo_nombresAsync();
         } catch (Exception e) {
             e.printStackTrace();
+            Log.e("nuevo_empleado", e.getMessage());
+            Toast.makeText(getActivity(), "Ocurrio un problema al cargar categorias", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -78,6 +82,8 @@ public class nuevo_empleo extends FragmentGenerico implements IWsdl2CodeEvents{
             ws.nuevo_empleoAsync(json);
         } catch (Exception e) {
             e.printStackTrace();
+            Log.e("nuevo_empleado", e.getMessage());
+            Toast.makeText(getActivity(), "No se pudo guardar empleo", Toast.LENGTH_LONG).show();
         }
 
     }
@@ -88,20 +94,55 @@ public class nuevo_empleo extends FragmentGenerico implements IWsdl2CodeEvents{
         return;
     }
 
-    private ArrayList<String> procesar_categorias(String _json){
+    private ArrayList<String> procesar_categorias(String data){
         ArrayList<String> retorno = new ArrayList<>();
         try {
-            JSONArray temp =  new JSONObject(_json).getJSONArray("array");
+            JSONObject jso = new JSONObject(data);
+            JSONObject t1 = jso.getJSONArray("datos").getJSONObject(0);
 
-            for (int i=0 ; i<temp.length() ; i++){
-                JSONObject temporal = temp.getJSONObject(i);
-                retorno.add(temporal.getString("nombre"));
+            String tipo = t1.getString("Tipo");
+            String desc = t1.getString("Descripcion");
+
+            if(tipo.equals("1")){
+                JSONArray temp =  jso.getJSONArray("array");
+
+                for (int i=0 ; i<temp.length() ; i++){
+                    JSONObject temporal = temp.getJSONObject(i);
+                    retorno.add(temporal.getString("nombre"));
+                }
+
+            }else{
+                Toast.makeText(getActivity(), desc, Toast.LENGTH_LONG).show();
             }
-
         } catch (JSONException e) {
             e.printStackTrace();
+            Log.e("nuevo_empleado", e.getMessage());
+            Toast.makeText(getActivity(), "Ocurrio un problema al cargar categorias", Toast.LENGTH_LONG).show();
         }
         return retorno;
+    }
+
+    private void procesarNuevoEmpleo(String data){
+        try {
+            JSONObject jso = new JSONObject(data);
+            JSONObject t1 = jso.getJSONArray("datos").getJSONObject(0);
+
+            String tipo = t1.getString("Tipo");
+            String desc = t1.getString("Descripcion");
+
+            if(tipo.equals("1")){
+                ((EditText)getView().findViewById(R.id.nempleo_et_titulo)).setText("");
+                ((EditText)getView().findViewById(R.id.nempleo_et_descrip)).setText("");
+                ((EditText)getView().findViewById(R.id.nempleo_et_propuesta)).setText("");
+                spin.setSelection(0);
+            }else{
+                Toast.makeText(getActivity(), desc, Toast.LENGTH_LONG).show();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.e("nuevo_empleo", e.getMessage());
+            Toast.makeText(getActivity(), "No se pudo guardar empleo", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -113,22 +154,19 @@ public class nuevo_empleo extends FragmentGenerico implements IWsdl2CodeEvents{
     public void Wsdl2CodeFinished(String methodName, Object Data) {
         //Log.v("nuevo_empleo", methodName + " Data: " + (String) Data);
         if (methodName.equals("get_categoria_trabajo_nombres")) {
-        ArrayAdapter<String> adapt = new ArrayAdapter<>(getView().getContext(), android.R.layout.simple_list_item_1, procesar_categorias((String) Data));
-        spin.setAdapter(adapt);
+            ArrayAdapter<String> adapt = new ArrayAdapter<>(getView().getContext(), android.R.layout.simple_list_item_1, procesar_categorias((String) Data));
+            spin.setAdapter(adapt);
+        }else if (methodName.equals("nuevo_empleo")) {
+            procesarNuevoEmpleo(Data.toString());
         }
+
         dialog.dismiss();
-        if (methodName.equals("nuevo_empleo")) {
-            Toast.makeText(getView().getContext(), (String)Data, Toast.LENGTH_SHORT).show();
-            ((EditText)getView().findViewById(R.id.nempleo_et_titulo)).setText("");
-            ((EditText)getView().findViewById(R.id.nempleo_et_descrip)).setText("");
-            ((EditText)getView().findViewById(R.id.nempleo_et_propuesta)).setText("");
-            spin.setSelection(0);
-        }
     }
 
     @Override
     public void Wsdl2CodeFinishedWithException(Exception ex) {
-
+        Log.e("nuevo_empleado", ex.getMessage());
+        Toast.makeText(getActivity(), "Ocurrio un problema al cargar categorias", Toast.LENGTH_LONG).show();
     }
 
     @Override

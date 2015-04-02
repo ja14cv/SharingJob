@@ -63,7 +63,7 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
     public void onNavigationDrawerItemSelected(TipoFragmento tf, String[] parms) {
         //Verificar pila
         if(!pilaFragmentos.isEmpty()){
-            if(pilaFragmentos.lastElement().getTipoFragmento() != tf){
+            if(pilaFragmentos.lastElement().getTipoFragmento() != tf && tf != TipoFragmento.PROBLEMA){
                 inflarFragment(tf, parms);
                 pilaFragmentos.push(new elementoPila(tf, parms));
             }else{
@@ -73,7 +73,6 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
             inflarFragment(tf, parms);
             pilaFragmentos.push(new elementoPila(tf, parms));
         }
-
     }
 
     private void inflarFragment(TipoFragmento tf, String[] parms){
@@ -102,13 +101,19 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
             transaction.replace(R.id.container, direccion.newInstance(new direccion(), R.layout.fragment_direccion, tf, parms)).commit();
         }else if(tf == TipoFragmento.PERFIL_COMPLETO){
             mNavigationDrawerFragment.desmarcarItem();
-            activarTabs();
+            transaction.replace(R.id.container, perfil_completo.newInstance(new perfil_completo(), R.layout.fragment_perfil_completo, tf, parms)).commit();
         }else if(tf == TipoFragmento.ADD_EMPLEO_REALIZADO){
             mNavigationDrawerFragment.desmarcarItem();
             transaction.replace(R.id.container, add_empleo_realizado.newInstance(new add_empleo_realizado(), R.layout.fragment_add_empleo_realizado, tf, parms)).commit();
         }else if(tf == TipoFragmento.ADD_ESTUDIO_REALIZADO){
             mNavigationDrawerFragment.desmarcarItem();
             transaction.replace(R.id.container, add_estudio_realizado.newInstance(new add_estudio_realizado(), R.layout.fragment_add_estudio_realizado, tf, parms)).commit();
+        }else if(tf == TipoFragmento.PROBLEMA){
+            mNavigationDrawerFragment.desmarcarItem();
+            transaction.replace(R.id.container, problema.newInstance(new problema(), R.layout.fragment_problema, tf, parms)).commit();
+        }else if(tf == TipoFragmento.TAB_PERFIL){
+            mNavigationDrawerFragment.desmarcarItem();
+            activarTabsPerfil();
         }else{
             transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, tf, parms)).commit();
         }
@@ -141,6 +146,14 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
             mTitle = "Dirección";
         }else if(tf == TipoFragmento.PERFIL_COMPLETO){
             mTitle = "Perfil completo";
+        }else if(tf == TipoFragmento.ADD_EMPLEO_REALIZADO){
+            mTitle = "Empleos Realizados";
+        }else if(tf == TipoFragmento.ADD_ESTUDIO_REALIZADO){
+            mTitle = "Estudios Realizados";
+        }else if(tf == TipoFragmento.PROBLEMA){
+            //
+        }else if(tf == TipoFragmento.TAB_PERFIL){
+            mTitle = "Perfil";
         }else{
             mTitle = getString(R.string.app_name);
         }
@@ -158,7 +171,7 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
         getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
     }
 
-    private void activarTabs(){
+    private void activarTabsPerfil(){
         if(sesion.isLogin()){
             final ActionBar actionBar = getSupportActionBar();
             actionBar.removeAllTabs();
@@ -182,6 +195,10 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
         }else{
             onNavigationDrawerItemSelected(TipoFragmento.LOGIN);
         }
+    }
+
+    public void loadLastFragment(){
+        onNavigationDrawerItemSelected(pilaFragmentos.lastElement().getTipoFragmento(), pilaFragmentos.lastElement().getParametros());
     }
 
     @Override

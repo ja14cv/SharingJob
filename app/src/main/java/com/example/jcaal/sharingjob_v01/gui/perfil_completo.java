@@ -141,7 +141,7 @@ public class perfil_completo extends FragmentGenerico implements IWsdl2CodeEvent
                 Log.i("registro_ente", "registro_ente: " + "{\"sesion\":\"" + sesion.id_sesion + "\"}");
             } catch (Exception e) {
                 Log.e("registro_ente", "registro_ente: " + e.getMessage());
-                Toast.makeText(getActivity(), "No se pudieron recuperar los datos.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "No se pudo actualizar los datos.", Toast.LENGTH_LONG).show();
                 e.printStackTrace();
             }
         }
@@ -173,7 +173,8 @@ public class perfil_completo extends FragmentGenerico implements IWsdl2CodeEvent
 
     @Override
     public void Wsdl2CodeFinishedWithException(Exception ex) {
-
+        Log.e("registro_ente", ex.getMessage());
+        Toast.makeText(getActivity(), "No se pudo contectar", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -184,53 +185,70 @@ public class perfil_completo extends FragmentGenerico implements IWsdl2CodeEvent
     private void procesarDatos(String data){
         try {
             Log.i("perfil_completo", "json entrada: " + data);
-            JSONArray temp =  new JSONObject(data).getJSONArray("array");
-            JSONObject temporal = temp.getJSONObject(0);
-            String nombres = temporal.getString("nombres");
-            String apellidos = temporal.getString("apellidos");
-            String telefono = temporal.getString("telefono");
-            String correo = temporal.getString("correo");
-            String trabajo_actual = temporal.getString("trabajo_actual");
-            password = temporal.getString("password");
 
-            tv_correo.setText(correo);
-            if (!nombres.equals("NULL")){
-                et_nombres.setText(nombres);
-            }
-            if (!apellidos.equals("NULL")){
-                et_apellidos.setText(apellidos);
-            }
-            if (!telefono.equals("NULL")){
-                et_telefono.setText(telefono);
-            }
-            if (!trabajo_actual.equals("NULL")){
-                if (trabajo_actual.equals("1")){
-                    cb_trabajoActual.setChecked(true);
+            JSONObject jso = new JSONObject(data);
+            JSONObject t1 = jso.getJSONArray("datos").getJSONObject(0);
+
+            String tipo = t1.getString("Tipo");
+            String desc = t1.getString("Descripcion");
+
+            if(tipo.equals("1")){
+                JSONArray temp =  jso.getJSONArray("array");
+                JSONObject temporal = temp.getJSONObject(0);
+                String nombres = temporal.getString("nombres");
+                String apellidos = temporal.getString("apellidos");
+                String telefono = temporal.getString("telefono");
+                String correo = temporal.getString("correo");
+                String trabajo_actual = temporal.getString("trabajo_actual");
+                password = temporal.getString("password");
+
+                tv_correo.setText(correo);
+                if (!nombres.equals("NULL")){
+                    et_nombres.setText(nombres);
                 }
+                if (!apellidos.equals("NULL")){
+                    et_apellidos.setText(apellidos);
+                }
+                if (!telefono.equals("NULL")){
+                    et_telefono.setText(telefono);
+                }
+                if (!trabajo_actual.equals("NULL")){
+                    if (trabajo_actual.equals("1")){
+                        cb_trabajoActual.setChecked(true);
+                    }
+                }
+            }else{
+                Toast.makeText(getActivity(), desc, Toast.LENGTH_LONG).show();
             }
-
         } catch (JSONException e) {
+            Log.e("perfil_completo", "get_datos_ente_c: " + e.getMessage());
+            Toast.makeText(getActivity(), "No se pudieron recuperar los datos.", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }
     private void procesarUpdate(String data){
         try {
-            JSONArray temp =  new JSONObject(data).getJSONArray("datos");
-            JSONObject temporal = temp.getJSONObject(0);
+            JSONObject jso = new JSONObject(data);
+            JSONObject t1 = jso.getJSONArray("datos").getJSONObject(0);
 
-            String tipo = temporal.getString("Tipo");
-            //Toast.makeText(getView().getContext(), temporal.getString("Descripcion"), Toast.LENGTH_SHORT).show();
-            if (tipo.equals("1")){
+            String tipo = t1.getString("Tipo");
+            String desc = t1.getString("Descripcion");
+
+            if(tipo.equals("1")){
                 editar = false;
                 estado_edicion(false);
                 btn_editar.setText(R.string.editar);
                 btn_cancelar.setVisibility(View.INVISIBLE);
                 btn_editar.setBackgroundResource(R.drawable.button_blue);
                 Toast.makeText(getActivity(), "Datos guardados", Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(getActivity(), desc, Toast.LENGTH_LONG).show();
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
+            Log.e("registro_ente", "registro_ente: " + e.getMessage());
+            Toast.makeText(getActivity(), "No se pudo actualizar los datos.", Toast.LENGTH_LONG).show();
         }
     }
 }

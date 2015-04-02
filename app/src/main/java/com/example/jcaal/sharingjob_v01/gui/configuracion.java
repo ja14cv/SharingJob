@@ -9,7 +9,7 @@ import com.example.jcaal.sharingjob_v01.logica.TipoFragmento;
 
 public class configuracion extends FragmentGenerico {
 
-    private Button crear, ingresar, cuenta_nuevo, cuenta_editar, empresa_nuevo, empresa_editar;
+    private Button crear, ingresar;
 
     @Override
     public void otrosParametros(String[] parms) {
@@ -35,38 +35,6 @@ public class configuracion extends FragmentGenerico {
             }
         });
 
-        cuenta_nuevo = (Button) getView().findViewById(R.id.conf_bt_cuenta_nuevo);
-        cuenta_nuevo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClick_goDireccion("ente", "nuevo");
-            }
-        });
-
-        cuenta_editar = (Button) getView().findViewById(R.id.conf_bt_cuenta_editar);
-        cuenta_editar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClick_goDireccion("ente", "editar");
-            }
-        });
-
-        empresa_nuevo = (Button) getView().findViewById(R.id.conf_bt_empresa_nuevo);
-        empresa_nuevo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClick_goDireccion("empresa", "nuevo");
-            }
-        });
-
-        empresa_editar = (Button) getView().findViewById(R.id.conf_bt_empresa_editar);
-        empresa_editar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClick_goDireccion("empresa", "editar");
-            }
-        });
-
         mCallback.seleccion(tipoFragmento);
     }
 
@@ -82,11 +50,6 @@ public class configuracion extends FragmentGenerico {
     private void onClick_ingresar(View v){
         this.onDestroy();
         mCallback.onNavigationDrawerItemSelected(TipoFragmento.LOGIN);
-    }
-
-    private void onClick_goDireccion(String pertenece, String operacion){
-        this.onDestroy();
-        mCallback.onNavigationDrawerItemSelected(TipoFragmento.DIRECCION, new String[]{pertenece, operacion});
     }
 
 }

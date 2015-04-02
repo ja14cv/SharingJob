@@ -1,11 +1,9 @@
 package com.example.jcaal.sharingjob_v01.gui;
 
-import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,9 +19,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
 
 public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
 
@@ -87,9 +82,11 @@ public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
             ws.get_datos_ente_pAsync("{\"sesion\":\""+sesion.id_sesion+"\"}");
             Log.i("cuenta", "get_datos_ente_p: " + "{\"sesion\":\""+sesion.id_sesion+"\"}");
         } catch (Exception e) {
-            Log.e("cuenta", "get_datos_ente_p: " + e.getMessage());
-            Toast.makeText(getActivity(), "No se pudieron recuperar los datos.", Toast.LENGTH_LONG).show();
             e.printStackTrace();
+            Log.e("cuenta", "get_datos_ente_p: " + e.getMessage());
+            this.onDestroy();
+            Toast.makeText(getActivity(), "No se pudieron recuperar los datos.", Toast.LENGTH_LONG).show();
+            mCallback.onNavigationDrawerItemSelected(TipoFragmento.PROBLEMA);
         }
     }
 
@@ -105,7 +102,7 @@ public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
     }
     private void onClick_perfilCompleto(View v){
         this.onDestroy();
-        mCallback.onNavigationDrawerItemSelected(TipoFragmento.PERFIL_COMPLETO);
+        mCallback.onNavigationDrawerItemSelected(TipoFragmento.TAB_PERFIL);
     }
     private void onClick_empTomados(View v){
         this.onDestroy();
@@ -116,11 +113,10 @@ public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
         mCallback.onNavigationDrawerItemSelected(TipoFragmento.ADD_ESTUDIO_REALIZADO);
     }
 
-
     private void procesarLogout(String data){
         try {
             JSONObject jso = new JSONObject(data);
-            JSONObject t1 = jso.getJSONArray("array").getJSONObject(0);
+            JSONObject t1 = jso.getJSONArray("datos").getJSONObject(0);
 
             String tipo = t1.getString("Tipo");
 
@@ -145,31 +141,49 @@ public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
         }
     }
     private void procesarDatos(String data){
-        String nombres = null;
-        String apellidos = null;
-        String correo = null;
-        String id_empresa = null;
+        String nombres;
+        String apellidos;
+        String correo;
+        String id_empresa;
+
         try {
-            JSONArray temp =  new JSONObject(data).getJSONArray("array");
-            JSONObject temporal = temp.getJSONObject(0);
-            nombres = temporal.getString("nombres");
-            apellidos = temporal.getString("apellidos");
-            correo = temporal.getString("correo");
-            id_empresa = temporal.getString("id_empresa");
+            JSONObject jso = new JSONObject(data);
+            JSONObject t1 = jso.getJSONArray("datos").getJSONObject(0);
+
+            String tipo = t1.getString("Tipo");
+            String desc = t1.getString("Descripcion");
+
+            if(tipo.equals("1")){
+
+                JSONArray temp =  jso.getJSONArray("array");
+                JSONObject temporal = temp.getJSONObject(0);
+                nombres = temporal.getString("nombres");
+                apellidos = temporal.getString("apellidos");
+                correo = temporal.getString("correo");
+                id_empresa = temporal.getString("id_empresa");
+
+                if (id_empresa.equals("NULL")){
+                    btn_regEmpresa.setVisibility(View.VISIBLE);
+                }else{
+                    btn_miEmpresa.setVisibility(View.VISIBLE);
+                    (getView().findViewById(R.id.cuenta_tv_miEmpresa)).setVisibility(View.VISIBLE);
+                }
+
+                ((TextView) getView().findViewById(R.id.cuenta_tv_nombres)).setText(apellidos +", "+ nombres);
+                ((TextView) getView().findViewById(R.id.cuenta_tv_correo)).setText(correo);
+
+            }else{
+                this.onDestroy();
+                Toast.makeText(getActivity(), desc, Toast.LENGTH_LONG).show();
+                mCallback.onNavigationDrawerItemSelected(TipoFragmento.PROBLEMA);
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();
+            this.onDestroy();
+            Toast.makeText(getActivity(), "No se pudieron recuperar los datos.", Toast.LENGTH_LONG).show();
+            mCallback.onNavigationDrawerItemSelected(TipoFragmento.PROBLEMA);
         }
-
-        if (id_empresa.equals("NULL")){
-            btn_regEmpresa.setVisibility(View.VISIBLE);
-        }else{
-            btn_miEmpresa.setVisibility(View.VISIBLE);
-            ((TextView) getView().findViewById(R.id.cuenta_tv_miEmpresa)).setVisibility(View.VISIBLE);
-        }
-
-        ((TextView) getView().findViewById(R.id.cuenta_tv_nombres)).setText(apellidos +", "+ nombres);
-        ((TextView) getView().findViewById(R.id.cuenta_tv_correo)).setText(correo);
     }
 
     @Override

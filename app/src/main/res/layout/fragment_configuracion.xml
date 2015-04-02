@@ -18,33 +18,6 @@
             android:id="@+id/textView4"
             android:layout_gravity="left|top" />
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cuenta Nuevo"
-            android:id="@+id/conf_bt_cuenta_nuevo" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cuenta Editar"
-            android:id="@+id/conf_bt_cuenta_editar" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Empresa Nuevo"
-            android:id="@+id/conf_bt_empresa_nuevo" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Empresa Editar"
-            android:id="@+id/conf_bt_empresa_editar" />
     </LinearLayout>
 
     <Button

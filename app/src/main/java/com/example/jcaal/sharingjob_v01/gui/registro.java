@@ -96,7 +96,7 @@ public class registro extends FragmentGenerico implements IWsdl2CodeEvents{
     private void procesarRegistro(String data){
         try {
             JSONObject jso = new JSONObject(data);
-            JSONObject t1 = jso.getJSONArray("array").getJSONObject(0);
+            JSONObject t1 = jso.getJSONArray("datos").getJSONObject(0);
 
             String tipo = t1.getString("Tipo");
             String desc = t1.getString("Descripcion");

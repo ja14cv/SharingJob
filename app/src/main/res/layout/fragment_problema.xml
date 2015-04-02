@@ -1,0 +1,32 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.example.jcaal.sharingjob_v01.gui.problema">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        style="@style/estilo_layout_fondo"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@android:drawable/alert_dark_frame"
+            android:gravity="center_vertical|center_horizontal">
+
+            <ImageButton
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/pro_bt_recargar"
+                android:src="@mipmap/ic_reload"
+                android:layout_gravity="center_horizontal|center"
+                android:contentDescription="@string/recargar"
+                android:focusableInTouchMode="true"
+                android:adjustViewBounds="false" />
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>
