@@ -3,6 +3,7 @@ package com.example.jcaal.sharingjob_v01.gui;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.jcaal.sharingjob_v01.R;
@@ -111,9 +113,9 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
         }else if(tf == TipoFragmento.PROBLEMA){
             mNavigationDrawerFragment.desmarcarItem();
             transaction.replace(R.id.container, problema.newInstance(new problema(), R.layout.fragment_problema, tf, parms)).commit();
-        }else if(tf == TipoFragmento.TAB_PERFIL){
+        }else if(tf == TipoFragmento.TAB_PERFIL || tf == TipoFragmento.TAB_EMPRESA){
             mNavigationDrawerFragment.desmarcarItem();
-            activarTabsPerfil();
+            activarTabs(tf);
         }else{
             transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, tf, parms)).commit();
         }
@@ -154,6 +156,8 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
             //
         }else if(tf == TipoFragmento.TAB_PERFIL){
             mTitle = "Perfil";
+        }else if(tf == TipoFragmento.TAB_EMPRESA){
+            mTitle = "Empresa";
         }else{
             mTitle = getString(R.string.app_name);
         }
@@ -168,21 +172,33 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
     }
 
     private void desactivarTabs(){
+        if(vp != null)
+            vp.removeAllViews();
         getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
     }
 
-    private void activarTabsPerfil(){
+    private void activarTabs(TipoFragmento tf){
         if(sesion.isLogin()){
             final ActionBar actionBar = getSupportActionBar();
             actionBar.removeAllTabs();
             actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-            SectionsPagerAdapter spa = new SectionsPagerAdapter(getSupportFragmentManager());
-            for (int i = 0; i < spa.getCount(); i++) {
-                actionBar.addTab(actionBar.newTab().setText(spa.getPageTitle(i)).setTabListener(this));
+            if(tf == TipoFragmento.TAB_PERFIL){
+                SectionsPagerAdapterPerfil spa = new SectionsPagerAdapterPerfil(getSupportFragmentManager());
+                for (int i = 0; i < spa.getCount(); i++) {
+                    actionBar.addTab(actionBar.newTab().setText(spa.getPageTitle(i)).setTabListener(this));
+                }
+
+                vp.setAdapter(spa);
+            }else{
+                SectionsPagerAdapterEmpresa spa = new SectionsPagerAdapterEmpresa(getSupportFragmentManager());
+                for (int i = 0; i < spa.getCount(); i++) {
+                    actionBar.addTab(actionBar.newTab().setText(spa.getPageTitle(i)).setTabListener(this));
+                }
+
+                vp.setAdapter(spa);
             }
 
-            vp.setAdapter(spa);
             vp.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
                 @Override
                 public void onPageSelected(int position) {
@@ -255,9 +271,9 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
 
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public class SectionsPagerAdapterPerfil extends FragmentStatePagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        public SectionsPagerAdapterPerfil(FragmentManager fm) {
             super(fm);
         }
 
@@ -286,5 +302,39 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
             }
             return null;
         }
+    }
+
+    public class SectionsPagerAdapterEmpresa extends FragmentStatePagerAdapter {
+
+        public SectionsPagerAdapterEmpresa(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            if(position == 0){
+                return empresa.newInstance(new empresa(), R.layout.fragment_empresa, TipoFragmento.PERFIL_COMPLETO, new String[0]);
+            }else{
+                return direccion.newInstance(new direccion(), R.layout.fragment_direccion, TipoFragmento.CONFIG, new String[]{"empresa"});
+            }
+        }
+
+        @Override
+        public int getCount() {
+            // Show 2 total pages.
+            return 2;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return "Datos";
+                case 1:
+                    return "Direccion";
+            }
+            return null;
+        }
+
     }
 }

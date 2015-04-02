@@ -97,6 +97,7 @@ public class direccion extends FragmentGenerico implements IWsdl2CodeEvents{
                     "\t\"proposito\":\"" + pertenece + "\"\n" +
                     "}";
 
+            Log.i("direccion", json);
             ws_sharingJob ws = new ws_sharingJob(this);
             try {
                 ws.get_direccionAsync(json);
