@@ -1,12 +1,15 @@
 package com.example.jcaal.sharingjob_v01.gui;
 
 import android.app.ProgressDialog;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.jcaal.sharingjob_v01.R;
+import com.example.jcaal.sharingjob_v01.logica.TipoFragmento;
 import com.example.jcaal.sharingjob_v01.ws.IWsdl2CodeEvents;
 import com.example.jcaal.sharingjob_v01.ws.ws_sharingJob;
 import com.unnamed.b.atv.model.TreeNode;
