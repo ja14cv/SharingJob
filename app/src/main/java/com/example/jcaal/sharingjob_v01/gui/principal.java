@@ -103,6 +103,12 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
         }else if(tf == TipoFragmento.PERFIL_COMPLETO){
             mNavigationDrawerFragment.desmarcarItem();
             activarTabs();
+        }else if(tf == TipoFragmento.ADD_EMPLEO_REALIZADO){
+            mNavigationDrawerFragment.desmarcarItem();
+            transaction.replace(R.id.container, add_empleo_realizado.newInstance(new add_empleo_realizado(), R.layout.fragment_add_empleo_realizado, tf, parms)).commit();
+        }else if(tf == TipoFragmento.ADD_ESTUDIO_REALIZADO){
+            mNavigationDrawerFragment.desmarcarItem();
+            transaction.replace(R.id.container, add_estudio_realizado.newInstance(new add_estudio_realizado(), R.layout.fragment_add_estudio_realizado, tf, parms)).commit();
         }else{
             transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, tf, parms)).commit();
         }

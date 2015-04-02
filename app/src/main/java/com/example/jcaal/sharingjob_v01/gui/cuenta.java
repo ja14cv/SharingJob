@@ -1,9 +1,11 @@
 package com.example.jcaal.sharingjob_v01.gui;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,12 +21,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
 
     private Button btn_salir;
     private ImageButton btn_miEmpresa, btn_perfilComp;
     private Button btn_estRealizados, btn_empTomados, btn_empPublicados, btn_regEmpresa;
+
     private ProgressDialog dialog;
 
     @Override
@@ -56,7 +62,19 @@ public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
             }
         });
         btn_estRealizados = (Button) getView().findViewById(R.id.cuenta_btn_estRealizados);
+        btn_estRealizados.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick_btn_estRealizados(v);
+            }
+        });
         btn_empTomados = (Button) getView().findViewById(R.id.cuenta_btn_empTomados);
+        btn_empTomados.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick_empTomados(v);
+            }
+        });
         btn_empPublicados = (Button) getView().findViewById(R.id.cuenta_btn_empPublicados);
         btn_regEmpresa = (Button) getView().findViewById(R.id.cuenta_btn_regEmpresa);
 
@@ -85,11 +103,19 @@ public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
             e.printStackTrace();
         }
     }
-
     private void onClick_perfilCompleto(View v){
         this.onDestroy();
         mCallback.onNavigationDrawerItemSelected(TipoFragmento.PERFIL_COMPLETO);
     }
+    private void onClick_empTomados(View v){
+        this.onDestroy();
+        mCallback.onNavigationDrawerItemSelected(TipoFragmento.ADD_EMPLEO_REALIZADO);
+    }
+    private void onClick_btn_estRealizados(View v){
+        this.onDestroy();
+        mCallback.onNavigationDrawerItemSelected(TipoFragmento.ADD_ESTUDIO_REALIZADO);
+    }
+
 
     private void procesarLogout(String data){
         try {

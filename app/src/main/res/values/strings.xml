@@ -55,4 +55,27 @@
     <string name="municipio">Municipio</string>
     <string name="categoria">Categoría</string>
     <string name="guardar">Guardar</string>
+    <string name="agregar">Agregar</string>
+    <string name="titulo_add_estudio_realizado">Ingrese los datos para agregar un estudio:</string>
+    <string name="grado">Grado</string>
+    <string name="observacion">Observación</string>
+    <string name="titulo_add_empleo_realizado">Ingrese los datos para agregar un empleo realizado:</string>
+    <string name="puesto">Puesto</string>
+    <string name="nombre_empresa">Nombre empresa</string>
+    <string name="nombre_proyecto">Nombre_proyecto</string>
+    <string name="temporal">Temporal</string>
+    <string name="fecha_inicio">Fecha inicio</string>
+    <string name="fecha_fin">Fecha fin</string>
+    <string name="set">Set</string>
+    <string name="titulo_add_empresa">Datos de su empresa:</string>
+    <string name="nombre">Nombre</string>
+    <string name="sitio_web">Sitio web</string>
+    <string name="correo_contacto">Correo contacto</string>
+    <string name="telefono">Telefono</string>
+    <string name="mision">Misión</string>
+    <string name="vision">Visión</string>
+    <string name="titulo_empleos_tomados">Se muestran los empleos tomados:</string>
+    <string name="agregar_empleo_realizado">Agregar empleo realizado</string>
+    <string name="titulo_estudios_realizados">Se muestran los estudios realizados:</string>
+    <string name="agregar_estudio_realizado">Agregar estudio realizado</string>
 </resources>

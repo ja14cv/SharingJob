@@ -91,12 +91,9 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:padding="5dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="5dp"
                     android:gravity="center"
-                    android:background="#ffe7ffde">
+                    android:background="#ffe7ffde"
+                    android:layout_margin="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"

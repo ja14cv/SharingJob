@@ -59,7 +59,8 @@
                     android:textSize="16sp"
                     android:padding="5dp"
                     android:ems="10"
-                    android:focusable="false" />
+                    android:focusable="false"
+                    android:enabled="true" />
 
                 <EditText
                     android:layout_width="match_parent"
@@ -73,7 +74,8 @@
                     android:layout_marginRight="35dp"
                     android:background="@drawable/redondeado_edit_text"
                     android:textSize="16sp"
-                    android:padding="5dp" />
+                    android:padding="5dp"
+                    android:enabled="true" />
 
                 <LinearLayout
                     android:orientation="vertical"
