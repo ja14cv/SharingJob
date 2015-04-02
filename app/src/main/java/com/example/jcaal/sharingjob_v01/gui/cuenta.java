@@ -3,6 +3,8 @@ package com.example.jcaal.sharingjob_v01.gui;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jcaal.sharingjob_v01.R;
@@ -11,14 +13,20 @@ import com.example.jcaal.sharingjob_v01.logica.sesion;
 import com.example.jcaal.sharingjob_v01.ws.IWsdl2CodeEvents;
 import com.example.jcaal.sharingjob_v01.ws.ws_sharingJob;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
 
-    Button logout;
+    private Button btn_salir;
+    private ImageButton btn_miEmpresa, btn_perfilComp;
+    private Button btn_estRealizados, btn_empTomados, btn_empPublicados, btn_regEmpresa;
 
     @Override
     public void otrosParametros(String[] parms) {
@@ -33,18 +41,36 @@ public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
         }
 
         //Eventos de botones
-        logout = (Button) getView().findViewById(R.id.cuenta_bt_logout);
-        logout.setOnClickListener(new View.OnClickListener() {
+        btn_salir = (Button) getView().findViewById(R.id.cuenta_btn_salir);
+        btn_salir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClick_logout(v);
+                onClick_sallir(v);
             }
         });
+        btn_miEmpresa = (ImageButton) getView().findViewById(R.id.cuenta_btn_miEmpresa);
+        btn_perfilComp = (ImageButton) getView().findViewById(R.id.cuenta_btn_perfilComp);
+        btn_estRealizados = (Button) getView().findViewById(R.id.cuenta_btn_estRealizados);
+        btn_empTomados = (Button) getView().findViewById(R.id.cuenta_btn_empTomados);
+        btn_empPublicados = (Button) getView().findViewById(R.id.cuenta_btn_empPublicados);
+        btn_regEmpresa = (Button) getView().findViewById(R.id.cuenta_btn_regEmpresa);
 
-        mCallback.seleccion(tipoFragmento);
+        btn_miEmpresa.setVisibility(View.INVISIBLE);
+        btn_regEmpresa.setVisibility(View.INVISIBLE);
+        ((TextView) getView().findViewById(R.id.cuenta_tv_miEmpresa)).setVisibility(View.INVISIBLE);
+
+        ws_sharingJob ws = new ws_sharingJob(this);
+        try {
+            ws.get_datos_ente_pAsync("{\"sesion\":\""+sesion.id_sesion+"\"}");
+            Log.e("cuenta", "get_datos_ente: " + "{\"sesion\":\""+sesion.id_sesion+"\"}");
+        } catch (Exception e) {
+            Log.e("cuenta", "get_datos_ente: " + e.getMessage());
+            Toast.makeText(getActivity(), "No se pudieron recuperar los datos.", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
     }
 
-    private void onClick_logout(View v){
+    private void onClick_sallir(View v){
         ws_sharingJob ws = new ws_sharingJob(this);
         try {
             ws.cierre_sesionAsync(sesion.id_sesion);
@@ -82,18 +108,50 @@ public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
             e.printStackTrace();
         }
     }
+    private void procesarDatos(String data){
+        String nombres = null;
+        String apellidos = null;
+        String correo = null;
+        String id_empresa = null;
+        try {
+            JSONArray temp =  new JSONObject(data).getJSONArray("array");
+            JSONObject temporal = temp.getJSONObject(0);
+            nombres = temporal.getString("nombres");
+            apellidos = temporal.getString("apellidos");
+            correo = temporal.getString("correo");
+            id_empresa = temporal.getString("id_empresa");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        if (id_empresa.equals("NULL")){
+            btn_regEmpresa.setVisibility(View.VISIBLE);
+        }else{
+            btn_miEmpresa.setVisibility(View.VISIBLE);
+            ((TextView) getView().findViewById(R.id.cuenta_tv_miEmpresa)).setVisibility(View.VISIBLE);
+        }
+
+        ((TextView) getView().findViewById(R.id.cuenta_tv_nombres)).setText(apellidos +", "+ nombres);
+        ((TextView) getView().findViewById(R.id.cuenta_tv_correo)).setText(correo);
+    }
 
     @Override
     public void Wsdl2CodeStartedRequest() {
         //Antes de enviar
-        logout.setClickable(false);
+        //btn_salir.setClickable(false);
     }
 
     @Override
     public void Wsdl2CodeFinished(String methodName, Object Data) {
-        //Respuesta
-        Log.i("cuenta", "R: " + Data);
-        procesarLogout((String) Data);
+        if (methodName.equals("cierre_sesion")) {
+            Log.i("cuenta", "R: " + Data);
+            procesarLogout((String) Data);
+        }
+        if (methodName.equals("get_datos_ente_p")){
+            Log.i("cuenta", "R: " + Data);
+            procesarDatos((String) Data);
+        }
     }
 
     @Override
@@ -106,6 +164,7 @@ public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
     @Override
     public void Wsdl2CodeEndedRequest() {
         //Se obtuvo respuesta
-        logout.setClickable(true);
+        btn_salir.setClickable(true);
     }
+
 }

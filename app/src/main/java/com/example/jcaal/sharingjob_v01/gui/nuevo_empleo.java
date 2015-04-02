@@ -90,7 +90,6 @@ public class nuevo_empleo extends FragmentGenerico implements IWsdl2CodeEvents{
 
     private ArrayList<String> procesar_categorias(String _json){
         ArrayList<String> retorno = new ArrayList<>();
-        //_json = "{array:[{\"nombre\":\"Profesional\"},{\"nombre\":\"Ingenieria\"},{\"nombre\":\"Ingenieria, Ciencias y Sistemas\"},{\"nombre\":\"Ingenieria, Mecanica Industrial\"},{\"nombre\":\"Medicina\"},{\"nombre\":\"Ciencias Politicas y Sociales\"},{\"nombre\":\"Tecnica\"},{\"nombre\":\"Tecnica, Mecanico\"},{\"nombre\":\"Tecnica, Panadero\"},{\"nombre\":\"Artistica\"},{\"nombre\":\"Artistica, Danza\"},{\"nombre\":\"Artistica, Canto\"},{\"nombre\":\"Artistica, Teatro\"},{\"nombre\":\"Otros\"},{\"nombre\":\"Medicina, Forense\"}]}";
         try {
             JSONArray temp =  new JSONObject(_json).getJSONArray("array");
 

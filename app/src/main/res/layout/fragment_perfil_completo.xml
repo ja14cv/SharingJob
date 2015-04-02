@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/button_blue">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -20,7 +21,175 @@
                 android:layout_height="wrap_content"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:weightSum="1" />
+                android:weightSum="1" >
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <ImageButton
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:id="@+id/imageButton2"
+                        android:background="@mipmap/ic_usuario" />
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="5dp"
+                        android:layout_weight="2"
+                        android:gravity="bottom">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="correo@empresa.com"
+                            android:id="@+id/perfilc_tv_correo"
+                            android:textColor="#ffff4b03"
+                            android:layout_marginBottom="5dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="#ffffffff"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:inputType="textPersonName"
+                        android:ems="10"
+                        android:id="@+id/perfilc_et_nombres"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginRight="35dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/redondeado_edit_text"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:hint="Nombres"
+                        android:enabled="false" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:inputType="phone"
+                        android:ems="10"
+                        android:id="@+id/perfilc_et_apellidos"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginRight="35dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/redondeado_edit_text"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:hint="Apellidos"
+                        android:enabled="false" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:inputType="textPersonName"
+                        android:ems="10"
+                        android:id="@+id/perfilc_et_telefono"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginRight="35dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/redondeado_edit_text"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:hint="Teléfono"
+                        android:enabled="false" />
+
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Trabajo actualmente"
+                        android:id="@+id/perfilc_cb_trabajoActual"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginRight="35dp"
+                        android:layout_marginBottom="10dp"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:inputType="textPassword"
+                        android:ems="10"
+                        android:id="@+id/perfilc_et_claveActual"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginRight="35dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/redondeado_edit_text"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:hint="Contraseña actual"
+                        android:enabled="false" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:inputType="textPassword"
+                        android:ems="10"
+                        android:id="@+id/perfilc_et_claveNueva"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginRight="35dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/redondeado_edit_text"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:hint="Nueva contraseña"
+                        android:enabled="false" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginRight="35dp">
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@string/editar"
+                            android:id="@+id/perfilc_btn_editar"
+                            android:layout_weight="1"
+                            android:singleLine="false"
+                            android:textColor="@drawable/button_text_color"
+                            android:background="@drawable/button_blue"
+                            android:layout_marginRight="5dp" />
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@string/cancelar"
+                            android:id="@+id/perfilc_btn_cancelar"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_red"
+                            android:singleLine="false"
+                            android:textColor="@drawable/button_text_color"
+                            android:layout_marginLeft="5dp"
+                            android:visibility="invisible" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
         </ScrollView>
     </LinearLayout>
 </LinearLayout>
