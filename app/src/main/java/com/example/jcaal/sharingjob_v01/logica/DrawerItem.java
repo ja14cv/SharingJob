@@ -1,4 +1,4 @@
-package com.example.jcaal.sharingjob_v01.gui;
+package com.example.jcaal.sharingjob_v01.logica;
 
 /**
  * Created by Jesus on 31/03/2015.

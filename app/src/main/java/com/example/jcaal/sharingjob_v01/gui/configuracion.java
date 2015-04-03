@@ -9,7 +9,7 @@ import com.example.jcaal.sharingjob_v01.logica.TipoFragmento;
 
 public class configuracion extends FragmentGenerico {
 
-    private Button crear, ingresar;
+    private Button crear, ingresar, busqueda;
 
     @Override
     public void otrosParametros(String[] parms) {
@@ -35,6 +35,14 @@ public class configuracion extends FragmentGenerico {
             }
         });
 
+        busqueda = (Button) getView().findViewById(R.id.conf_bt_busqueda);
+        busqueda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick_busqueda(v);
+            }
+        });
+
         mCallback.seleccion(tipoFragmento);
     }
 
@@ -50,6 +58,11 @@ public class configuracion extends FragmentGenerico {
     private void onClick_ingresar(View v){
         this.onDestroy();
         mCallback.onNavigationDrawerItemSelected(TipoFragmento.LOGIN);
+    }
+
+    private void onClick_busqueda(View v){
+        this.onDestroy();
+        mCallback.onNavigationDrawerItemSelected(TipoFragmento.RESULTADO_BUSQUEDA, new String[]{"categoria", "15", ""});
     }
 
 }

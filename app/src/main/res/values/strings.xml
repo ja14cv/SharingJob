@@ -79,4 +79,5 @@
     <string name="titulo_estudios_realizados">Se muestran los estudios realizados:</string>
     <string name="agregar_estudio_realizado">Agregar estudio realizado</string>
     <string name="recargar">Recargar</string>
+    <string name="resultados">Resultados</string>
 </resources>

@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.jcaal.sharingjob_v01.R;
+import com.example.jcaal.sharingjob_v01.logica.DrawerItem;
 import com.example.jcaal.sharingjob_v01.logica.TipoFragmento;
 
 import java.util.ArrayList;

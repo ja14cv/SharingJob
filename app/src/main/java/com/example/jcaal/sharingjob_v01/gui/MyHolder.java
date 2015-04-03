@@ -60,14 +60,14 @@ public class MyHolder extends TreeNode.BaseNodeViewHolder<MyHolder.IconTreeItem>
             icono = _icono;
             text = _text;
             ident = _ident;
-            id = _id;
+            id = String.valueOf(_id);
             nivel = _nivel;
             padre = _padre;
         }
         public int icono;
         public String text;
         public int ident;
-        public int id;
+        public String id;
         public int nivel;
         public boolean padre;
     }

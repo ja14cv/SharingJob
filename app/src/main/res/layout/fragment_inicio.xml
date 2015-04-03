@@ -1,7 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" tools:context="com.example.jcaal.sharingjob_v01.gui.inicio"
-    android:background="#ff000000"
     android:scaleType="centerCrop">
 
     <!-- TODO: Update blank fragment layout -->
@@ -9,21 +8,21 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:layout_margin="0dp">
 
         <SearchView
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:id="@+id/inicio_sv"
             android:background="#ffffffff"
-            android:layout_margin="1dp"
+            android:layout_margin="5dp"
             android:queryHint="Buscar empleo" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginTop="4dp"
             style="@style/estilo_layout_fondo">
 
             <ScrollView
@@ -31,7 +30,8 @@
                 android:layout_height="fill_parent"
                 android:id="@+id/sb"
                 android:layout_gravity="center"
-                style="@style/estilo_scrollview">
+                style="@style/estilo_scrollview"
+                android:layout_marginTop="5dp">
 
                 <LinearLayout
                     android:orientation="vertical"

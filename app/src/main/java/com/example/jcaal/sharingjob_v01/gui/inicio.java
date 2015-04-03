@@ -35,7 +35,7 @@ public class inicio extends FragmentGenerico implements IWsdl2CodeEvents{
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Log.v("inicio", query);
+                realizarBusqueda("palabra", query);
                 return false;
             }
 
@@ -71,6 +71,7 @@ public class inicio extends FragmentGenerico implements IWsdl2CodeEvents{
     @Override
     public void Wsdl2CodeFinishedWithException(Exception ex) {
         Log.e("inicio", ex.getMessage());
+        dialog.dismiss();
         this.onDestroy();
         Toast.makeText(getActivity(), "Ocurrio un problema en las categorias", Toast.LENGTH_LONG).show();
         mCallback.onNavigationDrawerItemSelected(TipoFragmento.PROBLEMA);
@@ -116,7 +117,8 @@ public class inicio extends FragmentGenerico implements IWsdl2CodeEvents{
                         parent1.setClickListener(new TreeNode.TreeNodeClickListener() {
                             @Override
                             public void onClick(TreeNode treeNode, Object o) {
-                                Toast.makeText(getActivity(), "Padre -> id:" + ((MyHolder.IconTreeItem)treeNode.getValue()).id, Toast.LENGTH_SHORT).show();
+                                realizarBusqueda(((MyHolder.IconTreeItem)treeNode.getValue()).id);
+                                //Toast.makeText(getActivity(), "Padre -> id:" + ((MyHolder.IconTreeItem)treeNode.getValue()).id, Toast.LENGTH_SHORT).show();
                             }
                         });
                         parent.addChild(parent1);
@@ -124,7 +126,8 @@ public class inicio extends FragmentGenerico implements IWsdl2CodeEvents{
                         parent.setClickListener(new TreeNode.TreeNodeClickListener() {
                             @Override
                             public void onClick(TreeNode treeNode, Object o) {
-                                Toast.makeText(getActivity(), "Padre -> id:" + ((MyHolder.IconTreeItem)treeNode.getValue()).id, Toast.LENGTH_SHORT).show();
+                                realizarBusqueda(((MyHolder.IconTreeItem)treeNode.getValue()).id);
+                                //Toast.makeText(getActivity(), "Padre -> id:" + ((MyHolder.IconTreeItem)treeNode.getValue()).id, Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -154,7 +157,8 @@ public class inicio extends FragmentGenerico implements IWsdl2CodeEvents{
                                 hijo1_n1.setClickListener(new TreeNode.TreeNodeClickListener() {
                                     @Override
                                     public void onClick(TreeNode treeNode, Object o) {
-                                        Toast.makeText(getActivity(), "Padre -> id:" + ((MyHolder.IconTreeItem) treeNode.getValue()).id, Toast.LENGTH_SHORT).show();
+                                        realizarBusqueda(((MyHolder.IconTreeItem)treeNode.getValue()).id);
+                                        //Toast.makeText(getActivity(), "Padre -> id:" + ((MyHolder.IconTreeItem) treeNode.getValue()).id, Toast.LENGTH_SHORT).show();
                                     }
                                 });
                                 hijo_n1.addChild(hijo1_n1);
@@ -162,7 +166,8 @@ public class inicio extends FragmentGenerico implements IWsdl2CodeEvents{
                                 hijo_n1.setClickListener(new TreeNode.TreeNodeClickListener() {
                                     @Override
                                     public void onClick(TreeNode treeNode, Object o) {
-                                        Toast.makeText(getActivity(), "Padre -> id:" + ((MyHolder.IconTreeItem) treeNode.getValue()).id, Toast.LENGTH_SHORT).show();
+                                        realizarBusqueda(((MyHolder.IconTreeItem)treeNode.getValue()).id);
+                                        //Toast.makeText(getActivity(), "Padre -> id:" + ((MyHolder.IconTreeItem) treeNode.getValue()).id, Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -181,7 +186,8 @@ public class inicio extends FragmentGenerico implements IWsdl2CodeEvents{
                                     hijo_n2.setClickListener(new TreeNode.TreeNodeClickListener() {
                                         @Override
                                         public void onClick(TreeNode treeNode, Object o) {
-                                            Toast.makeText(getActivity(), "Padre -> id:" + ((MyHolder.IconTreeItem)treeNode.getValue()).id, Toast.LENGTH_SHORT).show();
+                                            realizarBusqueda(((MyHolder.IconTreeItem)treeNode.getValue()).id);
+                                            //Toast.makeText(getActivity(), "Padre -> id:" + ((MyHolder.IconTreeItem)treeNode.getValue()).id, Toast.LENGTH_SHORT).show();
                                         }
                                     });
                                     hijo_n1.addChild(hijo_n2);
@@ -207,5 +213,14 @@ public class inicio extends FragmentGenerico implements IWsdl2CodeEvents{
             Toast.makeText(getActivity(), "Ocurrio un problema en las categorias", Toast.LENGTH_LONG).show();
             mCallback.onNavigationDrawerItemSelected(TipoFragmento.PROBLEMA);
         }
+    }
+
+    private void realizarBusqueda(String valor){
+        realizarBusqueda("categoria", valor);
+    }
+
+    private void realizarBusqueda(String tipo, String palabra){
+        this.onDestroy();
+        mCallback.onNavigationDrawerItemSelected(TipoFragmento.RESULTADO_BUSQUEDA, new String[]{tipo, palabra, ""});
     }
 }

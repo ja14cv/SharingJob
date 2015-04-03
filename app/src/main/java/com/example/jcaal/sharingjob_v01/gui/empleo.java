@@ -5,7 +5,7 @@ import com.example.jcaal.sharingjob_v01.ws.IWsdl2CodeEvents;
 /**
  * Created by jCaal on 02/04/2015.
  */
-public class empleo_especifico  extends FragmentGenerico implements IWsdl2CodeEvents {
+public class empleo extends FragmentGenerico implements IWsdl2CodeEvents {
     @Override
     public void otrosParametros(String[] parms) {
 
@@ -13,7 +13,7 @@ public class empleo_especifico  extends FragmentGenerico implements IWsdl2CodeEv
 
     @Override
     public void hacerOnCreate() {
-
+        mCallback.seleccion(tipoFragmento);
     }
 
     @Override

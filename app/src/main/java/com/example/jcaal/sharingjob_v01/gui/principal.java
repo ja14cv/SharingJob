@@ -116,6 +116,9 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
         }else if(tf == TipoFragmento.TAB_PERFIL || tf == TipoFragmento.TAB_EMPRESA){
             mNavigationDrawerFragment.desmarcarItem();
             activarTabs(tf);
+        }else if(tf == TipoFragmento.RESULTADO_BUSQUEDA){
+            mNavigationDrawerFragment.desmarcarItem();
+            transaction.replace(R.id.container, resultado_busqueda.newInstance(new resultado_busqueda(), R.layout.fragment_resultado_busqueda, tf, parms)).commit();
         }else if(tf == TipoFragmento.EMPLEOS_TOMADOS){
             mNavigationDrawerFragment.desmarcarItem();
             transaction.replace(R.id.container, empleos_tomados.newInstance(new empleos_tomados(), R.layout.fragment_empleos_tomados, tf, parms)).commit();
@@ -125,6 +128,9 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
         }else if(tf == TipoFragmento.EMPLEOS_PUBLICADOS){
             mNavigationDrawerFragment.desmarcarItem();
             transaction.replace(R.id.container, empleos_publicados.newInstance(new empleos_publicados(), R.layout.fragment_empleos_publicados, tf, parms)).commit();
+        }else if(tf == TipoFragmento.EMPLEO){
+            mNavigationDrawerFragment.desmarcarItem();
+            transaction.replace(R.id.container, empleo.newInstance(new empleo(), R.layout.fragment_empleo, tf, parms)).commit();
         }else{
             transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, tf, parms)).commit();
         }
@@ -158,15 +164,17 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
         }else if(tf == TipoFragmento.PERFIL_COMPLETO){
             mTitle = "Perfil completo";
         }else if(tf == TipoFragmento.ADD_EMPLEO_REALIZADO){
-            mTitle = "Empleos realizados";
+            mTitle = "Empleos Realizados";
         }else if(tf == TipoFragmento.ADD_ESTUDIO_REALIZADO){
-            mTitle = "Estudios realizados";
+            mTitle = "Estudios Realizados";
         }else if(tf == TipoFragmento.PROBLEMA){
             //
         }else if(tf == TipoFragmento.TAB_PERFIL){
             mTitle = "Perfil";
         }else if(tf == TipoFragmento.TAB_EMPRESA){
             mTitle = "Empresa";
+        }else if(tf == TipoFragmento.RESULTADO_BUSQUEDA){
+            mTitle = "Resultados";
         }else if(tf == TipoFragmento.EMPLEOS_TOMADOS){
             mTitle = "Empleos tomados";
         }else if(tf == TipoFragmento.ESTUDIOS_REALIZADOS){

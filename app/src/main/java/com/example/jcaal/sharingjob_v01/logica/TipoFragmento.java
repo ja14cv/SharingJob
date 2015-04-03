@@ -17,6 +17,8 @@ public enum TipoFragmento {
     ADD_EMPLEO_REALIZADO,
     ADD_ESTUDIO_REALIZADO,
     PROBLEMA,
+    RESULTADO_BUSQUEDA,
+    EMPLEO,
     TAB_PERFIL, //No existe, solo para tabular
     TAB_EMPRESA, //No existe, solo para tabular
     EMPLEOS_TOMADOS,

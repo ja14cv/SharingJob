@@ -2,7 +2,6 @@ package com.example.jcaal.sharingjob_v01.gui;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.jcaal.sharingjob_v01.R;
+import com.example.jcaal.sharingjob_v01.logica.DrawerItem;
 
 import java.util.List;
 
