@@ -19,4 +19,7 @@ public enum TipoFragmento {
     PROBLEMA,
     TAB_PERFIL, //No existe, solo para tabular
     TAB_EMPRESA, //No existe, solo para tabular
+    EMPLEOS_TOMADOS,
+    ESTUDIOS_REALIZADOS,
+    EMPLEOS_PUBLICADOS
 }

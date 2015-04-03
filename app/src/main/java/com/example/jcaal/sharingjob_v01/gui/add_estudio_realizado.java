@@ -1,13 +1,17 @@
 package com.example.jcaal.sharingjob_v01.gui;
 
 import android.app.ProgressDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.jcaal.sharingjob_v01.R;
+import com.example.jcaal.sharingjob_v01.logica.TipoFragmento;
+import com.example.jcaal.sharingjob_v01.logica.sesion;
 import com.example.jcaal.sharingjob_v01.ws.IWsdl2CodeEvents;
 import com.example.jcaal.sharingjob_v01.ws.ws_sharingJob;
 
@@ -32,7 +36,7 @@ public class add_estudio_realizado extends FragmentGenerico implements IWsdl2Cod
 
     private ProgressDialog dialog;
 
-    @Override
+    @Override   //TERMINADO
     public void hacerOnCreate() {
         et_grado = (EditText) getView().findViewById(R.id.addEst_et_grado);
         et_desc = (EditText) getView().findViewById(R.id.addEst_et_desc);
@@ -41,14 +45,14 @@ public class add_estudio_realizado extends FragmentGenerico implements IWsdl2Cod
         btn_agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClick_btn_cancelar(v);
+                onClick_btn_agregar(v);
             }
         });
         btn_cancelar = (Button) getView().findViewById(R.id.addEst_btn_cancelar);
         btn_cancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClick_btn_agregar(v);
+                onClick_btn_cancelar(v);
             }
         });
 
@@ -61,11 +65,36 @@ public class add_estudio_realizado extends FragmentGenerico implements IWsdl2Cod
     }
 
     public void onClick_btn_cancelar(View v){
-
+        this.onDestroy();
+        mCallback.onNavigationDrawerItemSelected(TipoFragmento.CUENTA);
     }
 
     public void onClick_btn_agregar(View v){
+        String grado = et_grado.getText().toString().trim();
+        String observacion = et_desc.getText().toString().trim();
+        String categoria = sp_categorias.getSelectedItem().toString();
+        if (grado.isEmpty()){
+            grado = "NULL";
+        }
+        if (observacion.isEmpty()){
+            observacion = "NULL";
+        }
+        if (categoria.isEmpty()){
+            categoria = "NULL";
+        }
 
+        String json = "{\n" +
+                "\t\"grado\":\""+grado+"\",\n" +
+                "\t\"observacion\":\""+observacion+"\",\n" +
+                "\t\"categoria\":\""+categoria+"\",\n" +
+                "\t\"sesion\":\""+sesion.id_sesion+"\"\n" +
+                "}\n";
+        Log.i("estudio_realizado", "json_entrada: " + json);
+        try {
+            new ws_sharingJob(this).add_estudio_realizadoAsync(json);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private ArrayList<String> procesar_categorias(String _json){
@@ -95,6 +124,17 @@ public class add_estudio_realizado extends FragmentGenerico implements IWsdl2Cod
             ArrayAdapter<String> adapt = new ArrayAdapter<>(getView().getContext(), android.R.layout.simple_list_item_1, procesar_categorias((String) Data));
             sp_categorias.setAdapter(adapt);
         }
+        if (methodName.equals("add_estudio_realizado")){
+            switch(procesarData((String) Data)){
+                case 0:     //no agrego el trabajo
+                    break;
+                case 1:     //agrego el trabajo
+                    this.onDestroy();
+                    mCallback.onNavigationDrawerItemSelected(TipoFragmento.CUENTA);
+                    break;
+                default:    //error general
+            }
+        }
         dialog.dismiss();
     }
 
@@ -106,5 +146,23 @@ public class add_estudio_realizado extends FragmentGenerico implements IWsdl2Cod
     @Override
     public void Wsdl2CodeEndedRequest() {
 
+    }
+
+    private int procesarData(String data){
+        try {
+            JSONObject t1 = new JSONObject(data).getJSONArray("datos").getJSONObject(0);
+            String tipo = t1.getString("Tipo");
+            String descripcion = t1.getString("Descripcion");
+            if(tipo.equals("1")){
+                Toast.makeText(getActivity(), descripcion, Toast.LENGTH_LONG).show();
+                return 1;
+            }else{
+                Toast.makeText(getActivity(), descripcion, Toast.LENGTH_LONG).show();
+                return 0;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 }

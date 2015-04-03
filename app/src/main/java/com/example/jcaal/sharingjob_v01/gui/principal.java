@@ -116,6 +116,15 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
         }else if(tf == TipoFragmento.TAB_PERFIL || tf == TipoFragmento.TAB_EMPRESA){
             mNavigationDrawerFragment.desmarcarItem();
             activarTabs(tf);
+        }else if(tf == TipoFragmento.EMPLEOS_TOMADOS){
+            mNavigationDrawerFragment.desmarcarItem();
+            transaction.replace(R.id.container, empleos_tomados.newInstance(new empleos_tomados(), R.layout.fragment_empleos_tomados, tf, parms)).commit();
+        }else if(tf == TipoFragmento.ESTUDIOS_REALIZADOS){
+            mNavigationDrawerFragment.desmarcarItem();
+            transaction.replace(R.id.container, estudios_realizados.newInstance(new estudios_realizados(), R.layout.fragment_estudios_realizados, tf, parms)).commit();
+        }else if(tf == TipoFragmento.EMPLEOS_PUBLICADOS){
+            mNavigationDrawerFragment.desmarcarItem();
+            transaction.replace(R.id.container, empleos_publicados.newInstance(new empleos_publicados(), R.layout.fragment_empleos_publicados, tf, parms)).commit();
         }else{
             transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, tf, parms)).commit();
         }
@@ -149,15 +158,21 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
         }else if(tf == TipoFragmento.PERFIL_COMPLETO){
             mTitle = "Perfil completo";
         }else if(tf == TipoFragmento.ADD_EMPLEO_REALIZADO){
-            mTitle = "Empleos Realizados";
+            mTitle = "Empleos realizados";
         }else if(tf == TipoFragmento.ADD_ESTUDIO_REALIZADO){
-            mTitle = "Estudios Realizados";
+            mTitle = "Estudios realizados";
         }else if(tf == TipoFragmento.PROBLEMA){
             //
         }else if(tf == TipoFragmento.TAB_PERFIL){
             mTitle = "Perfil";
         }else if(tf == TipoFragmento.TAB_EMPRESA){
             mTitle = "Empresa";
+        }else if(tf == TipoFragmento.EMPLEOS_TOMADOS){
+            mTitle = "Empleos tomados";
+        }else if(tf == TipoFragmento.ESTUDIOS_REALIZADOS){
+            mTitle = "Estudios realizados";
+        }else if(tf == TipoFragmento.EMPLEOS_PUBLICADOS){
+            mTitle = "Empleos publicados";
         }else{
             mTitle = getString(R.string.app_name);
         }

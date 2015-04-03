@@ -146,20 +146,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/agregar"
-                        android:id="@+id/button"
+                        android:id="@+id/addEmpresa_btn_agregar"
                         android:background="@drawable/button_green"
                         android:textColor="@drawable/button_text_color"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
                         android:singleLine="false"
-                        android:layout_marginBottom="5dp" />
+                        android:layout_marginBottom="5dp"
+                        android:visibility="invisible" />
 
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/cancelar"
-                        android:id="@+id/button2"
+                        android:id="@+id/addEmpresa_btn_cancelar"
                         android:background="@drawable/button_red"
                         android:textColor="@drawable/button_text_color"
                         android:layout_marginRight="5dp"
@@ -167,7 +168,8 @@
                         android:layout_weight="1"
                         android:elegantTextHeight="false"
                         android:singleLine="false"
-                        android:layout_marginBottom="5dp" />
+                        android:layout_marginBottom="5dp"
+                        android:visibility="invisible" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
