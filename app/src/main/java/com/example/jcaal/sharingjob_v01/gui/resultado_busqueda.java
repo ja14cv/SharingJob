@@ -161,7 +161,7 @@ public class resultado_busqueda extends FragmentGenerico implements IWsdl2CodeEv
     @Override
     public void Wsdl2CodeFinishedWithException(Exception ex) {
         Log.e("resultado", ex.getMessage());
-        Toast.makeText(getActivity(), "No se pudo realizar la busqueda", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getActivity(), "No se pudo realizar la busqueda", Toast.LENGTH_LONG).show();
     }
 
     @Override

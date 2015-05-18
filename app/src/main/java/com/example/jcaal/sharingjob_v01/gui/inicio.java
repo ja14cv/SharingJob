@@ -71,10 +71,10 @@ public class inicio extends FragmentGenerico implements IWsdl2CodeEvents{
     @Override
     public void Wsdl2CodeFinishedWithException(Exception ex) {
         Log.e("inicio", ex.getMessage());
-        dialog.dismiss();
-        this.onDestroy();
-        Toast.makeText(getActivity(), "Ocurrio un problema en las categorias", Toast.LENGTH_LONG).show();
-        mCallback.onNavigationDrawerItemSelected(TipoFragmento.PROBLEMA);
+        //dialog.dismiss();
+        //this.onDestroy();
+        //Toast.makeText(getActivity(), "Ocurrio un problema en las categorias", Toast.LENGTH_LONG).show();
+        //mCallback.onNavigationDrawerItemSelected(TipoFragmento.PROBLEMA);
     }
 
     @Override
