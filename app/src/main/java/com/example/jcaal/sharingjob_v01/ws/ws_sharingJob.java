@@ -25,7 +25,7 @@ import android.os.AsyncTask;
 public class ws_sharingJob {
     
     public String NAMESPACE ="ns:sharingJob";
-    public String url="http://susguzman.koding.io/sharingJob/ws.php?wsdl";
+    public String url="http://52.1.30.210/sharingJob/ws.php?wsdl";
     public int timeOut = 60000;
     public IWsdl2CodeEvents eventHandler;
     public WS_Enums.SoapProtocolVersion soapVersion;
