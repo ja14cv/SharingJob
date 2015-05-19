@@ -134,7 +134,6 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
         }
 
         onSectionAttached(tf);
-        getSupportActionBar().setTitle(mTitle);
     }
 
     @Override

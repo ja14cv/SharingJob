@@ -104,10 +104,10 @@ public class NavigationDrawerFragment extends Fragment {
 
         //Crear elementos de la lista
         ArrayList<DrawerItem> items = new ArrayList<>();
-        items.add(new DrawerItem(getString(R.string.title_section0), R.mipmap.ic_plus));
-        items.add(new DrawerItem(getString(R.string.title_section1), R.mipmap.ic_plus));
-        items.add(new DrawerItem(getString(R.string.title_section2), R.mipmap.ic_plus));
-        items.add(new DrawerItem(getString(R.string.title_section3), R.mipmap.ic_plus));
+        items.add(new DrawerItem(getString(R.string.title_section0), R.mipmap.ic_inicio2));
+        items.add(new DrawerItem(getString(R.string.title_section1), R.mipmap.ic_mi_cuenta));
+        items.add(new DrawerItem(getString(R.string.title_section2), R.mipmap.ic_nuevo_empleo));
+        //items.add(new DrawerItem(getString(R.string.title_section3), R.mipmap.ic_plus));
         mDrawerListView.setAdapter(new DrawerListAdapter(getActionBar().getThemedContext(), items));
 
         /*mDrawerListView.setAdapter(new ArrayAdapter<String>(
@@ -304,16 +304,25 @@ public class NavigationDrawerFragment extends Fragment {
             return TipoFragmento.CUENTA;
         }else if(position == 2){
             return TipoFragmento.NUEVO_EMPLEO;
-        }else if(position == 3){
+        /*}else if(position == 3){
             return TipoFragmento.CONFIG;
-        /*}else if(position == 4){
+        }else if(position == 4){
             return TipoFragmento.LOGIN;*/
         }else{
             return TipoFragmento.INICIO;
         }
     }
 
-    private int tipoFragmentoToInt(TipoFragmento tf){
+    public void desmarcarItem(){
+        if(mDrawerListView != null){
+            if(mDrawerListView.isFocused()){
+                ((DrawerListAdapter)mDrawerListView.getAdapter()).selected = -1;
+                mDrawerListView.setItemChecked(mDrawerListView.getCheckedItemPosition(), false);
+            }
+        }
+    }
+
+    /*private int tipoFragmentoToInt(TipoFragmento tf){
         if(tf == TipoFragmento.INICIO){
             return 0;
         }else if(tf == TipoFragmento.CUENTA){
@@ -327,24 +336,13 @@ public class NavigationDrawerFragment extends Fragment {
         }
     }
 
-    public void desmarcarItem(){
-        if(mDrawerListView != null){
-            if(mDrawerListView.isFocused()){
-                ((DrawerListAdapter)mDrawerListView.getAdapter()).selected = -1;
-                mDrawerListView.setItemChecked(mDrawerListView.getCheckedItemPosition(), false);
-            }
-        }
-    }
-
     public void seleccionarItem(TipoFragmento tf){
         if(mDrawerListView != null){
             int pos = tipoFragmentoToInt(tf);
             ((DrawerListAdapter)mDrawerListView.getAdapter()).selected = pos;
             mDrawerListView.setItemChecked(pos, true);
         }
-    }
-
-
+    }*/
 
     /**
      * Callbacks interface that all activities using this fragment must implement.
