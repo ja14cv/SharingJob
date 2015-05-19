@@ -35,7 +35,8 @@ public class DrawerListAdapter extends ArrayAdapter<DrawerItem> {
         }
 
         if(position == selected){
-            convertView.setBackgroundColor(Color.argb(180,204,58,70));
+            //convertView.setBackgroundColor(Color.argb(180,204,58,70));
+            convertView.setBackgroundColor(Color.argb(200,31,165,221));
         }else{
             convertView.setBackgroundColor(Color.argb(0,204,58,70));
         }
