@@ -21,7 +21,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:id="@+id/pro_bt_recargar"
-                android:src="@mipmap/ic_reload"
+                android:src="@mipmap/ic_refresh"
                 android:layout_gravity="center_horizontal|center"
                 android:contentDescription="@string/recargar"
                 android:focusableInTouchMode="true"
