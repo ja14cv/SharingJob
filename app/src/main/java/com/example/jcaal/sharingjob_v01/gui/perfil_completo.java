@@ -10,7 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jcaal.sharingjob_v01.R;
-import com.example.jcaal.sharingjob_v01.logica.TipoFragmento;
 import com.example.jcaal.sharingjob_v01.logica.sesion;
 import com.example.jcaal.sharingjob_v01.ws.IWsdl2CodeEvents;
 import com.example.jcaal.sharingjob_v01.ws.ws_sharingJob;
@@ -18,8 +17,6 @@ import com.example.jcaal.sharingjob_v01.ws.ws_sharingJob;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import static com.example.jcaal.sharingjob_v01.R.drawable.button_blue;
 
 /**
  * Created by jCaal on 01/04/2015.

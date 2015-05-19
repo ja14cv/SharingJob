@@ -80,4 +80,6 @@
     <string name="agregar_estudio_realizado">Agregar estudio realizado</string>
     <string name="recargar">Recargar</string>
     <string name="resultados">Resultados</string>
+    <string name="detalle_empleo">Detalle del empleo</string>
+    <string name="aplicar">Aplicar</string>
 </resources>

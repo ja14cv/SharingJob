@@ -206,7 +206,7 @@ public class add_empleo_realizado extends FragmentGenerico implements IWsdl2Code
                     break;
                 case 1:     //agrego el trabajo
                     this.onDestroy();
-                    mCallback.onNavigationDrawerItemSelected(TipoFragmento.CUENTA);
+                    mCallback.onNavigationDrawerItemSelected(TipoFragmento.EMPLEOS_TOMADOS);
                     break;
                 default:    //error general
             }
@@ -238,6 +238,7 @@ public class add_empleo_realizado extends FragmentGenerico implements IWsdl2Code
             }
         } catch (JSONException e) {
             e.printStackTrace();
+            Toast.makeText(getActivity(), "No se pudo agregar el empleo realizado", Toast.LENGTH_LONG).show();
         }
         return -1;
     }

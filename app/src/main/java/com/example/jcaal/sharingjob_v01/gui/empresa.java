@@ -16,8 +16,6 @@ import com.example.jcaal.sharingjob_v01.ws.ws_sharingJob;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-
 /**
  * Created by Jesus on 01/04/2015.
  */

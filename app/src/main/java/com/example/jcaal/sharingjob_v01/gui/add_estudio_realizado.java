@@ -130,7 +130,7 @@ public class add_estudio_realizado extends FragmentGenerico implements IWsdl2Cod
                     break;
                 case 1:     //agrego el trabajo
                     this.onDestroy();
-                    mCallback.onNavigationDrawerItemSelected(TipoFragmento.CUENTA);
+                    mCallback.onNavigationDrawerItemSelected(TipoFragmento.ESTUDIOS_REALIZADOS);
                     break;
                 default:    //error general
             }

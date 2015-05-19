@@ -1,10 +1,8 @@
 package com.example.jcaal.sharingjob_v01.gui;
 
 import android.app.ProgressDialog;
-import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.SearchView;
 import android.widget.Toast;
 

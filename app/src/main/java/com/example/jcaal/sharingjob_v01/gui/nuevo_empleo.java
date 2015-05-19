@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -19,7 +18,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class nuevo_empleo extends FragmentGenerico implements IWsdl2CodeEvents{
@@ -135,13 +133,14 @@ public class nuevo_empleo extends FragmentGenerico implements IWsdl2CodeEvents{
                 ((EditText)getView().findViewById(R.id.nempleo_et_descrip)).setText("");
                 ((EditText)getView().findViewById(R.id.nempleo_et_propuesta)).setText("");
                 spin.setSelection(0);
+                Toast.makeText(getActivity(), "Empleo creado", Toast.LENGTH_LONG).show();
             }else{
                 Toast.makeText(getActivity(), desc, Toast.LENGTH_LONG).show();
             }
         } catch (JSONException e) {
             e.printStackTrace();
             Log.e("nuevo_empleo", e.getMessage());
-            Toast.makeText(getActivity(), "No se pudo guardar empleo", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "No se pudo crear empleo", Toast.LENGTH_LONG).show();
         }
     }
 

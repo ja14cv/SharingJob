@@ -19,9 +19,135 @@
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:weightSum="1" />
+                android:id="@+id/em_ly_empleo">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/detalle_empleo"
+                    android:id="@+id/textView16"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="#ffffffff"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginBottom="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/titulo"
+                    android:id="@+id/textView19"
+                    android:layout_marginLeft="10dp" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/background_empleo_item"
+                    android:padding="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="texto"
+                        android:id="@+id/em_tv_titulo"
+                        android:layout_marginRight="25dp"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="14sp"
+                        android:layout_weight="5"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/descripcion"
+                    android:id="@+id/textView17"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/background_empleo_item"
+                    android:padding="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="texto"
+                        android:id="@+id/em_tv_desc"
+                        android:layout_marginRight="25dp"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="14sp"
+                        android:layout_weight="5"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/propuesta_salarial"
+                    android:id="@+id/textView18"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/background_empleo_item"
+                    android:padding="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="texto"
+                        android:id="@+id/em_tv_salario"
+                        android:layout_marginRight="25dp"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="14sp"
+                        android:layout_weight="5"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/aplicar"
+                    android:id="@+id/em_bt_aplicar"
+                    android:background="@drawable/button_green"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
         </ScrollView>
     </LinearLayout>
 </LinearLayout>

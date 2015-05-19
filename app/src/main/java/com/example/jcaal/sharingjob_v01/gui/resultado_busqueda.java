@@ -62,6 +62,7 @@ public class resultado_busqueda extends FragmentGenerico implements IWsdl2CodeEv
             }
         });
 
+        //Verificar parametros
         if(parmsOK){
             String tipo = this.getArguments().getString("tipo");
             String valor = this.getArguments().getString("valor");
@@ -95,11 +96,11 @@ public class resultado_busqueda extends FragmentGenerico implements IWsdl2CodeEv
             e.setBackgroundResource(R.color.color_btn_aceptar);
             Log.i("item", String.valueOf(e.getIdEmpleo()));
             this.onDestroy();
-            mCallback.onNavigationDrawerItemSelected(TipoFragmento.EMPLEO);
+            mCallback.onNavigationDrawerItemSelected(TipoFragmento.EMPLEO, new String[]{e.getIdEmpleo()});
         }
     }
 
-    private void procesarCategorias(String data){
+    private void procesarResultado(String data){
         try {
             JSONObject jso = new JSONObject(data);
             JSONObject t1 = jso.getJSONArray("datos").getJSONObject(0);
@@ -153,8 +154,7 @@ public class resultado_busqueda extends FragmentGenerico implements IWsdl2CodeEv
 
     @Override
     public void Wsdl2CodeFinished(String methodName, Object Data) {
-        Log.i("resutlado", Data.toString());
-        procesarCategorias(Data.toString());
+        procesarResultado(Data.toString());
         dialog.dismiss();
     }
 
