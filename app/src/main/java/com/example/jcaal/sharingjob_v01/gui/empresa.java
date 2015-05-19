@@ -54,11 +54,22 @@ public class empresa extends FragmentGenerico implements IWsdl2CodeEvents {
             }
         });
 
+        //Filtros
+        et_nombre.setFilters(FragmentGenerico.filtroQuote);
+        et_web.setFilters(FragmentGenerico.filtroQuote);
+        et_correo.setFilters(FragmentGenerico.filtroQuote);
+        et_telefono.setFilters(FragmentGenerico.filtroQuote);
+        et_mision.setFilters(FragmentGenerico.filtroQuote);
+        et_vision.setFilters(FragmentGenerico.filtroQuote);
+
+        //Get empresa
         try {
             new ws_sharingJob(this).get_empresaAsync("{\"sesion\":\""+ sesion.id_sesion+"\"}");
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        mCallback.seleccion(tipoFragmento);
     }
 
     private void onClick_btn_agregar(View v){

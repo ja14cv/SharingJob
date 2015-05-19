@@ -1,6 +1,8 @@
 package com.example.jcaal.sharingjob_v01.gui;
 
 import android.app.ProgressDialog;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -32,13 +34,15 @@ public class nuevo_empleo extends FragmentGenerico implements IWsdl2CodeEvents{
 
     @Override
     public void hacerOnCreate(){
-        mCallback.seleccion(tipoFragmento);
-        if(!sesion.isLogin()){ //Si No esta logueado
+        //Verificar si esta logueado
+        if(!sesion.isLogin()){
             Toast.makeText(getView().getContext(),"Inicie sesión...", Toast.LENGTH_SHORT).show();
             this.onDestroy();
             mCallback.onNavigationDrawerItemSelected(TipoFragmento.LOGIN); //ir a login
             return;
         }
+
+        //Eventos botones
         spin = (Spinner) getView().findViewById(R.id.nempleo_spin_categoria);
         (getView().findViewById(R.id.nempleo_btn_crear)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +56,13 @@ public class nuevo_empleo extends FragmentGenerico implements IWsdl2CodeEvents{
                 clic_cancelar(v);
             }
         });
+
+        //Filtros
+        ((EditText)getView().findViewById(R.id.nempleo_et_titulo)).setFilters(FragmentGenerico.filtroQuote);
+        ((EditText)getView().findViewById(R.id.nempleo_et_descrip)).setFilters(FragmentGenerico.filtroQuote);
+        ((EditText)getView().findViewById(R.id.nempleo_et_propuesta)).setFilters(FragmentGenerico.filtroQuote);
+
+        //Cargar categorias
         ws_sharingJob ws = new ws_sharingJob(this);
         try {
             ws.get_categoria_trabajo_nombresAsync();
@@ -60,6 +71,8 @@ public class nuevo_empleo extends FragmentGenerico implements IWsdl2CodeEvents{
             Log.e("nuevo_empleado", e.getMessage());
             Toast.makeText(getActivity(), "Ocurrio un problema al cargar categorias", Toast.LENGTH_LONG).show();
         }
+
+        mCallback.seleccion(tipoFragmento);
     }
 
     private void clic_crear(View v){

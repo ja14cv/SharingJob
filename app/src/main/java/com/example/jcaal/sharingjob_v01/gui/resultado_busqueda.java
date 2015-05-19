@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -49,6 +50,7 @@ public class resultado_busqueda extends FragmentGenerico implements IWsdl2CodeEv
     public void hacerOnCreate() {
         //Evento busqueda
         SearchView sv = (SearchView) getView().findViewById(R.id.res_sv);
+        sv.setQueryHint("Busqueda de empleos");
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -61,6 +63,10 @@ public class resultado_busqueda extends FragmentGenerico implements IWsdl2CodeEv
                 return false;
             }
         });
+
+        //Filtro
+        int id = sv.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        ((EditText) sv.findViewById(id)).setFilters(FragmentGenerico.filtroQuote);
 
         //Verificar parametros
         if(parmsOK){

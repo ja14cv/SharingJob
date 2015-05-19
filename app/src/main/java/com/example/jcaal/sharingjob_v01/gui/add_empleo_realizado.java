@@ -86,12 +86,20 @@ public class add_empleo_realizado extends FragmentGenerico implements IWsdl2Code
         });
         cb_temporal = (CheckBox) getView().findViewById(R.id.addEmpR_cb_temporal);
 
+        //Filtros
+        et_puesto.setFilters(FragmentGenerico.filtroQuote);
+        et_empresa.setFilters(FragmentGenerico.filtroQuote);
+        et_proyecto.setFilters(FragmentGenerico.filtroQuote);
+
+        //Get categorias
         try {
             new ws_sharingJob(this).get_categoria_trabajo_nombresAsync();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         inicializarDatePicker();
+        mCallback.seleccion(tipoFragmento);
     }
 
     private void onClick_btn_agregar(View v){

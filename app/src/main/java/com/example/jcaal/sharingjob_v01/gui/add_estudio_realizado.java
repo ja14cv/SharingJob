@@ -56,12 +56,18 @@ public class add_estudio_realizado extends FragmentGenerico implements IWsdl2Cod
             }
         });
 
+        //Filtros
+        et_grado.setFilters(FragmentGenerico.filtroQuote);
+        et_grado.setFilters(FragmentGenerico.filtroQuote);
+
         //obtener categorias de estudio
         try {
             new ws_sharingJob(this).get_categoria_estudio_nombresAsync();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        mCallback.seleccion(tipoFragmento);
     }
 
     public void onClick_btn_cancelar(View v){

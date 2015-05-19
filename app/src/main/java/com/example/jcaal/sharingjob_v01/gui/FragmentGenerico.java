@@ -3,6 +3,9 @@ package com.example.jcaal.sharingjob_v01.gui;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputFilter;
+import android.text.Spanned;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,4 +63,16 @@ public abstract class FragmentGenerico extends Fragment{
                     + " must implement OnHeadlineSelectedListener");
         }
     }
+
+    public static InputFilter[] filtroQuote = new InputFilter[] { new InputFilter(){
+
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            if(source.equals("\"") || source.equals("'")){
+                return "";
+            }
+
+            return  source;
+        }
+    }};
 }

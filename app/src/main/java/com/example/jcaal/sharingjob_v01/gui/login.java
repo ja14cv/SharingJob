@@ -37,6 +37,10 @@ public class login extends FragmentGenerico implements IWsdl2CodeEvents{
             return;
         }
 
+        //Filtros
+        ((EditText)getView().findViewById(R.id.lo_et_email)).setFilters(FragmentGenerico.filtroQuote);
+        ((EditText)getView().findViewById(R.id.lo_et_email)).setFilters(FragmentGenerico.filtroQuote);
+
         //Eventos de botones
         ingresar = (Button) getView().findViewById(R.id.lo_bt_ingreso);
         ingresar.setOnClickListener(new View.OnClickListener(){

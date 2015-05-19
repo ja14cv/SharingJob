@@ -2,6 +2,7 @@ package com.example.jcaal.sharingjob_v01.gui;
 
 import android.app.ProgressDialog;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -28,8 +29,8 @@ public class inicio extends FragmentGenerico implements IWsdl2CodeEvents{
 
     @Override
     public void hacerOnCreate() {
-        mCallback.seleccion(tipoFragmento);
         SearchView sv = (SearchView) getView().findViewById(R.id.inicio_sv);
+        sv.setQueryHint("Busqueda de empleos");
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -43,6 +44,11 @@ public class inicio extends FragmentGenerico implements IWsdl2CodeEvents{
             }
         });
 
+        //Filtro
+        int id = sv.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        ((EditText) sv.findViewById(id)).setFilters(FragmentGenerico.filtroQuote);
+
+        //Get categorias de trabajo
         ws_sharingJob ws = new ws_sharingJob(this);
         try {
             ws.get_categoria_trabajoAsync();
@@ -52,6 +58,8 @@ public class inicio extends FragmentGenerico implements IWsdl2CodeEvents{
             Toast.makeText(getActivity(), "Ocurrio un problema en las categorias", Toast.LENGTH_LONG).show();
             mCallback.onNavigationDrawerItemSelected(TipoFragmento.PROBLEMA);
         }
+
+        mCallback.seleccion(tipoFragmento);
     }
 
     @Override

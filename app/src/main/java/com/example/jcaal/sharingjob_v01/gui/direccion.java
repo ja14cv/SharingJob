@@ -49,7 +49,8 @@ public class direccion extends FragmentGenerico implements IWsdl2CodeEvents{
 
     @Override
     public void hacerOnCreate() {
-        if(!sesion.isLogin()){ //Si No esta logueado
+        //verificar logueo
+        if(!sesion.isLogin()){
             this.onDestroy();
             mCallback.onNavigationDrawerItemSelected(TipoFragmento.LOGIN); //ir a login
             return;
@@ -64,6 +65,14 @@ public class direccion extends FragmentGenerico implements IWsdl2CodeEvents{
         deptos = (Spinner) getView().findViewById(R.id.dir_sp_deptos);
         setHabilitado(false);
         editar = false;
+
+        //Filtros
+        no.setFilters(FragmentGenerico.filtroQuote);
+        calle.setFilters(FragmentGenerico.filtroQuote);
+        avenida.setFilters(FragmentGenerico.filtroQuote);
+        calzada.setFilters(FragmentGenerico.filtroQuote);
+        zona.setFilters(FragmentGenerico.filtroQuote);
+        municipio.setFilters(FragmentGenerico.filtroQuote);
 
         if(parmsOK){
             //Eventos de botones

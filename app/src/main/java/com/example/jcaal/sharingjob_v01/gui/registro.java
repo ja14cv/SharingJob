@@ -31,11 +31,18 @@ public class registro extends FragmentGenerico implements IWsdl2CodeEvents{
 
     @Override
     public void hacerOnCreate() {
-        if(sesion.isLogin()){ //Ya se esta logueado
+        //Verificar login
+        if(sesion.isLogin()){
             this.onDestroy();
             mCallback.onNavigationDrawerItemSelected(TipoFragmento.CUENTA); //ir a cuenta
             return;
         }
+
+        //Filtros
+        ((EditText)getView().findViewById(R.id.reg_et_email)).setFilters(FragmentGenerico.filtroQuote);
+        ((EditText)getView().findViewById(R.id.reg_et_pass)).setFilters(FragmentGenerico.filtroQuote);
+        ((EditText)getView().findViewById(R.id.reg_et_nombres)).setFilters(FragmentGenerico.filtroQuote);
+        ((EditText)getView().findViewById(R.id.reg_et_apellidos)).setFilters(FragmentGenerico.filtroQuote);
 
         //Eventos de botones
         registrar = (Button) getView().findViewById(R.id.reg_bt_registrar);
@@ -46,7 +53,6 @@ public class registro extends FragmentGenerico implements IWsdl2CodeEvents{
                 onClick_registrar(v);
             }
         });
-
 
         cancelar = (Button) getView().findViewById(R.id.reg_bt_cancelar);
         cancelar.setOnClickListener(new View.OnClickListener() {

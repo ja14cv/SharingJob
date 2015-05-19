@@ -63,6 +63,14 @@ public class perfil_completo extends FragmentGenerico implements IWsdl2CodeEvent
         estado_edicion(false);
         editar = false;
 
+        //Filtro
+        et_nombres.setFilters(FragmentGenerico.filtroQuote);
+        et_apellidos.setFilters(FragmentGenerico.filtroQuote);
+        et_telefono.setFilters(FragmentGenerico.filtroQuote);
+        et_claveActual.setFilters(FragmentGenerico.filtroQuote);
+        et_claveNueva.setFilters(FragmentGenerico.filtroQuote);
+
+        //Get datos ente
         ws_sharingJob ws = new ws_sharingJob(this);
         try {
             ws.get_datos_ente_cAsync("{\"sesion\":\"" + sesion.id_sesion + "\"}");
@@ -72,6 +80,8 @@ public class perfil_completo extends FragmentGenerico implements IWsdl2CodeEvent
             Toast.makeText(getActivity(), "No se pudieron recuperar los datos.", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
+
+        mCallback.seleccion(tipoFragmento);
     }
 
     private void estado_edicion(boolean _estado){
