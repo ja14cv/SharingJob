@@ -49,18 +49,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:inputType="textEmailAddress"
+                    android:ems="10"
                     android:id="@+id/lo_et_email"
-                    android:autoText="false"
-                    android:hint="@string/email"
-                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="35dp"
                     android:layout_marginRight="35dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/redondeado_edit_text"
-                    android:textSize="16sp"
+                    android:enabled="true"
+                    android:hint="@string/email"
                     android:padding="5dp"
-                    android:ems="10"
-                    android:focusable="false"
-                    android:enabled="true" />
+                    android:textSize="16sp" />
 
                 <EditText
                     android:layout_width="match_parent"
@@ -75,7 +73,8 @@
                     android:background="@drawable/redondeado_edit_text"
                     android:textSize="16sp"
                     android:padding="5dp"
-                    android:enabled="true" />
+                    android:enabled="true"
+                    android:editable="false" />
 
                 <LinearLayout
                     android:orientation="vertical"

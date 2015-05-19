@@ -27,10 +27,10 @@
                     android:layout_height="wrap_content">
 
                     <ImageButton
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="105dp"
+                        android:layout_height="105dp"
                         android:id="@+id/imageButton"
-                        android:background="@mipmap/ic_usuario" />
+                        android:background="@mipmap/user" />
 
                     <LinearLayout
                         android:orientation="vertical"
@@ -41,10 +41,9 @@
                         android:layout_weight="2">
 
                         <ImageButton
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:id="@+id/cuenta_btn_miEmpresa"
-                            android:background="@mipmap/ic_empresa" />
+                            android:layout_width="65dp"
+                            android:layout_height="65dp"
+                            android:id="@+id/cuenta_btn_miEmpresa" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -84,7 +83,7 @@
                     android:background="#ffffffff"
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginTop="10dp" />
 
                 <LinearLayout
@@ -150,10 +149,10 @@
                     </LinearLayout>
 
                     <ImageButton
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:id="@+id/cuenta_btn_perfilComp"
-                        android:background="@mipmap/ic_perfil_completo" />
+                        android:background="@mipmap/file_edit" />
 
                 </LinearLayout>
 
@@ -173,43 +172,91 @@
                     android:layout_height="match_parent"
                     android:padding="20dp">
 
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="@string/estudios_realizados"
-                        android:id="@+id/cuenta_btn_estRealizados"
-                        android:textColor="@drawable/button_text_color"
-                        android:background="@drawable/button_blue"
-                        android:layout_marginBottom="10dp"
-                        android:singleLine="false" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="Curriculum (antes de sharingJob):"
+                        android:id="@+id/textView17"
+                        android:layout_marginBottom="5dp" />
 
-                    <Button
+                    <LinearLayout
+                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="@string/empleos_tomados"
-                        android:id="@+id/cuenta_btn_empTomados"
-                        android:textColor="@drawable/button_text_color"
-                        android:background="@drawable/button_blue"
-                        android:layout_marginBottom="10dp"
-                        android:singleLine="false" />
+                        android:layout_height="wrap_content">
 
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="@string/empleos_publicados"
-                        android:id="@+id/cuenta_btn_empPublicados"
-                        android:textColor="@drawable/button_text_color"
-                        android:background="@drawable/button_blue"
-                        android:layout_marginBottom="10dp"
-                        android:singleLine="false" />
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Estudios"
+                            android:id="@+id/cuenta_btn_estRealizados"
+                            android:textColor="@drawable/button_text_color"
+                            android:background="@drawable/button_blue"
+                            android:layout_marginBottom="10dp"
+                            android:singleLine="false"
+                            android:layout_weight="1"
+                            android:layout_marginRight="5dp" />
 
-                    <Button
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Empleos"
+                            android:id="@+id/cuenta_btn_empTomados"
+                            android:textColor="@drawable/button_text_color"
+                            android:background="@drawable/button_blue"
+                            android:layout_marginBottom="10dp"
+                            android:singleLine="false"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="5dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="#ffffffff"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="Mi sharingJob (empleos):"
+                        android:id="@+id/textView18"
+                        android:layout_marginBottom="5dp" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="@string/registrar_empresa"
-                        android:id="@+id/cuenta_btn_regEmpresa"
-                        android:background="@drawable/button_blue"
-                        android:textColor="@drawable/button_text_color" />
+                        android:layout_height="match_parent">
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Publicados"
+                            android:id="@+id/cuenta_btn_empPublicados"
+                            android:textColor="@drawable/button_text_color"
+                            android:background="@drawable/button_blue"
+                            android:layout_marginBottom="10dp"
+                            android:singleLine="false"
+                            android:layout_weight="1"
+                            android:layout_marginRight="5dp" />
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Aplicados"
+                            android:id="@+id/cuenta_btn_regEmpresa"
+                            android:background="@drawable/button_blue"
+                            android:textColor="@drawable/button_text_color"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="5dp"
+                            android:visibility="visible" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>

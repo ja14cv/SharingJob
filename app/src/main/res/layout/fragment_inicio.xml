@@ -46,8 +46,9 @@
                         android:id="@+id/textView3"
                         android:textColor="#ff000000"
                         android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="10dp" />
+                        android:layout_marginBottom="10dp"
+                        android:layout_gravity="center_horizontal"
+                        android:textStyle="italic" />
 
                     <LinearLayout
                         android:orientation="vertical"

@@ -16,8 +16,8 @@
             android:layout_margin="1dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:id="@+id/node_icono"
                 android:background="@android:drawable/ic_menu_add"
                 android:adjustViewBounds="false"
@@ -38,8 +38,8 @@
                 android:text="Large Text"
                 android:id="@+id/node_value"
                 android:textColor="#ff549aff"
-                android:textSize="14dp"
-                android:textStyle="italic" />
+                android:textSize="15dp"
+                android:textStyle="bold|italic" />
         </LinearLayout>
 
     </LinearLayout>

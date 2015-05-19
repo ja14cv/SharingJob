@@ -86,8 +86,9 @@ public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
         btn_regEmpresa = (Button) getView().findViewById(R.id.cuenta_btn_regEmpresa);
 
         btn_miEmpresa.setVisibility(View.INVISIBLE);
-        btn_regEmpresa.setVisibility(View.INVISIBLE);
-        ((TextView) getView().findViewById(R.id.cuenta_tv_miEmpresa)).setVisibility(View.INVISIBLE);
+        //btn_regEmpresa.setVisibility(View.INVISIBLE);
+        //((TextView) getView().findViewById(R.id.cuenta_tv_miEmpresa)).setVisibility(View.INVISIBLE);
+        //btn_miEmpresa.setImageResource(R.mipmap.star_full);
 
         ws_sharingJob ws = new ws_sharingJob(this);
         try {
@@ -185,12 +186,13 @@ public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
                 correo = temporal.getString("correo");
                 id_empresa = temporal.getString("id_empresa");
 
-                if (id_empresa.equals("NULL")){
-                    btn_regEmpresa.setVisibility(View.VISIBLE);
+                btn_miEmpresa.setVisibility(View.VISIBLE);
+                if (id_empresa.equals("null")){
+                    btn_miEmpresa.setBackgroundResource(R.mipmap.star_add);
                 }else{
-                    btn_miEmpresa.setVisibility(View.VISIBLE);
-                    (getView().findViewById(R.id.cuenta_tv_miEmpresa)).setVisibility(View.VISIBLE);
+                    btn_miEmpresa.setBackgroundResource(R.mipmap.star_full);
                 }
+
 
                 ((TextView) getView().findViewById(R.id.cuenta_tv_nombres)).setText(apellidos +", "+ nombres);
                 ((TextView) getView().findViewById(R.id.cuenta_tv_correo)).setText(correo);

@@ -3,6 +3,7 @@ package com.example.jcaal.sharingjob_v01.gui;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.jcaal.sharingjob_v01.R;
@@ -70,12 +71,12 @@ public class login extends FragmentGenerico implements IWsdl2CodeEvents{
     }
 
     private void onClick_ingresar(View v){
-        /*String correo = ((EditText) getView().findViewById(R.id.lo_et_email)).getText().toString().trim();
-        String pass = ((EditText) getView().findViewById(R.id.lo_et_pass)).getText().toString().trim();*/
+        String correo = ((EditText) getView().findViewById(R.id.lo_et_email)).getText().toString().trim();
+        String pass = ((EditText) getView().findViewById(R.id.lo_et_pass)).getText().toString().trim();
 
-
+        /*
         String correo = "admin@admin.com";
-        String pass = "123";
+        String pass = "123";*/
 
         //if(!correo.isEmpty() && !pass.isEmpty()){
             ws_sharingJob ws = new ws_sharingJob(this);
