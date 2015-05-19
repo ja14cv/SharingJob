@@ -88,8 +88,7 @@
                     android:background="@drawable/background_empleo_item"
                     android:padding="5dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:id="@+id/">
+                    android:layout_marginRight="20dp">
 
                     <TextView
                         android:layout_width="0dp"
