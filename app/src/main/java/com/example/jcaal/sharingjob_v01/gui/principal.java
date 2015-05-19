@@ -129,7 +129,11 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
         }else if(tf == TipoFragmento.EMPLEO){
             mNavigationDrawerFragment.desmarcarItem();
             transaction.replace(R.id.container, empleo.newInstance(new empleo(), R.layout.fragment_empleo, tf, parms)).commit();
-        }else{
+        }else if(tf == TipoFragmento.EMPLEOS_APLICADOS){
+            mNavigationDrawerFragment.desmarcarItem();
+            transaction.replace(R.id.container, empleos_aplicados.newInstance(new empleos_aplicados(), R.layout.fragment_empleos_aplicados, tf, parms)).commit();
+        }
+        else{
             transaction.replace(R.id.container, inicio.newInstance(new inicio(), R.layout.fragment_inicio, tf, parms)).commit();
         }
 
@@ -178,7 +182,10 @@ public class principal extends ActionBarActivity implements NavigationDrawerFrag
             mTitle = "Estudios realizados";
         }else if(tf == TipoFragmento.EMPLEOS_PUBLICADOS){
             mTitle = "Empleos publicados";
-        }else{
+        }else if(tf == TipoFragmento.EMPLEOS_APLICADOS){
+            mTitle = "Empleos aplicados";
+        }
+        else{
             mTitle = getString(R.string.app_name);
         }
 

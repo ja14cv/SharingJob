@@ -23,5 +23,6 @@ public enum TipoFragmento {
     TAB_EMPRESA, //No existe, solo para tabular
     EMPLEOS_TOMADOS,
     ESTUDIOS_REALIZADOS,
-    EMPLEOS_PUBLICADOS
+    EMPLEOS_PUBLICADOS,
+    EMPLEOS_APLICADOS
 }

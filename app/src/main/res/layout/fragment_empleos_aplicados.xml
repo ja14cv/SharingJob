@@ -2,4 +2,53 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+    <LinearLayout
+        style="@style/estilo_layout_fondo"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            style="@style/estilo_scrollview"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent" >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#ffffffff"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Presione un elemento para eliminarlo"
+                android:id="@+id/textView20"
+                android:layout_marginBottom="5dp"
+                android:textColor="#c8dd0400"
+                android:layout_gravity="center_horizontal" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#ffffffff"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="5dp" />
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/empAp_lv_empleos"
+                android:background="@drawable/redondeado_edit_text"
+                android:padding="5dp" />
+        </LinearLayout>
+
+    </LinearLayout>
 </LinearLayout>

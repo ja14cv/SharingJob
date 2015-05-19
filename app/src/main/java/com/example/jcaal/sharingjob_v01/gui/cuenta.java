@@ -84,7 +84,12 @@ public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
             }
         });
         btn_regEmpresa = (Button) getView().findViewById(R.id.cuenta_btn_regEmpresa);
-
+        btn_regEmpresa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick_empAplicados(v);
+            }
+        });
         btn_miEmpresa.setVisibility(View.INVISIBLE);
         //btn_regEmpresa.setVisibility(View.INVISIBLE);
         //((TextView) getView().findViewById(R.id.cuenta_tv_miEmpresa)).setVisibility(View.INVISIBLE);
@@ -126,6 +131,10 @@ public class cuenta extends FragmentGenerico implements IWsdl2CodeEvents {
     private void onClick_empTomados(View v){
         this.onDestroy();
         mCallback.onNavigationDrawerItemSelected(TipoFragmento.EMPLEOS_TOMADOS);
+    }
+    private void onClick_empAplicados(View v){
+        this.onDestroy();
+        mCallback.onNavigationDrawerItemSelected(TipoFragmento.EMPLEOS_APLICADOS);
     }
     private void onClick_btn_estRealizados(View v){
         this.onDestroy();

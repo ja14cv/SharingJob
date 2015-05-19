@@ -50,11 +50,11 @@ public class empleos_publicados extends FragmentGenerico implements IWsdl2CodeEv
         });
         dialogo1 = new AlertDialog.Builder(getView().getContext());
         dialogo1.setTitle("Empleo publicado");
-        dialogo1.setMessage(":D");
+        dialogo1.setMessage("¿Realmente desea eliminar el registro de empleo?");
         dialogo1.setCancelable(false);
         dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogo1, int id) {
-                //removeItem(posicion);
+                removeItem(posicion);
             }
         });
         dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -64,6 +64,18 @@ public class empleos_publicados extends FragmentGenerico implements IWsdl2CodeEv
 
         try {
             new ws_sharingJob(this).get_empleos_publicadosAsync("{\"sesion\":\"" + sesion.id_sesion + "\"}");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void removeItem(int posicion){
+        String json = "{\n" +
+                "\t\"id_trabajo\":\""+ mapa_empleos.get(posicion)+"\",\n" +
+                "\t\"sesion\":\""+ sesion.id_sesion+"\"\n" +
+                "}";
+        try {
+            new ws_sharingJob(this).del_empleo_publicadoAsync(json);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -84,6 +96,20 @@ public class empleos_publicados extends FragmentGenerico implements IWsdl2CodeEv
                     break;
                 case 1:     //se obtuvieron
                     procesar_empleos((String) Data);
+                    break;
+                default:    //error general
+            }
+        }
+        if (methodName.equals("del_empleo_publicado")){
+            switch(procesarData((String) Data)){
+                case 0:     //no se elimino
+                    break;
+                case 1:     //se elimino
+                    try {
+                        new ws_sharingJob(this).get_empleos_publicadosAsync("{\"sesion\":\"" + sesion.id_sesion + "\"}");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     break;
                 default:    //error general
             }
@@ -109,7 +135,7 @@ public class empleos_publicados extends FragmentGenerico implements IWsdl2CodeEv
     }
 
     private void procesar_empleos(String _json){
-        //mapa_empleos = new ArrayList<>();
+        mapa_empleos = new ArrayList<>();
         ArrayList<HashMap<String, String>> list = new ArrayList<>();
         String[] from = new String[] { "titulo", "descripcion" };
         int[] to = new int[] { android.R.id.text1, android.R.id.text2 };
@@ -119,7 +145,7 @@ public class empleos_publicados extends FragmentGenerico implements IWsdl2CodeEv
             JSONArray temp =  new JSONObject(_json).getJSONArray("array");
             for (int i=0 ; i<temp.length() ; i++){
                 JSONObject temporal = temp.getJSONObject(i);
-                //mapa_empleos.add(i,temporal.getString("id_estudio"));
+                mapa_empleos.add(i,temporal.getString("id_empleo"));
                 HashMap<String, String> item = new HashMap<>();
                 item.put("titulo", temporal.getString("titulo"));
                 item.put("descripcion",  " (" + temporal.getString("fecha_oferta") + ")\n" + temporal.getString("descripcion"));
